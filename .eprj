@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>fileTriggers</key>
+        <dict>
+            <key>data</key>
+            <string>..\mephisto\config\database.yml</string>
+            <key>sty</key>
+            <string>..\..\html\lcd-gsm\i\style.css</string>
+            <key>style</key>
+            <string>..\..\html\lcd-gsm\i\style.css</string>
+            <key>user</key>
+            <string>app\models\user.rb</string>
+        </dict>
+    </dict>
+</plist>
