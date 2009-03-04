@@ -1,0 +1,40 @@
+<h1>Editing round</h1>
+
+<% form_for(@round) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :season %><br />
+    <%= f.text_field :season %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :published %><br />
+    <%= f.text_field :published %>
+  </p>
+  <p>
+    <%= f.label :start_responses_at %><br />
+    <%= f.datetime_select :start_responses_at %>
+  </p>
+  <p>
+    <%= f.label :end_responses_at %><br />
+    <%= f.datetime_select :end_responses_at %>
+  </p>
+  <p>
+    <%= f.label :start_assess_at %><br />
+    <%= f.datetime_select :start_assess_at %>
+  </p>
+  <p>
+    <%= f.label :end_assess_at %><br />
+    <%= f.datetime_select :end_assess_at %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @round %> |
+<%= link_to 'Back', rounds_path %>

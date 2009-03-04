@@ -7,6 +7,7 @@ include AuthenticatedTestHelper
 
 describe User do
   fixtures :users
+  fixtures :roles
 
   describe 'being created' do
     before do
@@ -223,6 +224,26 @@ describe User do
     users(:quentin).remember_token_expires_at.should_not be_nil
     users(:quentin).remember_token_expires_at.between?(before, after).should be_true
   end
+  
+  describe "have role?" do
+	before do
+      @user = users(:quentin)      
+      @user.roles << roles(:judge)
+    end
+    
+    it "should have role member" do    
+      @user.roles << roles(:admin)	
+      @user.has_role?("member").should be_true
+    end
+    
+    it "should have role judge" do
+      @user.has_role?("judge").should be_true
+    end
+    
+    it "should not have admin" do
+      @user.has_role?("admin").should be_false
+    end
+  end
 
 protected
   def create_user(options = {})
@@ -230,4 +251,6 @@ protected
     record.save
     record
   end
+  
+  
 end

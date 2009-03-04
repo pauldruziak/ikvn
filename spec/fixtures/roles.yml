@@ -1,0 +1,9 @@
+admin:
+  id: 1
+  name: admin
+judge:
+  id: 2
+  name: judge
+member: 
+  id: 3
+  name: member

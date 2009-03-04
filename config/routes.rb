@@ -1,5 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :seasons
+  map.resources :seasons do |season|
+  	season.resources :rounds do |round|
+  	  round.resources :question
+  	end
+  end
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'

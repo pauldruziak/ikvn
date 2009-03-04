@@ -18,4 +18,6 @@ describe Role do
       r.errors.on(:name).should_not be_nil
     end.should_not change(Role, :count)
   end
+  
+
 end

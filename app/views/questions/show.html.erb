@@ -1,0 +1,18 @@
+<p>
+  <b>Round:</b>
+  <%=h @question.round %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @question.name %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @question.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

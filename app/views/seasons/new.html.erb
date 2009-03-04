@@ -1,0 +1,43 @@
+<div class="block">
+	<div class="flash">
+      <% flash.each do |type, message| -%>
+      <div class="message <%= type %>">
+        <p><%=  message %></p>
+      </div>
+      <% end -%>
+    </div>
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first"><%= link_to 'List', seasons_path  %></li>
+      <li class="active"><%= link_to 'New', new_season_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">            
+    <h2 class="title">New Season</h2>
+    <div class="inner">
+      <% form_for :season, :url => seasons_path, :html => { :class => :form } do |f| -%>
+        
+          <div class="group">
+            <%= f.label :name, "Название", :class => :label %>
+            <%= f.text_field :name, :class => 'text_field' %>
+            <span class="description">Ex: a simple text</span>
+          </div>
+           <div class="group">
+            <%= f.label :round_count, "Количество туров", :class => :label %>
+            <%= f.text_field :round_count, :class => 'text_field' %>
+          </div>
+           <div class="group">
+            <%= f.label :question_count, "Количество вопросов в каждом туре", :class => :label %>
+            <%= f.text_field :question_count, :class => 'text_field' %>
+          </div>
+        
+        <div class="group navform">
+          <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', seasons_path %>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

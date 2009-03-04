@@ -1,0 +1,32 @@
+<h1>Listing rounds</h1>
+
+<table>
+  <tr>
+    <th>Season</th>
+    <th>Name</th>
+    <th>Published</th>
+    <th>Start responses at</th>
+    <th>End responses at</th>
+    <th>Start assess at</th>
+    <th>End assess at</th>
+  </tr>
+
+<% for round in @rounds %>
+  <tr>
+    <td><%=h round.season %></td>
+    <td><%=h round.name %></td>
+    <td><%=h round.published %></td>
+    <td><%=h round.start_responses_at %></td>
+    <td><%=h round.end_responses_at %></td>
+    <td><%=h round.start_assess_at %></td>
+    <td><%=h round.end_assess_at %></td>
+    <td><%= link_to 'Show', round %></td>
+    <td><%= link_to 'Edit', edit_round_path(round) %></td>
+    <td><%= link_to 'Destroy', round, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New round', new_round_path %>

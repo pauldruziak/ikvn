@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090218193617) do
+ActiveRecord::Schema.define(:version => 20090225100109) do
+
+  create_table "questions", :force => true do |t|
+    t.integer  "round_id"
+    t.string   "name"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", :force => true do |t|
     t.string "name"
@@ -22,6 +30,18 @@ ActiveRecord::Schema.define(:version => 20090218193617) do
 
   add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
   add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
+
+  create_table "rounds", :force => true do |t|
+    t.integer  "season_id"
+    t.string   "name"
+    t.boolean  "published"
+    t.datetime "start_responses_at"
+    t.datetime "end_responses_at"
+    t.datetime "start_assess_at"
+    t.datetime "end_assess_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "seasons", :force => true do |t|
     t.string   "name"

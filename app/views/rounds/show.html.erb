@@ -1,0 +1,38 @@
+<p>
+  <b>Season:</b>
+  <%=h @round.season %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @round.name %>
+</p>
+
+<p>
+  <b>Published:</b>
+  <%=h @round.published %>
+</p>
+
+<p>
+  <b>Start responses at:</b>
+  <%=h @round.start_responses_at %>
+</p>
+
+<p>
+  <b>End responses at:</b>
+  <%=h @round.end_responses_at %>
+</p>
+
+<p>
+  <b>Start assess at:</b>
+  <%=h @round.start_assess_at %>
+</p>
+
+<p>
+  <b>End assess at:</b>
+  <%=h @round.end_assess_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_round_path(@round) %> |
+<%= link_to 'Back', rounds_path %>
