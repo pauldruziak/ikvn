@@ -2,19 +2,22 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 include AuthenticatedSystem
 describe SeasonsController do
   def mock_admin
-    admin ||= mock_model(User, :id => 1,
+    @admin ||= mock_model(User, :id => 1,
 						       :login  => 'user_name',
 						       :name   => 'U. Surname',
 						       :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
 						       :errors => [], 
 						       :roles  => [mock_model(Role, {:name => "admin", :save => true})])  
-    admin
   end
   
   def mock_round(stubs={})
     @mock_round = mock_model(Round, stubs)  	
   end
   
+  def mock_season(options = {})
+    @mock_season ||= mock_model(Season, { :name => 'test', :rounds_count => 5, :questions_count => 3, :save => true }.merge(options))
+  end
+ 
   describe	"without login" do
     before do          
       @season = mock_model(Season, { :name => "First", :rounds_count => 5, :questions_count => 5})
@@ -46,18 +49,14 @@ describe SeasonsController do
   
   
   describe "with login" do
-  	before do    
-	  @admin = mock_admin         
-	  login_as @admin
+  	before do        	  
+	  login_as mock_admin
 	  current_user.stub!(:has_role?).and_return(true)
 	  controller.stub!(:check_roles).and_return(true)	
-	  @params = { "name" => "First", "rounds_count" => 5, "questions_count" => 5}	  
+	  @params = { "name" => 'First', "rounds_count" => 5, "questions_count" => 5}	  
     end 
     
     describe "responding to GET new" do
-      before(:each) do
-        @season = mock_model(Season, { :name => "First", :rounds_count => 5, :questions_count => 5, :save => false})
-      end
     
       def do_get
         get :new
@@ -74,28 +73,20 @@ describe SeasonsController do
       end
     
 	  it "should expose a new season as @season" do
-	    Season.should_receive(:new).and_return(@season)
+	    Season.should_receive(:new).and_return(mock_season(:save => false))
 	    get :new		
-	    assigns[:season].should equal(@season)
+	    assigns[:season].should equal(mock_season(:save => false))
 	  end
     end
     
-    describe "responding to POST create" do      
+    describe "responding to POST create" do  
     	
-      before(:each) do
-      	@round = mock_model(Round, {:name => "Round"})      
-      	
-        @season = mock_model(Season, { :name => "First", :rounds_count => 5, :questions_count => 5, :rounds => [], :save => true})        
-        @season.rounds.stub!(:build).and_return(mock_round(:name => 1), mock_round(:name => 2), mock_round(:name => 3), mock_round(:name => 4), mock_round(:name => 5)) do |arg|
-        	@season.rounds << mock_round(arg)
-        end        
-      end  	
-      
 	  def do_post
         post :create, :season => @params
 	  end
 	  
       describe "with valid params" do
+      
       	it "should login required" do
           do_post
           current_user.should_not be_nil
@@ -107,43 +98,53 @@ describe SeasonsController do
         end
   
   	    it "should expose a newly created season as @season" do      	
-	      Season.should_receive(:new).with(@params).and_return(@season)
+	      Season.should_receive(:new).with(@params).and_return(mock_season)
 	      do_post
-	      assigns(:season).should equal(@season)
+	      assigns(:season).should equal(mock_season)
 	    end
 	
 	    it "should redirect to the created season" do	      
-	      Season.stub!(:new).with(@params).and_return(@season)
+	      Season.stub!(:new).with(@params).and_return(mock_season)
 	      do_post
-	      response.should redirect_to(season_url(@season))
-	    end
-	    
-	    it "should create rounds" do	    	
-    	  Season.stub!(:new).with(@params).and_return(@season)	 
-    	  @season.rounds.should_receive(:build).exactly(5).times     
-		  do_post	      
-	      @season.rounds.count.should eql(5)	      
-	    end
-	    
-	    it "should create rounds with name" do
-	      Season.stub!(:new).with(@params).and_return(@season)	      
-	      do_post	      
-	      5.times do |index|
-	      	@season.rounds[index].name.should eql(index + 1)
-	      end
-	    end
-	    
-	    it "should first round have name '1'" do
-	      Season.stub!(:new).with(@params).and_return(@season)	      
-	      do_post	      	      
-	      @season.rounds[0].name.should eql(1)	      
-	    end
-	    
-	    it "should create questions" do
-	      #Question.should_receive(:new).exactly(25).times
-	      #do_post
-	    end  
+	      response.should redirect_to(season_url(mock_season))
+	    end 
+	     
+      end    
+          
+      describe "with invalid params" do
+    
+        it "should expose a newly created but unsaved season as @season" do      	
+          Season.stub!(:new).with(@params).and_return(mock_season(:save => false))
+          do_post
+          assigns(:season).should equal(mock_season(:save => false))
+        end
+
+        it "should re-render the 'new' template" do
+          Season.stub!(:new).and_return(mock_season(:save => false))
+          do_post
+          response.should render_template('new')
+        end     
+
+      end      
+      
+	end
+	
+	describe "responding to DELETE destroy" do
+
+      it "should destroy the requested season" do
+        Season.should_receive(:find).with("37").and_return(mock_season)
+        mock_season.should_receive(:destroy)
+        delete :destroy, :id => "37"
       end
+  
+      it "should redirect to the seasons list" do
+        Season.stub!(:find).and_return(mock_season(:destroy => true))
+        delete :destroy, :id => "1"
+        response.should redirect_to(seasons_url)
+      end
+
     end
-  end	
+	    
+  end
+  	
 end

@@ -15,8 +15,8 @@ describe "/seasons/new.html.erb" do
     
     response.should have_tag("form[action=?][method=post]", seasons_path) do
       with_tag("input#season_name[name=?]", "season[name]")
-      with_tag("input#season_round_count[name=?]", "season[round_count]")
-      with_tag("input#season_question_count[name=?]", "season[question_count]")
+      with_tag("input#season_rounds_count[name=?]", "season[rounds_count]")
+      with_tag("input#season_questions_count[name=?]", "season[questions_count]")
     end
   end
 end

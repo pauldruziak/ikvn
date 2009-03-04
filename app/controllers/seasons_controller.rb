@@ -41,12 +41,6 @@ class SeasonsController < ApplicationController
   # POST /seasons.xml
   def create
     @season = Season.new(params[:season])
-    @season.rounds_count.times do |round_index|
-  		@round = @season.rounds.build({:name => round_index + 1})
-  		@season.questions_count.times do |question_index|
-  			#@round.questions.build({:name => question_index + 1})
-  		end
-  	end
 
     respond_to do |format|
       if @season.save      	
@@ -54,7 +48,6 @@ class SeasonsController < ApplicationController
         format.html { redirect_to(@season) }
         format.xml  { render :xml => @season, :status => :created, :location => @season }
       else
-      	flash[:error] = 'Ошибка.'
         format.html { render :action => "new" }
         format.xml  { render :xml => @season.errors, :status => :unprocessable_entity }
       end
