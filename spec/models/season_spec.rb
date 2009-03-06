@@ -103,7 +103,7 @@ describe Season do
   
     it 'should create :rounds_count rounds' do 
       season = create_season
-      season.should have(@params[:rounds_count]).rounds       
+      season.should have(@params[:rounds_count]).rounds            
     end 
     
     it 'should create :questions_count questions in each round' do 
@@ -116,7 +116,8 @@ describe Season do
   
   it "should not destroy if have published round" do
     season = create_season
-    season.rounds[0].update_attributes(:published => true)
+    season.rounds[0].update_attribute(:published, true)
+    season.reload
     lambda do
        season.destroy         
     end.should_not change(Season, :count)
