@@ -2,7 +2,7 @@ class SeasonsController < ApplicationController
   
   before_filter :login_required, :only => [ :new, :create, :destroy]
   require_role "admin", :only => [ :new, :create, :destroy]
-  
+    
   # GET /seasons
   # GET /seasons.xml
   def index

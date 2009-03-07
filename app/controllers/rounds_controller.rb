@@ -1,8 +1,10 @@
 class RoundsController < ApplicationController
-  # GET /rounds
-  # GET /rounds.xml
+  before_filter :find_season	
+	
+  # GET /seasons/1/rounds
+  # GET /seasons/1/rounds.xml
   def index
-    @rounds = Round.find(:all)
+    @rounds = @season.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,10 +12,10 @@ class RoundsController < ApplicationController
     end
   end
 
-  # GET /rounds/1
-  # GET /rounds/1.xml
+  # GET /seasons/1/rounds/1
+  # GET /seasons/1/rounds/1.xml
   def show
-    @round = Round.find(params[:id])
+    @round = @season.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,48 +23,20 @@ class RoundsController < ApplicationController
     end
   end
 
-  # GET /rounds/new
-  # GET /rounds/new.xml
-  def new
-    @round = Round.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @round }
-    end
-  end
-
-  # GET /rounds/1/edit
+  # GET /seasons/1/rounds/1/edit
   def edit
-    @round = Round.find(params[:id])
+    @round = @season.find(params[:id])
   end
 
-  # POST /rounds
-  # POST /rounds.xml
-  def create
-    @round = Round.new(params[:round])
-
-    respond_to do |format|
-      if @round.save
-        flash[:notice] = 'Round was successfully created.'
-        format.html { redirect_to(@round) }
-        format.xml  { render :xml => @round, :status => :created, :location => @round }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @round.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /rounds/1
-  # PUT /rounds/1.xml
+  # PUT /seasons/1/rounds/1
+  # PUT /seasons/1/rounds/1.xml
   def update
-    @round = Round.find(params[:id])
+    @round = @season.find(params[:id])
 
     respond_to do |format|
       if @round.update_attributes(params[:round])
         flash[:notice] = 'Round was successfully updated.'
-        format.html { redirect_to(@round) }
+        format.html { redirect_to season_round_path(@round.season, @round) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,5 +55,11 @@ class RoundsController < ApplicationController
       format.html { redirect_to(rounds_url) }
       format.xml  { head :ok }
     end
+  end
+  
+protected
+  def find_season
+  	@season = Season.find(params[:season_id])
+  	
   end
 end
