@@ -3,4 +3,9 @@ class Question < ActiveRecord::Base
   
   validates_presence_of :name
   validates_presence_of :body, :on => :update
+  
+protected
+  def before_update
+  	!self.round.published
+  end
 end

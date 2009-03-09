@@ -2,10 +2,27 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Question do
   def create_question(options={})
-  	record = Question.new({ :name => "First question",
-  	                        :body => "Body text"}.merge(options))
+    record ||= Round.new({:name=>"1", 
+  	                    :published => false, 
+  	                    :start_responses_at => Time.now,
+  					    :end_responses_at => Time.now + 14.day,
+						:start_assess_at => Time.now + 14.day, 
+  						:end_assess_at => Time.now + 21.day}) 
+  	record.questions.build({ :name => "First question",
+  	                        :body => "Body text", :round => create_round}.merge(options))
   	record.save
-  	record
+  	record.questions[0]
+  end
+  
+    def create_round(options = {})
+  	record ||= Round.new({:name=>"1", 
+  	                    :published => false, 
+  	                    :start_responses_at => Time.now,
+  					    :end_responses_at => Time.now + 14.day,
+						:start_assess_at => Time.now + 14.day, 
+  						:end_assess_at => Time.now + 21.day}.merge(options))  						
+    record.save
+    record
   end
 
   it "should require name" do
@@ -29,5 +46,13 @@ describe Question do
   	lambda do
   	  create_question
   	end.should change(Question, :count)
+  end
+  
+  it "should prohibit the editing if round published" do
+  	question = create_question
+  	question.round.update_attribute(:published, true)  	
+  	question.update_attribute(:name, "Second question")
+  	question.reload
+  	question.name.should eql("First question")
   end
 end
