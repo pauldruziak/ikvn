@@ -1,38 +1,53 @@
-<p>
-  <b>Season:</b>
-  <%=h @round.season %>
-</p>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first"><%= link_to 'Seasons', seasons_path  %></li>
+      <li><%= link_to 'New', new_season_path %></li>
+      <li><%= link_to 'Season: '+@round.season.name, season_path(@round.season) %></li>
+      <li class="active"><%= link_to 'Round: '+@round.name, season_round_path(@round.season, @round) %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b>season_id:</b>
+          <%= @round.season_id %>
+        </p>
 
-<p>
-  <b>Name:</b>
-  <%=h @round.name %>
-</p>
+        <p>
+          <b>name:</b>
+          <%= @round.name %>
+        </p>
 
-<p>
-  <b>Published:</b>
-  <%=h @round.published %>
-</p>
+        <p>
+          <b>published:</b>
+          <%= @round.published %>
+        </p>
 
-<p>
-  <b>Start responses at:</b>
-  <%=h @round.start_responses_at %>
-</p>
+        <p>
+          <b>start_responses_at:</b>
+          <%= @round.start_responses_at %>
+        </p>
 
-<p>
-  <b>End responses at:</b>
-  <%=h @round.end_responses_at %>
-</p>
+        <p>
+          <b>end_responses_at:</b>
+          <%= @round.end_responses_at %>
+        </p>
 
-<p>
-  <b>Start assess at:</b>
-  <%=h @round.start_assess_at %>
-</p>
+        <p>
+          <b>start_assess_at:</b>
+          <%= @round.start_assess_at %>
+        </p>
 
-<p>
-  <b>End assess at:</b>
-  <%=h @round.end_assess_at %>
-</p>
+        <p>
+          <b>end_assess_at:</b>
+          <%= @round.end_assess_at %>
+        </p>
+      <%= link_to 'Edit', edit_season_round_path(@round.season, @round) %>
+    </div>
+  </div>
+</div>
 
-
-<%= link_to 'Edit', edit_round_path(@round) %> |
-<%= link_to 'Back', rounds_path %>
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

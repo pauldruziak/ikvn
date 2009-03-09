@@ -1,40 +1,66 @@
-<h1>Editing round</h1>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first"><%= link_to 'Seasons', seasons_path  %></li>
+      <li><%= link_to 'New', new_season_path %></li>
+      <li><%= link_to 'Season: '+@round.season.name, season_path(@round.season) %></li>
+      <li class="active"><%= link_to 'Round: '+@round.name, edit_season_round_path(@round.season, @round) %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">            
+    <h2 class="title">Edit Round</h2>
+    <div class="inner">
+      <% form_for @round, :url => season_round_path(@round.season, @round), :html => { :class => :form } do |f| -%>
+        
+          <div class="group">
+            <%= f.label :season_id, "season_id", :class => :label %>
+            <%= f.text_field :season_id, :class => 'text_field' %>
+            <span class="description">Ex: a simple text</span>
+          </div>
 
-<% form_for(@round) do |f| %>
-  <%= f.error_messages %>
+          <div class="group">
+            <%= f.label :name, "name", :class => :label %>
+            <%= f.text_field :name, :class => 'text_field' %>
+            <span class="description">Ex: a simple text</span>
+          </div>
 
-  <p>
-    <%= f.label :season %><br />
-    <%= f.text_field :season %>
-  </p>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :published %><br />
-    <%= f.text_field :published %>
-  </p>
-  <p>
-    <%= f.label :start_responses_at %><br />
-    <%= f.datetime_select :start_responses_at %>
-  </p>
-  <p>
-    <%= f.label :end_responses_at %><br />
-    <%= f.datetime_select :end_responses_at %>
-  </p>
-  <p>
-    <%= f.label :start_assess_at %><br />
-    <%= f.datetime_select :start_assess_at %>
-  </p>
-  <p>
-    <%= f.label :end_assess_at %><br />
-    <%= f.datetime_select :end_assess_at %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
+          <div class="group">
+            <%= f.label :published, "published", :class => :label %>
+            <%= f.check_box :published, :class => 'check_box' %>
+            <span class="description">Ex: a simple text</span>
+          </div>
 
-<%= link_to 'Show', @round %> |
-<%= link_to 'Back', rounds_path %>
+          <div class="group">
+            <%= f.label :start_responses_at, "start_responses_at", :class => :label %>
+            <%= f.datetime_select :start_responses_at, :class => 'datetime_select' %>
+            <span class="description">Ex: a simple text</span>
+          </div>
+
+          <div class="group">
+            <%= f.label :end_responses_at, "end_responses_at", :class => :label %>
+            <%= f.datetime_select :end_responses_at, :class => 'datetime_select' %>
+            <span class="description">Ex: a simple text</span>
+          </div>
+
+          <div class="group">
+            <%= f.label :start_assess_at, "start_assess_at", :class => :label %>
+            <%= f.datetime_select :start_assess_at, :class => 'datetime_select' %>
+            <span class="description">Ex: a simple text</span>
+          </div>
+
+          <div class="group">
+            <%= f.label :end_assess_at, "end_assess_at", :class => :label %>
+            <%= f.datetime_select :end_assess_at, :class => 'datetime_select' %>
+            <span class="description">Ex: a simple text</span>
+          </div>
+        
+        <div class="group navform">
+          <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', season_path(@round.season) %>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

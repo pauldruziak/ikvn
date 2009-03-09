@@ -6,20 +6,22 @@ describe "/rounds/edit.html.erb" do
   before(:each) do
     assigns[:round] = @round = stub_model(Round,
       :new_record? => false,
-      #:season => ,
-      :name => "value for name",
-      :published => true
+      :season => stub_model(Season, :name => "First"),
+      :name => "1",
+      :published => false, 
+      :start_responses_at => Time.now,
+      :end_responses_at => Time.now + 14.day,
+	  :start_assess_at => Time.now + 14.day, 
+  	  :end_assess_at => Time.now + 21.day
     )
   end
 
   it "should render edit form" do
-    #render "/rounds/edit.html.erb"
+    render "/rounds/edit.html.erb"
     
-    #response.should have_tag("form[action=#{round_path(@round)}][method=post]") do
-     # with_tag('input#round_season[name=?]', "round[season]")
-      #with_tag('input#round_name[name=?]', "round[name]")
-      #with_tag('input#round_published[name=?]', "round[published]")
-   # end
+    response.should have_tag("form[action=#{season_round_path(@round.season, @round)}][method=post]") do
+      with_tag('input#round_name[name=?]', "round[name]")
+    end
   end
 end
 

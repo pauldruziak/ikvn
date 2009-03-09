@@ -4,7 +4,7 @@ class RoundsController < ApplicationController
   # GET /seasons/1/rounds
   # GET /seasons/1/rounds.xml
   def index
-    @rounds = @season.find(:all)
+    @rounds = @season.rounds.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class RoundsController < ApplicationController
   # GET /seasons/1/rounds/1
   # GET /seasons/1/rounds/1.xml
   def show
-    @round = @season.find(params[:id])
+    @round = @season.rounds.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,13 +25,13 @@ class RoundsController < ApplicationController
 
   # GET /seasons/1/rounds/1/edit
   def edit
-    @round = @season.find(params[:id])
+    @round = @season.rounds.find(params[:id])
   end
 
   # PUT /seasons/1/rounds/1
   # PUT /seasons/1/rounds/1.xml
   def update
-    @round = @season.find(params[:id])
+    @round = @season.rounds.find(params[:id])
 
     respond_to do |format|
       if @round.update_attributes(params[:round])
@@ -42,18 +42,6 @@ class RoundsController < ApplicationController
         format.html { render :action => "edit" }
         format.xml  { render :xml => @round.errors, :status => :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /rounds/1
-  # DELETE /rounds/1.xml
-  def destroy
-    @round = Round.find(params[:id])
-    @round.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(rounds_url) }
-      format.xml  { head :ok }
     end
   end
   

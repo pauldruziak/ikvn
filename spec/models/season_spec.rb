@@ -39,22 +39,26 @@ describe Season do
     end
     
     describe "should allows legitimate rounds_count:" do
-      [1, 5, 30].each do |rounds_count|
+      [1, 3, 5, 7, 10, 30].each do |rounds_count|
       	it "'#{rounds_count}'" do
       	  lambda do
             season = create_season(:rounds_count => rounds_count)
             season.should_not have(1).error_on(:rounds_count)
+            season.should have(rounds_count).rounds
           end.should change(Season, :count)
       	end
       end      
     end
     
     describe "should allows legitimate questions_count:" do
-      [1, 5, 30].each do |questions_count|
+      [1, 3, 5, 7, 10, 30].each do |questions_count|
       	it "'#{questions_count}'" do
       	  lambda do
             season = create_season(:questions_count => questions_count)
             season.should_not have(1).error_on(:questions_count)
+            season.rounds.each do |round|
+        	  round.should have(questions_count).questions
+            end
           end.should change(Season, :count)
       	end
       end      
@@ -100,6 +104,22 @@ describe Season do
         create_season  
       end.should change(Season, :count)
     end  
+    
+    describe "should create rounds:" do
+      [1, 3, 5, 7, 10, 30].each do |rounds_count|
+      	it "'#{rounds_count}'" do
+      	  lambda do
+            season = create_season(:rounds_count => rounds_count)
+            season.should_not have(1).error_on(:rounds_count)
+            season.should have(rounds_count).rounds
+            season.rounds.each do |round|
+              round.errors.should be_empty
+            end
+
+          end.should change(Season, :count)
+      	end
+      end      
+    end    
   
     it 'should create :rounds_count rounds' do 
       season = create_season

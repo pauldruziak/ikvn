@@ -15,7 +15,8 @@ describe RoundsController do
   
   def mock_season(options={})
   	@mock_season ||= mock_model(Season, { :id => 1,
-  										  :name => "first"}.merge(options))
+  										  :name => "first",
+  										  :rounds => []}.merge(options))
   end
   
   before do
@@ -29,7 +30,7 @@ describe RoundsController do
 
     it "should expose all rounds as @rounds" do      
       Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-      mock_season.should_receive(:find).with(:all).and_return([mock_round])
+      mock_season.rounds.should_receive(:find).with(:all).and_return([mock_round])
       do_get
       assigns[:rounds].should == [mock_round]
     end
@@ -39,7 +40,7 @@ describe RoundsController do
       it "should render all rounds as xml" do
         request.env["HTTP_ACCEPT"] = "application/xml"
         Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-        mock_season.should_receive(:find).with(:all).and_return(rounds = mock("Array of Rounds"))
+        mock_season.rounds.should_receive(:find).with(:all).and_return(rounds = mock("Array of Rounds"))
         rounds.should_receive(:to_xml).and_return("generated XML")
         do_get
         response.body.should == "generated XML"
@@ -56,7 +57,7 @@ describe RoundsController do
 
     it "should expose the requested round as @round" do
       Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)      
-      mock_season.should_receive(:find).with(@params[:id]).and_return(mock_round)
+      mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
       do_get
       assigns[:round].should equal(mock_round)
     end
@@ -66,7 +67,7 @@ describe RoundsController do
       it "should render the requested round as xml" do
         request.env["HTTP_ACCEPT"] = "application/xml"
         Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-        mock_season.should_receive(:find).with(@params[:id]).and_return(mock_round)
+        mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
         mock_round.should_receive(:to_xml).and_return("generated XML")
         do_get
         response.body.should == "generated XML"
@@ -83,7 +84,7 @@ describe RoundsController do
   
     it "should expose the requested round as @round" do
       Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-      mock_season.should_receive(:find).with(@params[:id]).and_return(mock_round)
+      mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
       do_get
       assigns[:round].should equal(mock_round)
     end
@@ -99,21 +100,21 @@ describe RoundsController do
 
       it "should update the requested round" do
       	Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-        mock_season.should_receive(:find).with(@params[:id]).and_return(mock_round)
+        mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
         mock_round.should_receive(:update_attributes).with({'these' => 'params'})
         do_put(:round => {'these' => 'params'})
       end
 
       it "should expose the requested round as @round" do
       	Season.stub!(:find).and_return(mock_season)
-        mock_season.stub!(:find).and_return(mock_round(:update_attributes => true))
+        mock_season.rounds.stub!(:find).and_return(mock_round(:update_attributes => true))
         do_put
         assigns(:round).should equal(mock_round)
       end
 
       it "should redirect to the round" do
       	Season.stub!(:find).and_return(mock_season)
-        mock_season.stub!(:find).and_return(mock_round(:update_attributes => true))
+        mock_season.rounds.stub!(:find).and_return(mock_round(:update_attributes => true))
         do_put
         response.should redirect_to(season_round_url(mock_season, mock_round))
       end
@@ -127,21 +128,21 @@ describe RoundsController do
 
       it "should update the requested round" do
       	Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-        mock_season.should_receive(:find).with(@params[:id]).and_return(mock_round)
+        mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
         mock_round.should_receive(:update_attributes).with({'these' => 'params'})
         do_put :round => {:these => 'params'}
       end
 
       it "should expose the round as @round" do
       	Season.stub!(:find).and_return(mock_season)
-        mock_season.stub!(:find).and_return(mock_round(:update_attributes => false))
+        mock_season.rounds.stub!(:find).and_return(mock_round(:update_attributes => false))
         do_put
         assigns(:round).should equal(mock_round)
       end
 
       it "should re-render the 'edit' template" do
       	Season.stub!(:find).and_return(mock_season)
-        mock_season.stub!(:find).and_return(mock_round(:update_attributes => false))
+        mock_season.rounds.stub!(:find).and_return(mock_round(:update_attributes => false))
         do_put
         response.should render_template('edit')
       end
