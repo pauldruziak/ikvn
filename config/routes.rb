@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :seasons, :except => [:edit, :update] do |season|
   	season.resources :rounds, :only => [:index, :show, :edit, :update]  do |round| 
-  	  round.resources :question
+  	  round.resources :questions, :only => [:show, :edit, :update]
   	end
   end
 
