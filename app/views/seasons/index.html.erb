@@ -9,7 +9,7 @@
   <div class="secondary-navigation">
     <ul>
       <li class="first active"><%= link_to 'List', seasons_path %></li>
-      <li><%= link_to 'New', new_season_path %></li>
+      <% if_authorized? :new, User  do %><li><%= link_to 'New', new_season_path %></li><% end -%>
     </ul>
     <div class="clear"></div>
   </div>          
