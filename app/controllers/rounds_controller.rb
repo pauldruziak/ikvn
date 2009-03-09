@@ -1,6 +1,8 @@
 class RoundsController < ApplicationController
   before_filter :find_season	
-	
+  before_filter :login_required, :only => [ :edit, :update ]
+  require_role "admin", :only => [ :edit, :update ]
+  
   # GET /seasons/1/rounds
   # GET /seasons/1/rounds.xml
   def index

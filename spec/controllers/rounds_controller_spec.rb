@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-
+include AuthenticatedSystem
 describe RoundsController do
 
   def mock_round(options={})
@@ -18,7 +18,14 @@ describe RoundsController do
   										  :name => "first",
   										  :rounds => []}.merge(options))
   end
-  
+  def mock_admin
+    @admin ||= mock_model(User, :id => 1,
+						       :login  => 'user_name',
+						       :name   => 'U. Surname',
+						       :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
+						       :errors => [], 
+						       :roles  => [mock_model(Role, {:name => "admin", :save => true})])  
+  end
   before do
     @params = { :season_id => "1", :id => "37" }
   end
@@ -76,7 +83,13 @@ describe RoundsController do
     end
     
   end
-
+  describe "with login as admin" do
+    
+  	before(:each) do
+      login_as mock_admin
+	  current_user.stub!(:has_role?).and_return(true)
+	  controller.stub!(:check_roles).and_return(true)
+    end
   describe "responding to GET edit" do
   	def do_get
   	  get :edit, @params
@@ -149,6 +162,7 @@ describe RoundsController do
 
     end
 
+  end
   end
 
 end
