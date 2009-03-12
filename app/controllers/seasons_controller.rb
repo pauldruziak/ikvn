@@ -3,6 +3,17 @@ class SeasonsController < ApplicationController
   before_filter :login_required, :only => [ :new, :create, :destroy]
   require_role "admin", :only => [ :new, :create, :destroy]
     
+  # GET /seasons/current
+  # GET /seasons/current.xml
+  def current
+  	@season = Season.find(:last)
+
+    respond_to do |format|
+      format.html { render :action => "show" }
+      format.xml  { render :action => "show", :xml => @season }
+    end
+  end
+  
   # GET /seasons
   # GET /seasons.xml
   def index
