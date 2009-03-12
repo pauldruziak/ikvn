@@ -17,31 +17,19 @@
     <h2 class="title">All Seasons</h2>
     <div class="inner">
       <% form_tag "", :class => :form do -%>
-        <table class="table">
-          <tr>             
-            <th class="first">ID</th>
-            <th>Name</th>
-            <th>Created at</th>
-            <th class="last">&nbsp;</th>
-          </tr>
           <% @seasons.each do |season| -%>
-          <tr>
-            <td>
-              <%= season.id %>
-            </td>
-            <td>
-              <%= link_to season.name, season_path(season) %>
-            </td>
-            <td>
-              <%= season.created_at %>
-            </td>
-            <td class="last">
-              <%= link_to 'show', season_path(season) %> |              
-              <%= link_to 'destroy', season_path(season), :method => :delete, :confirm => 'Are you sure?' %>
-            </td>
-          </tr>          
+              <table class="table">                      
+              	<tr>
+              	  <th><%= h("Season: "+season.name) %></th>
+              	  <th></th>
+              	</tr>              	
+              	<% season.rounds.each do |round| %>
+              	  <tr>              	              	  
+              	    <td><%=link_to h("Round: "+round.name), season_round_path(season, round) %></td>
+              	    <td class="last"><%=link_to "edit", edit_season_round_path(season, round) %></td>              	                  	  </tr>
+            	<% end -%>              	
+	          	  </table>
           <% end -%>
-        </table>
         <div class="actions-bar">
           <div class="actions">
           </div>
