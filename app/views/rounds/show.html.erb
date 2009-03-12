@@ -1,51 +1,43 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <li class="first"><%= link_to 'Seasons', seasons_path  %></li>
-      <li><%= link_to 'New', new_season_path %></li>
-      <li><%= link_to 'Season: '+@round.season.name, season_path(@round.season) %></li>
-      <li class="active"><%= link_to 'Round: '+@round.name, season_round_path(@round.season, @round) %></li>
+      <li><%= link_to 'Edit', edit_season_round_path(@round.season, @round)  %></li>
+      <li><%= link_to 'Publish', seasons_path %></li>
     </ul>
     <div class="clear"></div>
   </div>          
   <div class="content">
+  	<h2 class="title"><%=link_to h("Season: "+@round.season.name), season_path(@round.season) %> → <%="Round: "+h(@round.name) %></h2>
     <div class="inner">
-      
+    	<hr />
         <p>
-          <b>season_id:</b>
-          <%= @round.season_id %>
+          <span class="gray">Responses:</span>
+          <span class="small"><%= @round.start_responses_at %> - <%= @round.end_responses_at %></span>
         </p>
-
         <p>
-          <b>name:</b>
-          <%= @round.name %>
+          <span class="gray">Assess:</span>
+          <span class="small"><%= @round.start_assess_at %> - <%= @round.end_assess_at %></span>
         </p>
-
         <p>
-          <b>published:</b>
-          <%= @round.published %>
+          <span class="gray">Published:</span>
+          <span class="small"><%= @round.published %></span>
         </p>
-
-        <p>
-          <b>start_responses_at:</b>
-          <%= @round.start_responses_at %>
-        </p>
-
-        <p>
-          <b>end_responses_at:</b>
-          <%= @round.end_responses_at %>
-        </p>
-
-        <p>
-          <b>start_assess_at:</b>
-          <%= @round.start_assess_at %>
-        </p>
-
-        <p>
-          <b>end_assess_at:</b>
-          <%= @round.end_assess_at %>
-        </p>
-      <%= link_to 'Edit', edit_season_round_path(@round.season, @round) %>
+        <hr />
+        <ul class="list">
+        <% @round.questions.each do |question| %>
+          <li>
+          	<h3><%=link_to h("Question: "+question.name), season_round_question_path(@round.season, @round, question) %></h3>
+      		<div><%=h question.body %></div>
+      		 <div class="actions-bar">
+                  <div class="actions">
+                    <%=link_to 'Edit', edit_season_round_question_path(@round.season, @round, question) %>
+                  </div>
+                  
+                  <div class="clear"></div>
+                </div>
+          </li>       	
+        <% end -%>
+        <ul>
     </div>
   </div>
 </div>

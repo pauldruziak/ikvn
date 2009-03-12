@@ -1,36 +1,24 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <li class="first"><%= link_to 'Seasons', seasons_path  %></li>
-      <li><%= link_to 'New', new_season_path %></li>
-      <li class="active"><%= link_to 'Season: '+@season.name, season_path %></li>
+      <li><%= link_to 'Destroy', @season, :confirm => 'Are you sure?', :method => :delete %></li>
     </ul>
     <div class="clear"></div>
   </div>          
   <div class="content">
-  	<h2 class="title">All Rounds</h2>
+  	<h2 class="title"><%="Season: "+h(@season.name) %></h2>
     <div class="inner">      
-       <table class="table">
-          <tr>             
-            <th class="first">Name</th>
-            <th>Start date</th>
-            <th class="last">&nbsp;</th>
-          </tr>
-          <% @season.rounds.each do |round| -%>
-          <tr>
-            <td>
-              <%= round.name %>
-            </td>
-            <td>
-              <%= round.start_responses_at %>
-            </td>
-            <td class="last">
-              <%= link_to 'show', season_round_path(round.season, round) %> |
-              <%= link_to 'edit', edit_season_round_path(round.season, round) %>              
-            </td>
-          </tr>          
-          <% end -%>
-        </table>
+       <table class="table">                      
+      	<tr>
+      	  <th class="first">Name</th>
+      	  <th class="last"></th>
+      	</tr>              	
+      	<% @season.rounds.each do |round| %>
+      	  <tr>              	              	  
+      	    <td><%=link_to h("Round: "+round.name), season_round_path(@season, round) %></td>
+      	    <td class="last"><%=link_to "edit", edit_season_round_path(@season, round) %></td>              	                  	  </tr>
+    	<% end -%>              	
+  	  </table>	          	    
     </div>
   </div>
 </div>

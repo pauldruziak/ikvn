@@ -1,24 +1,50 @@
-<h1>Listing questions</h1>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first active"><%= link_to 'List', questions_path %></li>
+      <li><%= link_to 'New', new_question_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">          
+    <h2 class="title">All Questions</h2>
+    <div class="inner">
+      <% form_tag "", :class => :form do -%>
+        <table class="table">
+          <tr>             
+            <th class="first">ID</th>
+            <th>Round_id</th>
+            <th>Created at</th>
+            <th class="last">&nbsp;</th>
+          </tr>
+          <% @questions.each do |question| -%>
+          <tr>
+            <td>
+              <%= question.id %>
+            </td>
+            <td>
+              <%= link_to question.round_id, question_path(question) %>
+            </td>
+            <td>
+              <%= question.created_at %>
+            </td>
+            <td class="last">
+              <%= link_to 'show', question_path(question) %> |
+              <%= link_to 'edit', edit_question_path(question) %> |
+              <%= link_to 'destroy', question_path(question), :method => :delete, :confirm => 'Are you sure?' %>
+            </td>
+          </tr>          
+          <% end -%>
+        </table>
+        <div class="actions-bar">
+          <div class="actions">
+          </div>
+          
+          <div class="clear"></div>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>Round</th>
-    <th>Name</th>
-    <th>Body</th>
-  </tr>
-
-<% for question in @questions %>
-  <tr>
-    <td><%=h question.round %></td>
-    <td><%=h question.name %></td>
-    <td><%=h question.body %></td>
-    <td><%= link_to 'Show', question %></td>
-    <td><%= link_to 'Edit', edit_question_path(question) %></td>
-    <td><%= link_to 'Destroy', question, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New question', new_question_path %>
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

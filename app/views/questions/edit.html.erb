@@ -1,24 +1,29 @@
-<h1>Editing question</h1>
+<div class="block">
+  <div class="content">            
+    <h2 class="title">Edit Question</h2>
+    <div class="inner">
+      <% form_for @question, :url => season_round_question_path(@question.round.season, @question.round, @question), :html => { :class => :form } do |f| -%>
+          <div class="flash">
+              <%= f.error_messages({:class => "message error"}) %>
+          </div>
+          <div class="group">
+            <%= f.label :name, "Name", :class => :label %>
+            <%= f.text_field :name, :class => 'text_field' %>
+            <span class="description">Ex: a simple text</span>
+          </div>
 
-<% form_for(@question) do |f| %>
-  <%= f.error_messages %>
+          <div class="group">
+            <%= f.label :body, "Body", :class => :label %>
+            <%= f.text_area :body, :class => 'text_area' %>
+            <span class="description">Ex: a simple text</span>
+          </div>
+        
+        <div class="group navform">
+          <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', season_round_path(@question.round.season, @question.round) %>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+</div>
 
-  <p>
-    <%= f.label :round %><br />
-    <%= f.text_field :round %>
-  </p>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @question %> |
-<%= link_to 'Back', questions_path %>
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
