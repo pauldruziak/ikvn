@@ -17,7 +17,9 @@
     <h2 class="title">New Season</h2>
     <div class="inner">
       <% form_for :season, :url => seasons_path, :html => { :class => :form } do |f| -%>
-        
+         <div class="flash">
+              <%= f.error_messages({:class => "message error"}) %>
+          </div>
           <div class="group">
             <%= f.label :name, "Название", :class => :label %>
             <%= f.text_field :name, :class => 'text_field' %>
