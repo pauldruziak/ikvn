@@ -2,7 +2,7 @@
   <h3><%=h("Season: "+@round.season.name) %></h3>
   <ul class="navigation">
   	<% @round.season.rounds.each do |round|%>
-    <li> <%= link_to h("Round: "+round.name), season_round_path(round.season, round)%> </li>
+    <li class="<%= 'active' if round == @round%>"><%= link_to h("Round: "+round.name), season_round_path(round.season, round)%> </li>
     <% end -%>
   </ul>
 </div>

@@ -1,11 +1,8 @@
 <div class="block">
-          <h3>Sidebar</h3>
-          <ul class="navigation">
-            <li><a href="#block-text">Text</a></li>
-            <li><a href="#block-tables">Tables</a></li>
-            <li><a href="#block-forms">Forms</a></li>
-            <li><a href="#block-messages">Messages</a></li>
-            <li><a href="#block-forms-2">2 Columns Forms</a></li>
-            <li><a href="#block-lists">Lists</a></li>
-          </ul>
-        </div>
+  <h3>Seasons</h3>
+  <ul class="navigation">
+  	<% seasons.each do |season| %>
+    <li class="<%= 'active' if season == @season%>"> <%=link_to h("Season: "+season.name), season_path(season)%> </li>
+    <% end -%>
+  </ul>
+</div>
