@@ -1,6 +1,6 @@
 class Season < ActiveRecord::Base	
 	
-  has_many :rounds	
+  has_many :rounds, :dependent => :destroy
   
   validates_presence_of :name, :rounds_count, :questions_count
   validates_length_of :name, :maximum => 100, :unless => Proc.new { |name| name.nil? }
