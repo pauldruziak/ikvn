@@ -1,43 +1,39 @@
 <div class="block">
-	<div class="flash">
-      <%% flash.each do |type, message| -%>
-      <div class="message <%%= type %>">
-        <p><%%=  message %></p>
-      </div>
-      <%% end -%>
-    </div>
   <div class="secondary-navigation">
     <ul>
-      <li class="first active"><%= link_to 'List', seasons_path %></li>
-      <% if_authorized? :new, User  do %><li><%= link_to 'New', new_season_path %></li><% end -%>
+      <% if_authorized? :new, User  do %><li><%= link_to 'New season', new_season_path %></li><% end -%>
     </ul>
     <div class="clear"></div>
   </div>          
   <div class="content">          
-    <h2 class="title">All Seasons</h2>
     <div class="inner">
+  	  <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%=  message %></p>
+          </div>
+        <% end -%>
+      </div>
+    </div>
       <% form_tag "", :class => :form do -%>
           <% @seasons.each do |season| -%>
+            <h2 class="title"><%= h("Season: "+season.name) %></h2>
+    		<div class="inner">
               <table class="table">                      
               	<tr>
-              	  <th><%= h("Season: "+season.name) %></th>
-              	  <th></th>
+              	  <th class="first">Name</th>
+              	  <th class="last"></th>
               	</tr>              	
               	<% season.rounds.each do |round| %>
               	  <tr>              	              	  
               	    <td><%=link_to h("Round: "+round.name), season_round_path(season, round) %></td>
               	    <td class="last"><%=link_to "edit", edit_season_round_path(season, round) %></td>              	                  	  </tr>
             	<% end -%>              	
-	          	  </table>
+	          	  </table>	          	          
+            </div>
           <% end -%>
-        <div class="actions-bar">
-          <div class="actions">
-          </div>
-          
-          <div class="clear"></div>
-        </div>
       <% end -%>
-    </div>
+
   </div>
 </div>
 

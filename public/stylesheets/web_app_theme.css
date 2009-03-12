@@ -118,7 +118,13 @@ body {
   list-style-type: none;
 }
 
-#user-navigation ul li, #main-navigation ul li, .secondary-navigation ul li {
+#user-navigation ul li, #main-navigation ul li{
+  float: left;  
+}
+#main .secondary-navigation ul{
+  float: right;
+}
+.secondary-navigation ul li {
   float: left;  
 }
 
@@ -143,14 +149,14 @@ body {
 }
 
 .secondary-navigation {
-  font-size: 13px;  
-  border-bottom-width: 10px;
+  font-size: 12px;  
+  border-bottom-width: 5px;
   border-bottom-style: solid;
 }
 
 .secondary-navigation ul li a {
   display: block;
-  padding: 10px 15px;  
+  padding: 3px 15px;  
 }
 
 #footer {

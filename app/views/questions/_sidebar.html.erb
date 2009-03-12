@@ -1,0 +1,8 @@
+<div class="block">
+  <h3><%=h "Round: "+@question.round.name %></h3>
+  <ul class="navigation">
+  	<% @question.round.questions.each do |question| %>
+    <li><%=link_to h("Question: "+question.name), season_round_question_path(@round.season, @round, question) %></li>
+    <% end -%>
+  </ul>
+</div>
