@@ -23,13 +23,13 @@ describe "/seasons/index.html.erb" do
 
   it "should render list of seasons" do
     render "/seasons/index.html.erb"
-    response.should have_tag("tr>td", "value for name".to_s, 2)
+    response.should have_tag("h2", "Season: value for name".to_s, 2)
   end
   
   it "should not render link to new" do
   	render "/seasons/index.html.erb"
     response.should have_tag("ul") do
-      without_tag("a", "New")
+      without_tag("a", "New season")
     end
   end
 
@@ -39,7 +39,7 @@ describe "/seasons/index.html.erb" do
       login_as mock_admin
       render "/seasons/index.html.erb"
       response.should have_tag("ul") do
-    	with_tag("a", "New")
+    	with_tag("a", "New season")
       end
     end
   end

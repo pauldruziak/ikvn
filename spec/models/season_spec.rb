@@ -134,21 +134,5 @@ describe Season do
     end 
   end 
   
-  it "should not destroy if have published round" do
-    season = create_season
-    season.rounds[0].update_attribute(:published, true)    
-    season.reload
-    season.should_receive(:)
-    lambda do
-       season.destroy         
-    end.should_not change(Season, :count)
-  end
-
-  it "should destroy if not have published round" do
-    season = create_season      
-    lambda do
-      season.destroy         
-    end.should change(Season, :count)
-  end
 
 end
