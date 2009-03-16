@@ -1,7 +1,8 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <li><%= link_to 'Destroy', @season, :confirm => 'Are you sure?', :method => :delete %></li>
+      <li><%= link_to 'New season', new_season_path %></li>
+      <li><%= link_to 'Delete', @season, :confirm => 'Are you sure?', :method => :delete %></li>
     </ul>
     <div class="clear"></div>
   </div>          
