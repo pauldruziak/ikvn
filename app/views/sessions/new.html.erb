@@ -1,16 +1,39 @@
-<h1>Log In</h1>
-
-<% form_tag session_path do -%>
-<p><%= label_tag 'login' %><br />
-<%= text_field_tag 'login', @login %></p>
-
-<p><%= label_tag 'password' %><br/>
-<%= password_field_tag 'password', nil %></p>
-
-<!-- Uncomment this if you want this functionality
-<p><%= label_tag 'remember_me', 'Remember me' %>
-<%= check_box_tag 'remember_me', '1', @remember_me %></p>
--->
-
-<p><%= submit_tag 'Log in' %></p>
-<% end -%>
+<h1>Чемпионат по КВН</h1>
+<div class="block" id="block-login">
+  <h2>Login Box</h2>        
+  <div class="content login">
+    <div class="flash">
+      <% flash.each do |type, message| -%>
+      <div class="message <%= type %>">
+        <p><%=  message %></p>
+      </div>
+      <% end -%>
+    </div>
+    <% form_tag({:action => :create}, :class => 'form login') do -%>
+      <div class="group">
+        <div class="left">
+          <label class="label right">Login</label>
+        </div>
+        <div class="right">
+          <%= text_field_tag :login, @login, :class => 'text_field' %>
+        </div>              
+        <div class="clear"></div>
+      </div>
+      <div class="group">
+        <div class="left">
+          <label class="label right">Password</label>
+        </div>
+        <div class="right">
+          <%= password_field_tag :password, nil, :class => 'text_field' %>
+        </div>              
+        <div class="clear"></div>
+      </div>
+      <div class="group navform">
+        <div class="right">
+          <input type="submit" class="button" value="Sign in" />
+        </div>
+        <div class="clear"></div>
+      </div>            
+    <% end -%>
+  </div>
+</div>
