@@ -1,36 +1,35 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <li><%= link_to 'Edit', edit_season_round_path(@round.season, @round)  %></li>
-      <li><%= link_to 'Publish', seasons_path %></li>
+      <li><%= link_to t('round.edit'), edit_season_round_path(@round.season, @round)  %></li>
     </ul>
     <div class="clear"></div>
   </div>          
   <div class="content">
-  	<h2 class="title"><%=link_to h("Season: "+@round.season.name), season_path(@round.season) %> → <%="Round: "+h(@round.name) %></h2>
+  	<h2 class="title"><%=link_to t('season.name', :name => h(@round.season.name)), season_path(@round.season) %> → <%= t('round.name', :name => h(@round.name)) %></h2>
     <div class="inner">
     	<hr />
         <p>
-          <span class="gray">Responses:</span>
-          <span class="small"><%= @round.start_responses_at %> - <%= @round.end_responses_at %></span>
+          <span class="gray"><%= t('round.responses') %></span>
+          <span class="small"><%= l @round.start_responses_at, :format => :long %>&mdash;<%= l @round.end_responses_at, :format => :long %></span>
         </p>
         <p>
-          <span class="gray">Assess:</span>
-          <span class="small"><%= @round.start_assess_at %> - <%= @round.end_assess_at %></span>
+          <span class="gray"><%= t('round.assess') %></span>
+          <span class="small"><%= l @round.start_assess_at, :format => :long %>&mdash;<%= l @round.end_assess_at, :format => :long %></span>
         </p>
         <p>
-          <span class="gray">Published:</span>
+          <span class="gray"><%= t('round.published') %></span>
           <span class="small"><%= @round.published %></span>
         </p>
         <hr />
         <ul class="list">
         <% @round.questions.each do |question| %>
           <li>
-          	<h3><%=link_to h("Question: "+question.name), season_round_question_path(@round.season, @round, question) %></h3>
+          	<h3><%=link_to t('question.name', :name => h(question.name)), season_round_question_path(@round.season, @round, question) %></h3>
       		<div><%=h question.body %></div>
       		 <div class="actions-bar">
                   <div class="actions">
-                    <%=link_to 'Edit', edit_season_round_question_path(@round.season, @round, question) %>
+                    <%=link_to t('question.edit'), edit_season_round_question_path(@round.season, @round, question) %>
                   </div>
                   
                   <div class="clear"></div>

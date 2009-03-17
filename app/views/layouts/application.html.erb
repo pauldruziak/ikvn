@@ -2,28 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Web App</title>
+	<title><%= t 'web_app' %></title>
 	<%= stylesheet_link_tag 'web_app_theme', "themes/orange/style" %>
 </head>
 <body>
   <div id="container">
     <div id="header">
-      <h1><a href="/">Чемпионат по КВН</a></h1>
+      <h1><a href="/"><%= t 'web_app' %></a></h1>
       <div id="user-navigation">
         <ul>         
           <% if logged_in? -%>
-		    <li id="user-bar-greeting">Hi, <%= link_to_current_user :content_method => :login %></li>
-		    <li id="user-bar-action"  ><%= link_to "Log out", logout_path, { :title => "Log out" }    %></li>
+		    <li id="user-bar-greeting"><%= t('userbar.greeting', :username => link_to_current_user(:content_method => :login)) %></li>
+		    <li id="user-bar-action"  ><%= link_to t('userbar.logout'), logout_path, { :title => "Log out" }    %></li>
 		  <% else -%>
-		    <li id="user-bar-action"  ><%= link_to "Log in",  login_path,  { :title => "Log in" } %></li>
-            <li id="user-bar-action"  ><%= link_to "Sign up", signup_path, { :title => "Create an account" } %></li>
+		    <li id="user-bar-action"  ><%= link_to t('userbar.login'),  login_path,  { :title => "Log in" } %></li>
+            <li id="user-bar-action"  ><%= link_to t('userbar.signup'), signup_path, { :title => "Create an account" } %></li>
 		  <% end -%>          
         </ul>
         <div class="clear"></div>
       </div>      
       <div id="main-navigation">
         <ul>
-        	<li><%= link_to 'Чемпионат', current_seasons_path %></li>         
+        	<li><%= link_to t('menu.home'), current_seasons_path %></li>         
         </ul>
         <div class="clear"></div>
       </div>

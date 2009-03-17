@@ -1,12 +1,12 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <li><%= link_to 'Edit', edit_season_round_question_path(@question.round.season, @question.round, @question) %></li>
+      <li><%= link_to t('question.edit'), edit_season_round_question_path(@question.round.season, @question.round, @question) %></li>
     </ul>
     <div class="clear"></div>
   </div>          
   <div class="content">
-  	<h2 class="title"><%=link_to h("Season: "+@question.round.season.name), season_path(@question.round.season) %> → <%=link_to h("Round: "+@question.round.name), season_round_path(@question.round.season, @question.round) %> → <%="Question: "+h(@question.name) %></h2>
+  	<h2 class="title"><%=link_to t('season.name', :name => h(@question.round.season.name)), season_path(@question.round.season) %> → <%=link_to t('round.name', :name => h(@question.round.name)), season_round_path(@question.round.season, @question.round) %> → <%= t('question.name', :name => h(@question.name)) %></h2>
     <div class="inner">
         <p>
           <%= @question.body %>

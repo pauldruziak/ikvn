@@ -1,11 +1,18 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <% if_authorized? :new, User  do %><li><%= link_to 'New season', new_season_path %></li><% end -%>
+      <% if_authorized? :new, User  do %><li><%= link_to t('season.new'), new_season_path %></li><% end -%>
     </ul>
     <div class="clear"></div>
   </div>          
-  <div class="content">          
+  <div class="content"> 
+  	<div class="flash">
+      <% flash.each do |type, message| -%>
+      <div class="message <%= type %>">
+        <p><%=  message %></p>
+      </div>
+      <% end -%>
+    </div>         
     <div class="inner">
   	  <div class="flash">
         <% flash.each do |type, message| -%>
@@ -17,19 +24,9 @@
     </div>
       <% form_tag "", :class => :form do -%>
           <% @seasons.each do |season| -%>
-            <h2 class="title"><%= h("Season: "+season.name) %></h2>
+            <h2 class="title"><%= t('season.name', :name => h(season.name)) %></h2>
     		<div class="inner">
-              <table class="table">                      
-              	<tr>
-              	  <th class="first">Name</th>
-              	  <th class="last"></th>
-              	</tr>              	
-              	<% season.rounds.each do |round| %>
-              	  <tr>              	              	  
-              	    <td><%=link_to h("Round: "+round.name), season_round_path(season, round) %></td>
-              	    <td class="last"><%=link_to "edit", edit_season_round_path(season, round) %></td>              	                  	  </tr>
-            	<% end -%>              	
-	          	  </table>	          	          
+              <%= render :partial => 'rounds', :object => season.rounds %>	          	          
             </div>
           <% end -%>
       <% end -%>

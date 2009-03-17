@@ -1,6 +1,6 @@
-<h1>Чемпионат по КВН</h1>
+<h1><%= t 'web_app' %></h1>
 <div class="block" id="block-login">
-  <h2>Login Box</h2>        
+  <h2><%= t 'txt.titles.login' %></h2>        
   <div class="content login">
     <div class="flash">
       <% flash.each do |type, message| -%>
@@ -12,7 +12,7 @@
     <% form_tag({:action => :create}, :class => 'form login') do -%>
       <div class="group">
         <div class="left">
-          <label class="label right">Login</label>
+          <label class="label right"><%= User.human_attribute_name('login')%></label>
         </div>
         <div class="right">
           <%= text_field_tag :login, @login, :class => 'text_field' %>
@@ -21,7 +21,7 @@
       </div>
       <div class="group">
         <div class="left">
-          <label class="label right">Password</label>
+          <label class="label right"><%= User.human_attribute_name('password')%></label>
         </div>
         <div class="right">
           <%= password_field_tag :password, nil, :class => 'text_field' %>
@@ -30,7 +30,7 @@
       </div>
       <div class="group navform">
         <div class="right">
-          <input type="submit" class="button" value="Sign in" />
+          <input type="submit" class="button" value="<%= t('txt.signin')%>" />
         </div>
         <div class="clear"></div>
       </div>            

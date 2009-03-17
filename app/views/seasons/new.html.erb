@@ -1,27 +1,29 @@
 <div class="block">
   <div class="content">            
-    <h2 class="title">New Season</h2>
+    <h2 class="title"><%= t('season.new')%></h2>
     <div class="inner">
       <% form_for :season, :url => seasons_path, :html => { :class => :form } do |f| -%>
          <div class="flash">
               <%= f.error_messages({:class => "message error"}) %>
           </div>
           <div class="group">
-            <%= f.label :name, "Название", :class => :label %>
+            <%= f.label :name, Season.human_attribute_name('name'), :class => :label %>
             <%= f.text_field :name, :class => 'text_field' %>
-            <span class="description">Ex: a simple text</span>
+            <span class="description"><%= t('season.attributes.name.description')%></span>
           </div>
            <div class="group">
-            <%= f.label :rounds_count, "Количество туров", :class => :label %>
+            <%= f.label :rounds_count, Season.human_attribute_name('rounds_count'), :class => :label %>
             <%= f.text_field :rounds_count, :class => 'text_field' %>
+            <span class="description"><%= t('season.attributes.questions_count.description')%></span>
           </div>
            <div class="group">
-            <%= f.label :questions_count, "Количество вопросов в каждом туре", :class => :label %>
+            <%= f.label :questions_count, Season.human_attribute_name('questions_count'), :class => :label %>
             <%= f.text_field :questions_count, :class => 'text_field' %>
+            <span class="description"><%= t('season.attributes.rounds_count.description')%></span>
           </div>
         
         <div class="group navform">
-          <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', seasons_path %>
+          <input type="submit" class="button" value="<%= t('txt.save')%>" /> <%= t('txt.or')%> <%= link_to t('txt.cancel'), current_seasons_path %>
         </div>
       <% end -%>
     </div>

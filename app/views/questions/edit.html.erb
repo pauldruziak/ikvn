@@ -1,25 +1,24 @@
 <div class="block">
   <div class="content">            
-    <h2 class="title">Edit Question</h2>
+    <h2 class="title"><%=link_to t('season.name', :name => h(@question.round.season.name)), season_path(@question.round.season) %> → <%=link_to t('round.name', :name => h(@question.round.name)), season_round_path(@question.round.season, @question.round) %> → <%= link_to t('question.name', :name => h(@question.name)), season_round_question_path(@question.round.season, @question.round, @question) %> → <%= t('question.titles.edit')%></h2>
     <div class="inner">
       <% form_for @question, :url => season_round_question_path(@question.round.season, @question.round, @question), :html => { :class => :form } do |f| -%>
           <div class="flash">
               <%= f.error_messages({:class => "message error"}) %>
           </div>
           <div class="group">
-            <%= f.label :name, "Name", :class => :label %>
+            <%= f.label :name, Question.human_attribute_name('name'), :class => :label %>
             <%= f.text_field :name, :class => 'text_field' %>
-            <span class="description">Ex: a simple text</span>
+            <span class="description"><%= t 'question.attributes.name.description'%></span>
           </div>
 
           <div class="group">
-            <%= f.label :body, "Body", :class => :label %>
+            <%= f.label :body, Question.human_attribute_name('body'), :class => :label %>
             <%= f.text_area :body, :class => 'text_area' %>
-            <span class="description">Ex: a simple text</span>
           </div>
         
         <div class="group navform">
-          <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', season_round_path(@question.round.season, @question.round) %>
+          <input type="submit" class="button" value="<%= t 'txt.save' %>" /> <%= t 'txt.or' %> <%= link_to t('txt.cancel'), season_round_path(@question.round.season, @question.round) %>
         </div>
       <% end -%>
     </div>
