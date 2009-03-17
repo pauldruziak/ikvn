@@ -77,4 +77,16 @@ class SeasonsController < ApplicationController
     end
   end 
 
+protected
+    
+  def authorized?(action = nil, resource = nil)
+  	case action 
+  	  when :new && logged_in? && current_user.has_role?("admin")
+  	else 
+  	  logged_in?
+  	end
+  end
+  
+  
+
 end

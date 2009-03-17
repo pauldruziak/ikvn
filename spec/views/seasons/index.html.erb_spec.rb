@@ -13,10 +13,12 @@ describe "/seasons/index.html.erb" do
   before(:each) do
     assigns[:seasons] = [
       stub_model(Season,
-        :name => "value for name"
+        :name => "value for name",
+        :rounds => []
       ),
       stub_model(Season,
-        :name => "value for name"
+        :name => "value for name", 
+        :rounds => []
       )
     ]
   end

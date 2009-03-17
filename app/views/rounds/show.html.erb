@@ -7,7 +7,14 @@
   </div>          
   <div class="content">
   	<h2 class="title"><%=link_to t('season.name', :name => h(@round.season.name)), season_path(@round.season) %> → <%= t('round.name', :name => h(@round.name)) %></h2>
-    <div class="inner">
+    <div class="inner"> 
+    	<div class="flash">
+	      <% flash.each do |type, message| -%>
+	      <div class="message <%= type %>">
+	        <p><%=  message %></p>
+	      </div>
+	      <% end -%>
+	    </div>    	
     	<hr />
         <p>
           <span class="gray"><%= t('round.responses') %></span>
@@ -27,13 +34,6 @@
           <li>
           	<h3><%=link_to t('question.name', :name => h(question.name)), season_round_question_path(@round.season, @round, question) %></h3>
       		<div><%=h question.body %></div>
-      		 <div class="actions-bar">
-                  <div class="actions">
-                    <%=link_to t('question.edit'), edit_season_round_question_path(@round.season, @round, question) %>
-                  </div>
-                  
-                  <div class="clear"></div>
-                </div>
           </li>       	
         <% end -%>
         <ul>

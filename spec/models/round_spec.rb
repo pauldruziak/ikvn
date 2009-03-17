@@ -44,8 +44,7 @@ describe Round do
   end
   
   it "start_responses_at should be greater than today" do
-    round = create_round({:start_responses_at => 1.day.ago})
-    puts round.errors.on(:start_responses_at)
+    round = create_round({:start_responses_at => 1.day.ago})    
     round.should have(1).error_on(:start_responses_at)
   end
   

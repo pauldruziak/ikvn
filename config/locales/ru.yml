@@ -177,6 +177,8 @@
         odd: "может иметь лишь четное значение"
         even: "может иметь лишь нечетное значение"
         greater_than_today: "может иметь значение большее сегодня"
+        
+        
     models:
       season: "Сезон"
       round: "Тур"
@@ -272,5 +274,7 @@
       name: 
         description: "Например: Про золушку"
 
-      
+  errors:
+    messages: 
+      prohibited_edit_response_in_published_round: "Запрещенно редактировать вопрос в опубликованном туре"
     

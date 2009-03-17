@@ -31,7 +31,7 @@ describe QuestionsController do
   
   before(:each) do
     @params = {:season_id => "7", :round_id => "2", :id => "4"}
-    
+    controller.stub!(:authorized?).and_return(true)
   end
   
   describe "responding to GET show" do
@@ -79,8 +79,17 @@ describe QuestionsController do
       Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
       mock_season.rounds.should_receive(:find).with(@params[:round_id]).and_return(mock_round)
       mock_round.questions.should_receive(:find).with(@params[:id]).and_return(mock_question)
+      mock_round.should_receive(:published).and_return(false)      
       do_get
       assigns[:question].should equal(mock_question)
+    end
+    
+    it "should redirect to the question" do      
+      Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
+      mock_season.rounds.should_receive(:find).with(@params[:round_id]).and_return(mock_round)      
+      mock_round.should_receive(:published).and_return(true)
+      do_get
+      response.should redirect_to(season_round_url(mock_season, mock_round))      
     end
 
   end

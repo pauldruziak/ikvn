@@ -1,7 +1,4 @@
-module SeasonsHelper
-  def authorized?(action, resource)
-  	action == :new && logged_in? && current_user.has_role?("admin")
-  end
+module SeasonsHelper  
   
   def seasons
   	Season.find(:all, :order => "id DESC")

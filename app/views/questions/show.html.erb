@@ -1,7 +1,9 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <li><%= link_to t('question.edit'), edit_season_round_question_path(@question.round.season, @question.round, @question) %></li>
+      <% if_authorized? :edit, @question do %>
+        <li><%= link_to t('question.edit'), edit_season_round_question_path(@question.round.season, @question.round, @question) %></li>
+      <% end -%>
     </ul>
     <div class="clear"></div>
   </div>          

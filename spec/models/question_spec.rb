@@ -46,13 +46,6 @@ describe Question do
   	lambda do
   	  create_question
   	end.should change(Question, :count)
-  end
-  
-  it "should prohibit the editing if round published" do
-  	question = create_question
-  	question.round.update_attribute(:published, true)  	
-  	question.update_attribute(:name, "Second question")
-  	question.reload
-  	question.name.should eql("First question")
-  end
+  end 
+
 end
