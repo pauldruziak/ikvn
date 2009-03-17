@@ -11,6 +11,12 @@ describe Round do
     record.save
     record
   end
+  
+  it "should create round" do
+    lambda do
+      create_round
+    end.should change(Round, :count)
+  end
 
   it "should require name" do
   	round = create_round({:name => nil})
@@ -37,24 +43,30 @@ describe Round do
   	round.should have(1).error_on(:end_assess_at)
   end
   
+  it "start_responses_at should be greater than today" do
+    round = create_round({:start_responses_at => 1.day.ago})
+    puts round.errors.on(:start_responses_at)
+    round.should have(1).error_on(:start_responses_at)
+  end
+  
   it "end_responses_at should be greater than today" do
-  	round = create_round({:end_responses_at => Time.now})
+  	round = create_round({:end_responses_at => 1.day.ago})
   	round.should have_at_least(1).error_on(:end_responses_at)
   end
   
   it "start_assess_at should be greater than today" do
-  	round = create_round({:start_assess_at => Time.now})
+  	round = create_round({:start_assess_at => 1.day.ago})
   	round.should have_at_least(1).error_on(:start_assess_at)
   end
   
   it "end_assess_at should be greater than today" do
-  	round = create_round({:end_assess_at => Time.now})
+  	round = create_round({:end_assess_at => Time.now - 1.day})
   	round.should have_at_least(1).error_on(:end_assess_at)
   end
   
   it "end_responses_at should be greater than start_responses_at" do
   	round = create_round({:start_responses_at => Time.now + 2.day, :end_responses_at => Time.now + 1.day})
-  	round.should have(1).error_on(:end_responses_at)
+  	round.should have_at_least(1).error_on(:end_responses_at)
   end
   
   it "end_assess_at should be greater than start_assess_at" do
@@ -65,13 +77,6 @@ describe Round do
   it "start_assess_at should be greater or eql than end_responses_at" do
   	round = create_round({:end_responses_at => Time.now + 2.day, :start_assess_at => Time.now + 1.day})
   	round.should have(1).error_on(:start_assess_at)
-  end
-  
-  it "should prohibit the editing if published" do
-  	round = create_round({:name => "1", :published => true})
-  	round.update_attribute(:name, "2")
-  	round.reload
-  	round.name.should eql("1")
   end
   
 end

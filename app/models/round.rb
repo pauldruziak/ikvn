@@ -7,33 +7,32 @@ class Round < ActiveRecord::Base
     
 protected
   def validate  	
-  	if (!end_responses_at.nil? && end_responses_at.today?)
-  	  errors.add(:end_responses_at, "must be greater than today")
+  	if (!start_responses_at.nil? && start_responses_at < DateTime.now - 1.minute)
+  	  errors.add(:start_responses_at, I18n.t('activerecord.errors.messages.greater_than_today'))
+  	end
+  	if (!end_responses_at.nil? && end_responses_at < DateTime.now)
+  	  errors.add(:end_responses_at, I18n.t('activerecord.errors.messages.greater_than_today'))
   	end
   	
-  	if (!start_assess_at.nil? && start_assess_at.today?)
-  	  errors.add(:start_assess_at, "must be greater than today") 
+  	if (!start_assess_at.nil? && start_assess_at < DateTime.now)
+  	  errors.add(:start_assess_at, I18n.t('activerecord.errors.messages.greater_than_today')) 
   	end
   	
-	if (!end_assess_at.nil? && end_assess_at.today?)
-  	  errors.add(:end_assess_at, "must be greater than today") 
+	if (!end_assess_at.nil? && end_assess_at < DateTime.now)
+  	  errors.add(:end_assess_at, I18n.t('activerecord.errors.messages.greater_than_today')) 
   	end 
   	
   	if (!start_responses_at.nil? && !end_responses_at.nil? && (start_responses_at > end_responses_at))
-  	  errors.add(:end_responses_at, "must be greater or equal than start date") 
+  	  errors.add(:end_responses_at, I18n.t('activerecord.errors.messages.greater_than_or_equal_to', :count => Round.human_attribute_name('start_responses_at'))) 
   	end
   	
   	if (!start_assess_at.nil? && !end_assess_at.nil? && (start_assess_at > end_assess_at))
-  	  errors.add(:end_assess_at, "must be greater or equal than start date")
+  	  errors.add(:end_assess_at, I18n.t('activerecord.errors.messages.greater_than_or_equal_to', :count => Round.human_attribute_name('start_assess_at')))
   	end
   	
   	if (!end_responses_at.nil? && !start_assess_at.nil? && (end_responses_at > start_assess_at))
-  	  errors.add(:start_assess_at, "must be greater or equal than end date of filing responses")
+  	  errors.add(:start_assess_at, I18n.t('activerecord.errors.messages.greater_than_or_equal_to', :count => Round.human_attribute_name('end_responses_at')))
   	end
   end
-  
-  def before_update
-  	!published_was
-  end
-  	
+	
 end
