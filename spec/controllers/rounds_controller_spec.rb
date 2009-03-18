@@ -163,6 +163,19 @@ describe RoundsController do
     end
 
   end
+  
+  
+  describe "responding to GET publish" do
+  	def do_get
+  	  get :publish, @params
+  	end
+    it "should publish the request round" do
+      Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
+      mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
+      mock_round.should_receive(:update_attribute).with(:published, true) 
+      do_get
+    end
+  end
   end
 
 end

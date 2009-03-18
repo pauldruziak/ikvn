@@ -17,6 +17,10 @@ describe RoundsController do
     it "should map #update" do
       route_for(:controller => "rounds", :action => "update", :season_id => 1, :id => 1).should == "/seasons/1/rounds/1"
     end
+    
+    it "should map #publish" do
+      route_for(:controller => "rounds", :action => "publish", :season_id => 1, :id => 1).should == "/seasons/1/rounds/1/publish"
+    end
   end
 
   describe "route recognition" do
@@ -34,6 +38,10 @@ describe RoundsController do
   
     it "should generate params for #update" do
       params_from(:put, "/seasons/1/rounds/1").should == {:controller => "rounds", :action => "update", :season_id => "1", :id => "1"}
+    end
+    
+    it "should generate params for #publish" do
+      params_from(:get, "/seasons/1/rounds/1/publish").should == {:controller => "rounds", :action => "publish", :season_id => "1", :id => "1"}
     end
   end
 end

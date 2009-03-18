@@ -1,7 +1,7 @@
 class RoundsController < ApplicationController
   before_filter :find_season	
-  before_filter :login_required, :only => [ :edit, :update ]
-  require_role "admin", :only => [ :edit, :update ]
+  before_filter :login_required, :only => [ :edit, :update, :publish ]
+  require_role "admin", :only => [ :edit, :update, :publish ]
   
   # GET /seasons/1/rounds
   # GET /seasons/1/rounds.xml
@@ -45,6 +45,17 @@ class RoundsController < ApplicationController
         format.xml  { render :xml => @round.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  # get /seasons/1/rounds/1/publish
+  def publish
+  	@round = @season.rounds.find(params[:id])
+  	if @round.update_attribute(:published, true)
+  	  flash[:notice] = 'Round was successfully published.'  	  
+  	else
+  	  flash[:error] = 'Round was not successfully published.'  	  
+	end
+  	render :action => "show"	
   end
   
 protected
