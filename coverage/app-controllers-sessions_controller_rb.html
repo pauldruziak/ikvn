@@ -156,7 +156,7 @@
       C0 code coverage information
     </h3>
     <p>
-      Generated on Fri Feb 27 05:02:31 +0200 2009 with 
+      Generated on Wed Mar 18 20:40:05 +0200 2009 with 
       <a href='http://eigenclass.org/hiki/rcov'>
         rcov 0.8.1.2
       </a>
@@ -175,7 +175,7 @@
     </td> </tr> </thead> <tbody> <tr class='light'> <td> <a
     href='app-controllers-sessions_controller_rb.html'>
     app/controllers/sessions_controller.rb </a> </td> <td class='lines_total'>
-    <tt> 43 </tt> </td> <td class='lines_code'> <tt> 31 </tt> </td> <td> <table
+    <tt> 45 </tt> </td> <td class='lines_code'> <tt> 32 </tt> </td> <td> <table
     cellspacing='0' align='right' cellpadding='0'> <tr> <td> <tt
     class='coverage_total'> 100.0% </tt> &nbsp; </td> <td> <table
     class='percent_graph' cellspacing='0' cellpadding='0' width='100'> <tr> <td
@@ -192,50 +192,52 @@
     # Be sure to include AuthenticationSystem in Application Controller instead
     </span><span class="marked0"><a name="line4"></a> 4 include
     AuthenticatedSystem </span><span class="inferred1"><a name="line5"></a> 5
-    </span><span class="inferred0"><a name="line6"></a> 6 # render new.rhtml
-    </span><span class="marked1"><a name="line7"></a> 7 def new </span><span
-    class="marked0"><a name="line8"></a> 8 end </span><span class="inferred1"><a
-    name="line9"></a> 9 </span><span class="marked0"><a name="line10"></a>10 def
-    create </span><span class="marked1"><a name="line11"></a>11
-    logout_keeping_session! </span><span class="marked0"><a name="line12"></a>12
-    user = User.authenticate(params[:login], params[:password]) </span><span
-    class="marked1"><a name="line13"></a>13 if user </span><span
-    class="inferred0"><a name="line14"></a>14 # Protects against session
-    fixation attacks, causes request forgery </span><span class="inferred1"><a
-    name="line15"></a>15 # protection if user resubmits an earlier form using
-    back </span><span class="inferred0"><a name="line16"></a>16 # button.
-    Uncomment if you understand the tradeoffs. </span><span class="inferred1"><a
-    name="line17"></a>17 # reset_session </span><span class="marked0"><a
-    name="line18"></a>18 self.current_user = user </span><span
-    class="marked1"><a name="line19"></a>19 new_cookie_flag =
+    </span><span class="marked0"><a name="line6"></a> 6 layout 'authentication'
+    </span><span class="inferred1"><a name="line7"></a> 7 </span><span
+    class="inferred0"><a name="line8"></a> 8 # render new.rhtml </span><span
+    class="marked1"><a name="line9"></a> 9 def new </span><span
+    class="marked0"><a name="line10"></a>10 end </span><span
+    class="inferred1"><a name="line11"></a>11 </span><span class="marked0"><a
+    name="line12"></a>12 def create </span><span class="marked1"><a
+    name="line13"></a>13 logout_keeping_session! </span><span class="marked0"><a
+    name="line14"></a>14 user = User.authenticate(params[:login],
+    params[:password]) </span><span class="marked1"><a name="line15"></a>15 if
+    user </span><span class="inferred0"><a name="line16"></a>16 # Protects
+    against session fixation attacks, causes request forgery </span><span
+    class="inferred1"><a name="line17"></a>17 # protection if user resubmits an
+    earlier form using back </span><span class="inferred0"><a
+    name="line18"></a>18 # button. Uncomment if you understand the tradeoffs.
+    </span><span class="inferred1"><a name="line19"></a>19 # reset_session
+    </span><span class="marked0"><a name="line20"></a>20 self.current_user =
+    user </span><span class="marked1"><a name="line21"></a>21 new_cookie_flag =
     (params[:remember_me] == &quot;1&quot;) </span><span class="marked0"><a
-    name="line20"></a>20 handle_remember_cookie! new_cookie_flag </span><span
-    class="marked1"><a name="line21"></a>21 redirect_back_or_default('/')
-    </span><span class="marked0"><a name="line22"></a>22 flash[:notice] =
+    name="line22"></a>22 handle_remember_cookie! new_cookie_flag </span><span
+    class="marked1"><a name="line23"></a>23 redirect_back_or_default('/')
+    </span><span class="marked0"><a name="line24"></a>24 flash[:notice] =
     &quot;Logged in successfully&quot; </span><span class="inferred1"><a
-    name="line23"></a>23 else </span><span class="marked0"><a
-    name="line24"></a>24 note_failed_signin </span><span class="marked1"><a
-    name="line25"></a>25 @login = params[:login] </span><span class="marked0"><a
-    name="line26"></a>26 @remember_me = params[:remember_me] </span><span
-    class="marked1"><a name="line27"></a>27 render :action =&gt; 'new'
-    </span><span class="inferred0"><a name="line28"></a>28 end </span><span
-    class="inferred1"><a name="line29"></a>29 end </span><span
-    class="inferred0"><a name="line30"></a>30 </span><span class="marked1"><a
-    name="line31"></a>31 def destroy </span><span class="marked0"><a
-    name="line32"></a>32 logout_killing_session! </span><span class="marked1"><a
-    name="line33"></a>33 flash[:notice] = &quot;You have been logged out.&quot;
-    </span><span class="marked0"><a name="line34"></a>34
+    name="line25"></a>25 else </span><span class="marked0"><a
+    name="line26"></a>26 note_failed_signin </span><span class="marked1"><a
+    name="line27"></a>27 @login = params[:login] </span><span class="marked0"><a
+    name="line28"></a>28 @remember_me = params[:remember_me] </span><span
+    class="marked1"><a name="line29"></a>29 render :action =&gt; 'new'
+    </span><span class="inferred0"><a name="line30"></a>30 end </span><span
+    class="inferred1"><a name="line31"></a>31 end </span><span
+    class="inferred0"><a name="line32"></a>32 </span><span class="marked1"><a
+    name="line33"></a>33 def destroy </span><span class="marked0"><a
+    name="line34"></a>34 logout_killing_session! </span><span class="marked1"><a
+    name="line35"></a>35 flash[:notice] = &quot;You have been logged out.&quot;
+    </span><span class="marked0"><a name="line36"></a>36
     redirect_back_or_default('/') </span><span class="inferred1"><a
-    name="line35"></a>35 end </span><span class="inferred0"><a
-    name="line36"></a>36 </span><span class="marked1"><a name="line37"></a>37
-    protected </span><span class="inferred0"><a name="line38"></a>38 # Track
-    failed login attempts </span><span class="marked1"><a name="line39"></a>39
-    def note_failed_signin </span><span class="marked0"><a name="line40"></a>40
+    name="line37"></a>37 end </span><span class="inferred0"><a
+    name="line38"></a>38 </span><span class="marked1"><a name="line39"></a>39
+    protected </span><span class="inferred0"><a name="line40"></a>40 # Track
+    failed login attempts </span><span class="marked1"><a name="line41"></a>41
+    def note_failed_signin </span><span class="marked0"><a name="line42"></a>42
     flash[:error] = &quot;Couldn't log you in as '#{params[:login]}'&quot;
-    </span><span class="marked1"><a name="line41"></a>41 logger.warn
+    </span><span class="marked1"><a name="line43"></a>43 logger.warn
     &quot;Failed login for '#{params[:login]}' from #{request.remote_ip} at
-    #{Time.now.utc}&quot; </span><span class="inferred0"><a name="line42"></a>42
-    end </span><span class="inferred1"><a name="line43"></a>43 end </span></pre>
+    #{Time.now.utc}&quot; </span><span class="inferred0"><a name="line44"></a>44
+    end </span><span class="inferred1"><a name="line45"></a>45 end </span></pre>
     <hr />
     <p> Generated using the <a href='http://eigenclass.org/hiki.rb?rcov'> rcov
     code coverage analysis tool for Ruby </a> version 0.8.1.2. </p>

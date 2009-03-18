@@ -1,9 +1,17 @@
 class Round < ActiveRecord::Base
   belongs_to :season
-  has_many :questions, :dependent => :destroy
+  has_many :questions, :dependent => :destroy do
+  	def not_valid
+  	  self.select do |question|
+  	  	!question.valid?
+  	  end
+  	end
+  end
   named_scope :published, :conditions => { :published => true }
   
   validates_presence_of :name, :start_responses_at, :end_responses_at, :start_assess_at, :end_assess_at
+  
+  
   
 protected
   def validate  	

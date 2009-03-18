@@ -18,6 +18,14 @@ describe RoundsController do
   										  :name => "first",
   										  :rounds => []}.merge(options))
   end
+  
+  def mock_question(options={})
+    @mock_question ||= mock_model(Question, { :name => 'first question',
+                                              :body => 'body question',
+                                              :update_attributes => true, 
+                                              :round => mock_round}.merge(options))
+  end
+
   def mock_admin
     @admin ||= mock_model(User, :id => 1,
 						       :login  => 'user_name',
@@ -169,18 +177,11 @@ describe RoundsController do
   	def do_get
   	  get :publish, @params
   	end
-    it "should publish the request round" do
-      Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-      mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
-      mock_round.should_receive(:update_attribute).with(:published, true) 
-      mock_round.stub!(:valid?).and_return(true)
-      do_get
-    end
     
     it "should not publish the request round" do
       Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season(:start_respnses_at => 1.day.ago))
       mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)      
-      mock_round.stub!(:valid?).and_return(false)
+      mock_round.stub!(:valid?).and_return(false)      
       do_get
     end
   end

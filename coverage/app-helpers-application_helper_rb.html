@@ -156,7 +156,7 @@
       C0 code coverage information
     </h3>
     <p>
-      Generated on Fri Feb 27 05:02:31 +0200 2009 with 
+      Generated on Wed Mar 18 20:40:05 +0200 2009 with 
       <a href='http://eigenclass.org/hiki/rcov'>
         rcov 0.8.1.2
       </a>
@@ -174,22 +174,27 @@
     <td class='heading'> Total coverage </td> <td class='heading'> Code coverage
     </td> </tr> </thead> <tbody> <tr class='light'> <td> <a
     href='app-helpers-application_helper_rb.html'>
-    app/helpers/application_helper.rb </a> </td> <td class='lines_total'> <tt> 3
-    </tt> </td> <td class='lines_code'> <tt> 2 </tt> </td> <td> <table
+    app/helpers/application_helper.rb </a> </td> <td class='lines_total'> <tt> 8
+    </tt> </td> <td class='lines_code'> <tt> 7 </tt> </td> <td> <table
     cellspacing='0' align='right' cellpadding='0'> <tr> <td> <tt
-    class='coverage_total'> 100.0% </tt> &nbsp; </td> <td> <table
+    class='coverage_total'> 37.5% </tt> &nbsp; </td> <td> <table
     class='percent_graph' cellspacing='0' cellpadding='0' width='100'> <tr> <td
-    class='covered' width='100' /> <td class='uncovered' width='0' /> </tr>
+    class='covered' width='38' /> <td class='uncovered' width='62' /> </tr>
     </table> </td> </tr> </table> </td> <td> <table cellspacing='0'
-    align='right' cellpadding='0'> <tr> <td> <tt class='coverage_code'> 100.0%
+    align='right' cellpadding='0'> <tr> <td> <tt class='coverage_code'> 28.6%
     </tt> &nbsp; </td> <td> <table class='percent_graph' cellspacing='0'
-    cellpadding='0' width='100'> <tr> <td class='covered' width='100' /> <td
-    class='uncovered' width='0' /> </tr> </table> </td> </tr> </table> </td>
-    </tr> </tbody> </table><pre><span class="inferred0"><a name="line1"></a>1 #
+    cellpadding='0' width='100'> <tr> <td class='covered' width='29' /> <td
+    class='uncovered' width='71' /> </tr> </table> </td> </tr> </table> </td>
+    </tr> </tbody> </table><pre><span class="inferred1"><a name="line1"></a>1 #
     Methods added to this helper will be available to all templates in the
-    application. </span><span class="marked1"><a name="line2"></a>2 module
-    ApplicationHelper </span><span class="inferred0"><a name="line3"></a>3 end
-    </span></pre>
+    application. </span><span class="marked0"><a name="line2"></a>2 module
+    ApplicationHelper </span><span class="marked1"><a name="line3"></a>3 def
+    if_authorized?(action, resource, &amp;block) </span><span
+    class="uncovered0"><a name="line4"></a>4 if authorized?(action, resource)
+    </span><span class="uncovered1"><a name="line5"></a>5 yield action, resource
+    </span><span class="uncovered0"><a name="line6"></a>6 end </span><span
+    class="uncovered1"><a name="line7"></a>7 end </span><span
+    class="uncovered0"><a name="line8"></a>8 end </span></pre>
     <hr />
     <p> Generated using the <a href='http://eigenclass.org/hiki.rb?rcov'> rcov
     code coverage analysis tool for Ruby </a> version 0.8.1.2. </p>

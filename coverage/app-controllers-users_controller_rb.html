@@ -156,7 +156,7 @@
       C0 code coverage information
     </h3>
     <p>
-      Generated on Fri Feb 27 05:02:31 +0200 2009 with 
+      Generated on Wed Mar 18 20:40:05 +0200 2009 with 
       <a href='http://eigenclass.org/hiki/rcov'>
         rcov 0.8.1.2
       </a>
@@ -175,7 +175,7 @@
     </td> </tr> </thead> <tbody> <tr class='light'> <td> <a
     href='app-controllers-users_controller_rb.html'>
     app/controllers/users_controller.rb </a> </td> <td class='lines_total'> <tt>
-    40 </tt> </td> <td class='lines_code'> <tt> 34 </tt> </td> <td> <table
+    41 </tt> </td> <td class='lines_code'> <tt> 35 </tt> </td> <td> <table
     cellspacing='0' align='right' cellpadding='0'> <tr> <td> <tt
     class='coverage_total'> 100.0% </tt> &nbsp; </td> <td> <table
     class='percent_graph' cellspacing='0' cellpadding='0' width='100'> <tr> <td
@@ -191,52 +191,53 @@
     AuthenticationSystem in Application Controller instead </span><span
     class="marked0"><a name="line3"></a> 3 include AuthenticatedSystem
     </span><span class="inferred1"><a name="line4"></a> 4 </span><span
-    class="inferred0"><a name="line5"></a> 5 </span><span class="inferred1"><a
-    name="line6"></a> 6 # render new.rhtml </span><span class="marked0"><a
-    name="line7"></a> 7 def new </span><span class="marked1"><a
-    name="line8"></a> 8 @user = User.new </span><span class="inferred0"><a
-    name="line9"></a> 9 end </span><span class="inferred1"><a
-    name="line10"></a>10 </span><span class="marked0"><a name="line11"></a>11
-    def create </span><span class="marked1"><a name="line12"></a>12
-    logout_keeping_session! </span><span class="marked0"><a name="line13"></a>13
-    @user = User.new(params[:user]) </span><span class="marked1"><a
-    name="line14"></a>14 success = @user &amp;&amp; @user.save </span><span
-    class="marked0"><a name="line15"></a>15 if success &amp;&amp;
-    @user.errors.empty? </span><span class="marked1"><a name="line16"></a>16
-    redirect_back_or_default('/') </span><span class="marked0"><a
-    name="line17"></a>17 flash[:notice] = &quot;Thanks for signing up! We're
+    class="marked0"><a name="line5"></a> 5 layout 'authentication' </span><span
+    class="inferred1"><a name="line6"></a> 6 </span><span class="inferred0"><a
+    name="line7"></a> 7 # render new.rhtml </span><span class="marked1"><a
+    name="line8"></a> 8 def new </span><span class="marked0"><a
+    name="line9"></a> 9 @user = User.new </span><span class="inferred1"><a
+    name="line10"></a>10 end </span><span class="inferred0"><a
+    name="line11"></a>11 </span><span class="marked1"><a name="line12"></a>12
+    def create </span><span class="marked0"><a name="line13"></a>13
+    logout_keeping_session! </span><span class="marked1"><a name="line14"></a>14
+    @user = User.new(params[:user]) </span><span class="marked0"><a
+    name="line15"></a>15 success = @user &amp;&amp; @user.save </span><span
+    class="marked1"><a name="line16"></a>16 if success &amp;&amp;
+    @user.errors.empty? </span><span class="marked0"><a name="line17"></a>17
+    redirect_back_or_default('/') </span><span class="marked1"><a
+    name="line18"></a>18 flash[:notice] = &quot;Thanks for signing up! We're
     sending you an email with your activation code.&quot; </span><span
-    class="inferred1"><a name="line18"></a>18 else </span><span
-    class="marked0"><a name="line19"></a>19 flash[:error] = &quot;We couldn't
+    class="inferred0"><a name="line19"></a>19 else </span><span
+    class="marked1"><a name="line20"></a>20 flash[:error] = &quot;We couldn't
     set up that account, sorry. Please try again, or contact an admin (link is
-    above).&quot; </span><span class="marked1"><a name="line20"></a>20 render
-    :action =&gt; 'new' </span><span class="inferred0"><a name="line21"></a>21
-    end </span><span class="inferred1"><a name="line22"></a>22 end </span><span
-    class="inferred0"><a name="line23"></a>23 </span><span class="marked1"><a
-    name="line24"></a>24 def activate </span><span class="marked0"><a
-    name="line25"></a>25 logout_keeping_session! </span><span class="marked1"><a
-    name="line26"></a>26 user =
+    above).&quot; </span><span class="marked0"><a name="line21"></a>21 render
+    :action =&gt; 'new' </span><span class="inferred1"><a name="line22"></a>22
+    end </span><span class="inferred0"><a name="line23"></a>23 end </span><span
+    class="inferred1"><a name="line24"></a>24 </span><span class="marked0"><a
+    name="line25"></a>25 def activate </span><span class="marked1"><a
+    name="line26"></a>26 logout_keeping_session! </span><span class="marked0"><a
+    name="line27"></a>27 user =
     User.find_by_activation_code(params[:activation_code]) unless
-    params[:activation_code].blank? </span><span class="inferred0"><a
-    name="line27"></a>27 case </span><span class="marked1"><a
-    name="line28"></a>28 when (!params[:activation_code].blank?) &amp;&amp; user
-    &amp;&amp; !user.active? </span><span class="marked0"><a
-    name="line29"></a>29 user.activate! </span><span class="marked1"><a
-    name="line30"></a>30 flash[:notice] = &quot;Signup complete! Please sign in
-    to continue.&quot; </span><span class="marked0"><a name="line31"></a>31
-    redirect_to '/login' </span><span class="marked1"><a name="line32"></a>32
-    when params[:activation_code].blank? </span><span class="marked0"><a
-    name="line33"></a>33 flash[:error] = &quot;The activation code was missing.
-    Please follow the URL from your email.&quot; </span><span class="marked1"><a
-    name="line34"></a>34 redirect_back_or_default('/') </span><span
-    class="inferred0"><a name="line35"></a>35 else </span><span
-    class="marked1"><a name="line36"></a>36 flash[:error] = &quot;We couldn't
+    params[:activation_code].blank? </span><span class="inferred1"><a
+    name="line28"></a>28 case </span><span class="marked0"><a
+    name="line29"></a>29 when (!params[:activation_code].blank?) &amp;&amp; user
+    &amp;&amp; !user.active? </span><span class="marked1"><a
+    name="line30"></a>30 user.activate! </span><span class="marked0"><a
+    name="line31"></a>31 flash[:notice] = &quot;Signup complete! Please sign in
+    to continue.&quot; </span><span class="marked1"><a name="line32"></a>32
+    redirect_to '/login' </span><span class="marked0"><a name="line33"></a>33
+    when params[:activation_code].blank? </span><span class="marked1"><a
+    name="line34"></a>34 flash[:error] = &quot;The activation code was missing.
+    Please follow the URL from your email.&quot; </span><span class="marked0"><a
+    name="line35"></a>35 redirect_back_or_default('/') </span><span
+    class="inferred1"><a name="line36"></a>36 else </span><span
+    class="marked0"><a name="line37"></a>37 flash[:error] = &quot;We couldn't
     find a user with that activation code -- check your email? Or maybe you've
-    already activated -- try signing in.&quot; </span><span class="marked0"><a
-    name="line37"></a>37 redirect_back_or_default('/') </span><span
-    class="marked1"><a name="line38"></a>38 end </span><span
-    class="inferred0"><a name="line39"></a>39 end </span><span
-    class="inferred1"><a name="line40"></a>40 end </span></pre>
+    already activated -- try signing in.&quot; </span><span class="marked1"><a
+    name="line38"></a>38 redirect_back_or_default('/') </span><span
+    class="marked0"><a name="line39"></a>39 end </span><span
+    class="inferred1"><a name="line40"></a>40 end </span><span
+    class="inferred0"><a name="line41"></a>41 end </span></pre>
     <hr />
     <p> Generated using the <a href='http://eigenclass.org/hiki.rb?rcov'> rcov
     code coverage analysis tool for Ruby </a> version 0.8.1.2. </p>

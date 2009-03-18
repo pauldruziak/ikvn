@@ -156,7 +156,7 @@
       C0 code coverage information
     </h3>
     <p>
-      Generated on Fri Feb 27 05:02:31 +0200 2009 with 
+      Generated on Wed Mar 18 20:40:05 +0200 2009 with 
       <a href='http://eigenclass.org/hiki/rcov'>
         rcov 0.8.1.2
       </a>
@@ -175,110 +175,101 @@
     </td> </tr> </thead> <tbody> <tr class='light'> <td> <a
     href='app-controllers-rounds_controller_rb.html'>
     app/controllers/rounds_controller.rb </a> </td> <td class='lines_total'>
-    <tt> 85 </tt> </td> <td class='lines_code'> <tt> 60 </tt> </td> <td> <table
+    <tt> 72 </tt> </td> <td class='lines_code'> <tt> 54 </tt> </td> <td> <table
     cellspacing='0' align='right' cellpadding='0'> <tr> <td> <tt
-    class='coverage_total'> 31.8% </tt> &nbsp; </td> <td> <table
+    class='coverage_total'> 95.8% </tt> &nbsp; </td> <td> <table
     class='percent_graph' cellspacing='0' cellpadding='0' width='100'> <tr> <td
-    class='covered' width='32' /> <td class='uncovered' width='68' /> </tr>
+    class='covered' width='96' /> <td class='uncovered' width='4' /> </tr>
     </table> </td> </tr> </table> </td> <td> <table cellspacing='0'
-    align='right' cellpadding='0'> <tr> <td> <tt class='coverage_code'> 13.3%
+    align='right' cellpadding='0'> <tr> <td> <tt class='coverage_code'> 94.4%
     </tt> &nbsp; </td> <td> <table class='percent_graph' cellspacing='0'
-    cellpadding='0' width='100'> <tr> <td class='covered' width='13' /> <td
-    class='uncovered' width='87' /> </tr> </table> </td> </tr> </table> </td>
+    cellpadding='0' width='100'> <tr> <td class='covered' width='94' /> <td
+    class='uncovered' width='6' /> </tr> </table> </td> </tr> </table> </td>
     </tr> </tbody> </table><pre><span class="marked1"><a name="line1"></a> 1
     class RoundsController &lt; ApplicationController </span><span
-    class="inferred0"><a name="line2"></a> 2 # GET /rounds </span><span
-    class="inferred1"><a name="line3"></a> 3 # GET /rounds.xml </span><span
-    class="marked0"><a name="line4"></a> 4 def index </span><span
-    class="uncovered1"><a name="line5"></a> 5 @rounds = Round.find(:all)
-    </span><span class="uncovered0"><a name="line6"></a> 6 </span><span
-    class="uncovered1"><a name="line7"></a> 7 respond_to do |format|
-    </span><span class="uncovered0"><a name="line8"></a> 8 format.html #
-    index.html.erb </span><span class="uncovered1"><a name="line9"></a> 9
-    format.xml { render :xml =&gt; @rounds } </span><span class="uncovered0"><a
-    name="line10"></a>10 end </span><span class="uncovered1"><a
-    name="line11"></a>11 end </span><span class="inferred0"><a
-    name="line12"></a>12 </span><span class="inferred1"><a name="line13"></a>13
-    # GET /rounds/1 </span><span class="inferred0"><a name="line14"></a>14 # GET
-    /rounds/1.xml </span><span class="marked1"><a name="line15"></a>15 def show
-    </span><span class="uncovered0"><a name="line16"></a>16 @round =
-    Round.find(params[:id]) </span><span class="uncovered1"><a
-    name="line17"></a>17 </span><span class="uncovered0"><a name="line18"></a>18
-    respond_to do |format| </span><span class="uncovered1"><a
-    name="line19"></a>19 format.html # show.html.erb </span><span
-    class="uncovered0"><a name="line20"></a>20 format.xml { render :xml =&gt;
-    @round } </span><span class="uncovered1"><a name="line21"></a>21 end
-    </span><span class="uncovered0"><a name="line22"></a>22 end </span><span
-    class="inferred1"><a name="line23"></a>23 </span><span class="inferred0"><a
-    name="line24"></a>24 # GET /rounds/new </span><span class="inferred1"><a
-    name="line25"></a>25 # GET /rounds/new.xml </span><span class="marked0"><a
-    name="line26"></a>26 def new </span><span class="uncovered1"><a
-    name="line27"></a>27 @round = Round.new </span><span class="uncovered0"><a
-    name="line28"></a>28 </span><span class="uncovered1"><a name="line29"></a>29
-    respond_to do |format| </span><span class="uncovered0"><a
-    name="line30"></a>30 format.html # new.html.erb </span><span
-    class="uncovered1"><a name="line31"></a>31 format.xml { render :xml =&gt;
-    @round } </span><span class="uncovered0"><a name="line32"></a>32 end
-    </span><span class="uncovered1"><a name="line33"></a>33 end </span><span
-    class="inferred0"><a name="line34"></a>34 </span><span class="inferred1"><a
-    name="line35"></a>35 # GET /rounds/1/edit </span><span class="marked0"><a
-    name="line36"></a>36 def edit </span><span class="uncovered1"><a
-    name="line37"></a>37 @round = Round.find(params[:id]) </span><span
-    class="uncovered0"><a name="line38"></a>38 end </span><span
-    class="inferred1"><a name="line39"></a>39 </span><span class="inferred0"><a
-    name="line40"></a>40 # POST /rounds </span><span class="inferred1"><a
-    name="line41"></a>41 # POST /rounds.xml </span><span class="marked0"><a
-    name="line42"></a>42 def create </span><span class="uncovered1"><a
-    name="line43"></a>43 @round = Round.new(params[:round]) </span><span
-    class="uncovered0"><a name="line44"></a>44 </span><span
-    class="uncovered1"><a name="line45"></a>45 respond_to do |format|
-    </span><span class="uncovered0"><a name="line46"></a>46 if @round.save
-    </span><span class="uncovered1"><a name="line47"></a>47 flash[:notice] =
-    'Round was successfully created.' </span><span class="uncovered0"><a
-    name="line48"></a>48 format.html { redirect_to(@round) } </span><span
-    class="uncovered1"><a name="line49"></a>49 format.xml { render :xml =&gt;
-    @round, :status =&gt; :created, :location =&gt; @round } </span><span
-    class="uncovered0"><a name="line50"></a>50 else </span><span
-    class="uncovered1"><a name="line51"></a>51 format.html { render :action
-    =&gt; &quot;new&quot; } </span><span class="uncovered0"><a
-    name="line52"></a>52 format.xml { render :xml =&gt; @round.errors, :status
-    =&gt; :unprocessable_entity } </span><span class="uncovered1"><a
-    name="line53"></a>53 end </span><span class="uncovered0"><a
-    name="line54"></a>54 end </span><span class="uncovered1"><a
-    name="line55"></a>55 end </span><span class="inferred0"><a
-    name="line56"></a>56 </span><span class="inferred1"><a name="line57"></a>57
-    # PUT /rounds/1 </span><span class="inferred0"><a name="line58"></a>58 # PUT
-    /rounds/1.xml </span><span class="marked1"><a name="line59"></a>59 def
-    update </span><span class="uncovered0"><a name="line60"></a>60 @round =
-    Round.find(params[:id]) </span><span class="uncovered1"><a
-    name="line61"></a>61 </span><span class="uncovered0"><a name="line62"></a>62
-    respond_to do |format| </span><span class="uncovered1"><a
-    name="line63"></a>63 if @round.update_attributes(params[:round])
-    </span><span class="uncovered0"><a name="line64"></a>64 flash[:notice] =
-    'Round was successfully updated.' </span><span class="uncovered1"><a
-    name="line65"></a>65 format.html { redirect_to(@round) } </span><span
-    class="uncovered0"><a name="line66"></a>66 format.xml { head :ok }
-    </span><span class="uncovered1"><a name="line67"></a>67 else </span><span
-    class="uncovered0"><a name="line68"></a>68 format.html { render :action
-    =&gt; &quot;edit&quot; } </span><span class="uncovered1"><a
-    name="line69"></a>69 format.xml { render :xml =&gt; @round.errors, :status
-    =&gt; :unprocessable_entity } </span><span class="uncovered0"><a
-    name="line70"></a>70 end </span><span class="uncovered1"><a
-    name="line71"></a>71 end </span><span class="uncovered0"><a
-    name="line72"></a>72 end </span><span class="inferred1"><a
-    name="line73"></a>73 </span><span class="inferred0"><a name="line74"></a>74
-    # DELETE /rounds/1 </span><span class="inferred1"><a name="line75"></a>75 #
-    DELETE /rounds/1.xml </span><span class="marked0"><a name="line76"></a>76
-    def destroy </span><span class="uncovered1"><a name="line77"></a>77 @round =
-    Round.find(params[:id]) </span><span class="uncovered0"><a
-    name="line78"></a>78 @round.destroy </span><span class="uncovered1"><a
-    name="line79"></a>79 </span><span class="uncovered0"><a name="line80"></a>80
-    respond_to do |format| </span><span class="uncovered1"><a
-    name="line81"></a>81 format.html { redirect_to(rounds_url) } </span><span
-    class="uncovered0"><a name="line82"></a>82 format.xml { head :ok }
-    </span><span class="uncovered1"><a name="line83"></a>83 end </span><span
-    class="uncovered0"><a name="line84"></a>84 end </span><span
-    class="uncovered1"><a name="line85"></a>85 end </span></pre>
+    class="marked0"><a name="line2"></a> 2 before_filter :find_season
+    </span><span class="marked1"><a name="line3"></a> 3 before_filter
+    :login_required, :only =&gt; [ :edit, :update, :publish ] </span><span
+    class="marked0"><a name="line4"></a> 4 require_role &quot;admin&quot;, :only
+    =&gt; [ :edit, :update, :publish ] </span><span class="inferred1"><a
+    name="line5"></a> 5 </span><span class="inferred0"><a name="line6"></a> 6 #
+    GET /seasons/1/rounds </span><span class="inferred1"><a name="line7"></a> 7
+    # GET /seasons/1/rounds.xml </span><span class="marked0"><a
+    name="line8"></a> 8 def index </span><span class="marked1"><a
+    name="line9"></a> 9 @rounds = @season.rounds.find(:all) </span><span
+    class="inferred0"><a name="line10"></a>10 </span><span class="marked1"><a
+    name="line11"></a>11 respond_to do |format| </span><span class="marked0"><a
+    name="line12"></a>12 format.html # index.html.erb </span><span
+    class="marked1"><a name="line13"></a>13 format.xml { render :xml =&gt;
+    @rounds } </span><span class="inferred0"><a name="line14"></a>14 end
+    </span><span class="inferred1"><a name="line15"></a>15 end </span><span
+    class="inferred0"><a name="line16"></a>16 </span><span class="inferred1"><a
+    name="line17"></a>17 # GET /seasons/1/rounds/1 </span><span
+    class="inferred0"><a name="line18"></a>18 # GET /seasons/1/rounds/1.xml
+    </span><span class="marked1"><a name="line19"></a>19 def show </span><span
+    class="marked0"><a name="line20"></a>20 @round =
+    @season.rounds.find(params[:id]) </span><span class="inferred1"><a
+    name="line21"></a>21 </span><span class="marked0"><a name="line22"></a>22
+    respond_to do |format| </span><span class="marked1"><a name="line23"></a>23
+    format.html # show.html.erb </span><span class="marked0"><a
+    name="line24"></a>24 format.xml { render :xml =&gt; @round } </span><span
+    class="inferred1"><a name="line25"></a>25 end </span><span
+    class="inferred0"><a name="line26"></a>26 end </span><span
+    class="inferred1"><a name="line27"></a>27 </span><span class="inferred0"><a
+    name="line28"></a>28 # GET /seasons/1/rounds/1/edit </span><span
+    class="marked1"><a name="line29"></a>29 def edit </span><span
+    class="marked0"><a name="line30"></a>30 @round =
+    @season.rounds.find(params[:id]) </span><span class="inferred1"><a
+    name="line31"></a>31 end </span><span class="inferred0"><a
+    name="line32"></a>32 </span><span class="inferred1"><a name="line33"></a>33
+    # PUT /seasons/1/rounds/1 </span><span class="inferred0"><a
+    name="line34"></a>34 # PUT /seasons/1/rounds/1.xml </span><span
+    class="marked1"><a name="line35"></a>35 def update </span><span
+    class="marked0"><a name="line36"></a>36 @round =
+    @season.rounds.find(params[:id]) </span><span class="inferred1"><a
+    name="line37"></a>37 </span><span class="marked0"><a name="line38"></a>38
+    respond_to do |format| </span><span class="marked1"><a name="line39"></a>39
+    if @round.update_attributes(params[:round]) </span><span class="marked0"><a
+    name="line40"></a>40 flash[:notice] = 'Round was successfully updated.'
+    </span><span class="marked1"><a name="line41"></a>41 format.html {
+    redirect_to season_round_path(@round.season, @round) } </span><span
+    class="marked0"><a name="line42"></a>42 format.xml { head :ok } </span><span
+    class="inferred1"><a name="line43"></a>43 else </span><span
+    class="marked0"><a name="line44"></a>44 format.html { render :action =&gt;
+    &quot;edit&quot; } </span><span class="marked1"><a name="line45"></a>45
+    format.xml { render :xml =&gt; @round.errors, :status =&gt;
+    :unprocessable_entity } </span><span class="inferred0"><a
+    name="line46"></a>46 end </span><span class="inferred1"><a
+    name="line47"></a>47 end </span><span class="inferred0"><a
+    name="line48"></a>48 end </span><span class="inferred1"><a
+    name="line49"></a>49 </span><span class="inferred0"><a name="line50"></a>50
+    # get /seasons/1/rounds/1/publish </span><span class="marked1"><a
+    name="line51"></a>51 def publish </span><span class="marked0"><a
+    name="line52"></a>52 @round = @season.rounds.find(params[:id]) </span><span
+    class="marked1"><a name="line53"></a>53 if @round.valid? &amp;&amp;
+    @round.questions.not_valid.empty? &amp;&amp;
+    @round.update_attribute(:published, true) </span><span class="uncovered0"><a
+    name="line54"></a>54 flash[:notice] = 'Round was successfully published.'
+    </span><span class="uncovered1"><a name="line55"></a>55 end </span><span
+    class="marked0"><a name="line56"></a>56 render :action =&gt;
+    &quot;show&quot; </span><span class="inferred1"><a name="line57"></a>57 end
+    </span><span class="inferred0"><a name="line58"></a>58 </span><span
+    class="marked1"><a name="line59"></a>59 protected </span><span
+    class="marked0"><a name="line60"></a>60 def find_season </span><span
+    class="marked1"><a name="line61"></a>61 @season =
+    Season.find(params[:season_id]) </span><span class="inferred0"><a
+    name="line62"></a>62 end </span><span class="inferred1"><a
+    name="line63"></a>63 </span><span class="marked0"><a name="line64"></a>64
+    def authorized?(action = nil, resource = nil) </span><span
+    class="marked1"><a name="line65"></a>65 case action </span><span
+    class="marked0"><a name="line66"></a>66 when :publish </span><span
+    class="uncovered1"><a name="line67"></a>67 !@round.published &amp;&amp;
+    logged_in? &amp;&amp; current_user.has_role?(&quot;admin&quot;) </span><span
+    class="inferred0"><a name="line68"></a>68 else </span><span
+    class="marked1"><a name="line69"></a>69 logged_in? </span><span
+    class="inferred0"><a name="line70"></a>70 end </span><span
+    class="inferred1"><a name="line71"></a>71 end </span><span
+    class="inferred0"><a name="line72"></a>72 end </span></pre>
     <hr />
     <p> Generated using the <a href='http://eigenclass.org/hiki.rb?rcov'> rcov
     code coverage analysis tool for Ruby </a> version 0.8.1.2. </p>
