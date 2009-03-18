@@ -2,7 +2,9 @@
   <div class="secondary-navigation">
     <ul>
       <li><%= link_to t('round.edit'), edit_season_round_path(@round.season, @round)  %></li>
-      <li><%= link_to t('round.publish'), publish_season_round_path(@round.season, @round) %></li>
+      <% if_authorized? :publish, @round  do %>
+        <li><%= link_to t('round.publish'), publish_season_round_path(@round.season, @round) %></li>
+      <% end -%>
     </ul>
     <div class="clear"></div>
   </div>          
@@ -13,6 +15,18 @@
 	      <% flash.each do |type, message| -%>
 	      <div class="message <%= type %>">
 	        <p><%=  message %></p>
+	        
+	      </div>
+	      <% end -%>
+	      <% if !@round.errors.empty? %>
+	      <div class="message error">
+	      	<h2><%= t('errors.messages.round_not_published', :count => @round.errors.count) %></h2>
+	      	<p><%= t('activerecord.errors.template.body') %></p>
+	      	<ul>	
+	        <% @round.errors.each do |attribute, message| -%>	        
+	          <li><%=  Round.human_attribute_name(attribute) %> <%= message %></li>  	
+	        <% end-%>
+	        </ul>
 	      </div>
 	      <% end -%>
 	    </div>    	

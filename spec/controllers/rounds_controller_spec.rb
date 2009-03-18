@@ -173,6 +173,14 @@ describe RoundsController do
       Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
       mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
       mock_round.should_receive(:update_attribute).with(:published, true) 
+      mock_round.stub!(:valid?).and_return(true)
+      do_get
+    end
+    
+    it "should not publish the request round" do
+      Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season(:start_respnses_at => 1.day.ago))
+      mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)      
+      mock_round.stub!(:valid?).and_return(false)
       do_get
     end
   end

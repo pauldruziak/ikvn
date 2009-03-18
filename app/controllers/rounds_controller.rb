@@ -50,17 +50,23 @@ class RoundsController < ApplicationController
   # get /seasons/1/rounds/1/publish
   def publish
   	@round = @season.rounds.find(params[:id])
-  	if @round.update_attribute(:published, true)
-  	  flash[:notice] = 'Round was successfully published.'  	  
-  	else
-  	  flash[:error] = 'Round was not successfully published.'  	  
+  	if @round.valid? && @round.update_attribute(:published, true)
+  	  flash[:notice] = 'Round was successfully published.'  	  	  
 	end
   	render :action => "show"	
   end
   
 protected
   def find_season
-  	@season = Season.find(params[:season_id])
-  	
+  	@season = Season.find(params[:season_id])  	
+  end
+  
+  def authorized?(action = nil, resource = nil)
+  	case action
+  	  when :publish
+  	  	!@round.published && logged_in? && current_user.has_role?("admin")
+  	else
+  	  logged_in?
+  	end
   end
 end
