@@ -13,7 +13,7 @@ describe Season do
   
   describe 'when creating' do 
     it "should require name" do
-      season = create_season(:name => nil)
+      season = Factory.build(:first, :name => nil)
       season.errors.on(:name).should_not be_nil
     end
   
