@@ -11,6 +11,8 @@ describe Season do
     @params = { :name => 'test', :rounds_count => 5, :questions_count => 3 }
   end
   
+  #it { should has_many(:rounds)}
+    
   describe 'when creating' do 
     it "should require name" do
       season = Factory.build(:first, :name => nil)
