@@ -3,7 +3,7 @@ class Season < ActiveRecord::Base
   has_many :rounds, :dependent => :destroy
   
   validates_presence_of :name, :rounds_count, :questions_count
-  validates_length_of :name, :maximum => 100, :unless => Proc.new { |name| name.nil? }
+  validates_length_of :name,  :maximum => 100, :unless => Proc.new { |name| name.nil? }
   validates_numericality_of :rounds_count, :questions_count, :only_integer => true, 
                             :greater_than => 0, :less_than_or_equal_to => 30, 
                             :unless => Proc.new { |count| count.nil? }

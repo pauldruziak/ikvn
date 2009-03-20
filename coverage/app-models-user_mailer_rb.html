@@ -156,7 +156,7 @@
       C0 code coverage information
     </h3>
     <p>
-      Generated on Wed Mar 18 20:40:06 +0200 2009 with 
+      Generated on Thu Mar 19 05:46:26 +0200 2009 with 
       <a href='http://eigenclass.org/hiki/rcov'>
         rcov 0.8.1.2
       </a>
@@ -176,14 +176,14 @@
     href='app-models-user_mailer_rb.html'> app/models/user_mailer.rb </a> </td>
     <td class='lines_total'> <tt> 24 </tt> </td> <td class='lines_code'> <tt> 20
     </tt> </td> <td> <table cellspacing='0' align='right' cellpadding='0'> <tr>
-    <td> <tt class='coverage_total'> 100.0% </tt> &nbsp; </td> <td> <table
+    <td> <tt class='coverage_total'> 83.3% </tt> &nbsp; </td> <td> <table
     class='percent_graph' cellspacing='0' cellpadding='0' width='100'> <tr> <td
-    class='covered' width='100' /> <td class='uncovered' width='0' /> </tr>
+    class='covered' width='83' /> <td class='uncovered' width='17' /> </tr>
     </table> </td> </tr> </table> </td> <td> <table cellspacing='0'
-    align='right' cellpadding='0'> <tr> <td> <tt class='coverage_code'> 100.0%
+    align='right' cellpadding='0'> <tr> <td> <tt class='coverage_code'> 80.0%
     </tt> &nbsp; </td> <td> <table class='percent_graph' cellspacing='0'
-    cellpadding='0' width='100'> <tr> <td class='covered' width='100' /> <td
-    class='uncovered' width='0' /> </tr> </table> </td> </tr> </table> </td>
+    cellpadding='0' width='100'> <tr> <td class='covered' width='80' /> <td
+    class='uncovered' width='20' /> </tr> </table> </td> </tr> </table> </td>
     </tr> </tbody> </table><pre><span class="marked1"><a name="line1"></a> 1
     class UserMailer &lt; ActionMailer::Base </span><span class="marked0"><a
     name="line2"></a> 2 def signup_notification(user) </span><span
@@ -195,11 +195,11 @@
     class="inferred1"><a name="line7"></a> 7 </span><span class="inferred0"><a
     name="line8"></a> 8 end </span><span class="inferred1"><a name="line9"></a>
     9 </span><span class="marked0"><a name="line10"></a>10 def activation(user)
-    </span><span class="marked1"><a name="line11"></a>11 setup_email(user)
-    </span><span class="marked0"><a name="line12"></a>12 @subject += 'Your
-    account has been activated!' </span><span class="marked1"><a
+    </span><span class="uncovered1"><a name="line11"></a>11 setup_email(user)
+    </span><span class="uncovered0"><a name="line12"></a>12 @subject += 'Your
+    account has been activated!' </span><span class="uncovered1"><a
     name="line13"></a>13 @body[:url] = &quot;http://YOURSITE/&quot; </span><span
-    class="inferred0"><a name="line14"></a>14 end </span><span
+    class="uncovered0"><a name="line14"></a>14 end </span><span
     class="inferred1"><a name="line15"></a>15 </span><span class="marked0"><a
     name="line16"></a>16 protected </span><span class="marked1"><a
     name="line17"></a>17 def setup_email(user) </span><span class="marked0"><a
