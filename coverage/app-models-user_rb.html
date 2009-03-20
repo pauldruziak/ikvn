@@ -156,7 +156,7 @@
       C0 code coverage information
     </h3>
     <p>
-      Generated on Wed Mar 18 20:40:06 +0200 2009 with 
+      Generated on Thu Mar 19 05:46:26 +0200 2009 with 
       <a href='http://eigenclass.org/hiki/rcov'>
         rcov 0.8.1.2
       </a>
@@ -176,14 +176,14 @@
     href='app-models-user_rb.html'> app/models/user.rb </a> </td> <td
     class='lines_total'> <tt> 94 </tt> </td> <td class='lines_code'> <tt> 51
     </tt> </td> <td> <table cellspacing='0' align='right' cellpadding='0'> <tr>
-    <td> <tt class='coverage_total'> 100.0% </tt> &nbsp; </td> <td> <table
+    <td> <tt class='coverage_total'> 91.5% </tt> &nbsp; </td> <td> <table
     class='percent_graph' cellspacing='0' cellpadding='0' width='100'> <tr> <td
-    class='covered' width='100' /> <td class='uncovered' width='0' /> </tr>
+    class='covered' width='91' /> <td class='uncovered' width='9' /> </tr>
     </table> </td> </tr> </table> </td> <td> <table cellspacing='0'
-    align='right' cellpadding='0'> <tr> <td> <tt class='coverage_code'> 100.0%
+    align='right' cellpadding='0'> <tr> <td> <tt class='coverage_code'> 86.3%
     </tt> &nbsp; </td> <td> <table class='percent_graph' cellspacing='0'
-    cellpadding='0' width='100'> <tr> <td class='covered' width='100' /> <td
-    class='uncovered' width='0' /> </tr> </table> </td> </tr> </table> </td>
+    cellpadding='0' width='100'> <tr> <td class='covered' width='86' /> <td
+    class='uncovered' width='14' /> </tr> </table> </td> </tr> </table> </td>
     </tr> </tbody> </table><pre><span class="marked1"><a name="line1"></a> 1
     require 'digest/sha1' </span><span class="inferred0"><a name="line2"></a> 2
     </span><span class="marked1"><a name="line3"></a> 3 class User &lt;
@@ -247,21 +247,21 @@
     class="inferred0"><a name="line48"></a>48 </span><span class="inferred1"><a
     name="line49"></a>49 # Activates the user in the database. </span><span
     class="marked0"><a name="line50"></a>50 def activate! </span><span
-    class="marked1"><a name="line51"></a>51 @activated = true </span><span
-    class="marked0"><a name="line52"></a>52 self.activated_at = Time.now.utc
-    </span><span class="marked1"><a name="line53"></a>53 self.activation_code =
-    nil </span><span class="marked0"><a name="line54"></a>54 save(false)
-    </span><span class="inferred1"><a name="line55"></a>55 end </span><span
+    class="uncovered1"><a name="line51"></a>51 @activated = true </span><span
+    class="uncovered0"><a name="line52"></a>52 self.activated_at = Time.now.utc
+    </span><span class="uncovered1"><a name="line53"></a>53 self.activation_code
+    = nil </span><span class="uncovered0"><a name="line54"></a>54 save(false)
+    </span><span class="uncovered1"><a name="line55"></a>55 end </span><span
     class="inferred0"><a name="line56"></a>56 </span><span class="inferred1"><a
     name="line57"></a>57 # Returns true if the user has just been activated.
     </span><span class="marked0"><a name="line58"></a>58 def recently_activated?
     </span><span class="marked1"><a name="line59"></a>59 @activated </span><span
     class="inferred0"><a name="line60"></a>60 end </span><span
     class="inferred1"><a name="line61"></a>61 </span><span class="marked0"><a
-    name="line62"></a>62 def active? </span><span class="inferred1"><a
+    name="line62"></a>62 def active? </span><span class="uncovered1"><a
     name="line63"></a>63 # the existence of an activation code means they have
-    not activated yet </span><span class="marked0"><a name="line64"></a>64
-    activation_code.nil? </span><span class="inferred1"><a name="line65"></a>65
+    not activated yet </span><span class="uncovered0"><a name="line64"></a>64
+    activation_code.nil? </span><span class="uncovered1"><a name="line65"></a>65
     end </span><span class="inferred0"><a name="line66"></a>66 </span><span
     class="inferred1"><a name="line67"></a>67 # Authenticates a user by their
     login name and unencrypted password. Returns the user or nil. </span><span

@@ -28,9 +28,10 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   # config.gem 'yaroslav-russian', :lib => 'russian', :source => 'http://gems.github.com'
-  #config.gem "rspec", :lib => false, :version => ">= 1.2.0" 
-  #config.gem "rspec-rails", :lib => false, :version => ">= 1.2.0"
-  #config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+  config.gem "rspec", :lib => false, :version => ">= 1.2.0" 
+  config.gem "rspec-rails", :lib => false, :version => ">= 1.2.0"
+  config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+  config.gem "thoughtbot-shoulda", :lib => false, :source => "http://gems.github.com"
   
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
@@ -53,7 +54,7 @@ Rails::Initializer.run do |config|
   # All files from config/locales/*.rb,yml are added automatically.
   #config.i18n.load_path = Dir[File.join(RAILS_ROOT, 'my', 'locales', '*.{rb,yml}')]
   config.i18n.load_path = Dir[File.join(RAILS_ROOT, 'config', 'locales', '*.{rb,yml}')]
-  config.i18n.default_locale = :ru
+  config.i18n.default_locale = :en
 
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!

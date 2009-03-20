@@ -7,13 +7,11 @@ include AuthenticatedTestHelper
 
 describe User do
   fixtures :users
-  fixtures :roles
-
   describe 'being created' do
     before do
       @user = nil
       @creating_user = lambda do
-        @user = create_user
+        @user = Factory(:user)
         violated "#{@user.errors.full_messages.to_sentence}" if @user.new_record?
       end
     end
@@ -227,12 +225,12 @@ describe User do
   
   describe "have role?" do
 	before do
-      @user = users(:quentin)      
-      @user.roles << roles(:judge)
+      @user = Factory(:user)
+      @user.roles << Factory(:judge)
     end
     
     it "should have role member" do    
-      @user.roles << roles(:admin)	
+      @user.roles << Factory(:admin)	
       @user.has_role?("member").should be_true
     end
     
