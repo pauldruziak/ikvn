@@ -28,6 +28,10 @@ class RoundsController < ApplicationController
   # GET /seasons/1/rounds/1/edit
   def edit
     @round = @season.rounds.find(params[:id])
+    if @round.published
+      flash[:error] = I18n.t('errors.messages.prohibited_edit_published_round')
+      redirect_to season_round_path(@round.season, @round)
+	end
   end
 
   # PUT /seasons/1/rounds/1
@@ -61,12 +65,5 @@ protected
   	@season = Season.find(params[:season_id])  	
   end
   
-  def authorized?(action = nil, resource = nil)
-  	case action
-  	  when :publish
-  	  	!@round.published && logged_in? && current_user.has_role?("admin")
-  	else
-  	  logged_in?
-  	end
-  end
+ 
 end

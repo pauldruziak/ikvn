@@ -36,7 +36,7 @@ describe "/rounds/show.html.erb" do
   describe "login as admin" do
     it "should render link to publish" do      
       login_as mock_admin
-      template.should_receive(:authorized?).with(:publish, @round).and_return(true)
+      assigns[:round].should_receive(:published).at_least(:once).and_return(false)
       render "/rounds/show.html.erb"
       response.should have_tag("ul") do
     	with_tag("a", I18n.t('round.publish'))
@@ -45,10 +45,28 @@ describe "/rounds/show.html.erb" do
     
     it "should not render link to publish" do
       login_as mock_admin
-      template.should_receive(:authorized?).with(:publish, @round).and_return(false)
+      assigns[:round].should_receive(:published).at_least(:once).and_return(true)
       render "/rounds/show.html.erb"
       response.should have_tag("ul") do
     	without_tag("a", I18n.t('round.publish'))
+      end
+    end
+    
+     it "should render link to edit" do      
+      login_as mock_admin
+      assigns[:round].should_receive(:published).at_least(:once).and_return(false)
+      render "/rounds/show.html.erb"
+      response.should have_tag("ul") do
+    	with_tag("a", I18n.t('round.edit'))
+      end
+    end
+    
+    it "should not render link to edit" do
+      login_as mock_admin
+      assigns[:round].should_receive(:published).at_least(:once).and_return(true)
+      render "/rounds/show.html.erb"
+      response.should have_tag("ul") do
+    	without_tag("a", I18n.t('round.edit'))
       end
     end
   end

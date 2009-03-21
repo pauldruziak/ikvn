@@ -12,7 +12,6 @@ class Round < ActiveRecord::Base
   validates_presence_of :name, :start_responses_at, :end_responses_at, :start_assess_at, :end_assess_at
   
   
-  
 protected
   def validate  	
   	if (!start_responses_at.nil? && start_responses_at < DateTime.now - 1.minute)

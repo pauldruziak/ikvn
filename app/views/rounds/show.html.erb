@@ -1,9 +1,11 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <li><%= link_to t('round.edit'), edit_season_round_path(@round.season, @round)  %></li>
+      <% if_authorized? :edit, @round do%>
+      <li><%= link_to t('round.edit'), edit_season_round_path(@round.season, @round) if !@round.published  %></li>
+      <% end -%>
       <% if_authorized? :publish, @round  do %>
-        <li><%= link_to t('round.publish'), publish_season_round_path(@round.season, @round) %></li>
+        <li><%= link_to t('round.publish'), publish_season_round_path(@round.season, @round) if !@round.published %></li>
       <% end -%>
     </ul>
     <div class="clear"></div>
@@ -14,8 +16,7 @@
     	<div class="flash">
 	      <% flash.each do |type, message| -%>
 	      <div class="message <%= type %>">
-	        <p><%=  message %></p>
-	        
+	        <p><%=  message %></p>	        
 	      </div>
 	      <% end -%>
 	      <% if !@round.errors.empty? %>
