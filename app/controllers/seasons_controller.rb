@@ -1,7 +1,7 @@
 class SeasonsController < ApplicationController
   
-  before_filter :login_required, :except => [ :index, :show]
-  require_role "admin", :except => [ :index, :show]
+  before_filter :login_required, :except => [ :index, :show, :current]
+  require_role "admin", :except => [ :index, :show, :current]
     
   # GET /seasons/current
   # GET /seasons/current.xml
