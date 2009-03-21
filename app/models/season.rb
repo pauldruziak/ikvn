@@ -7,7 +7,7 @@ class Season < ActiveRecord::Base
   validates_numericality_of :rounds_count, :questions_count, :only_integer => true, 
                             :greater_than => 0, :less_than_or_equal_to => 30, 
                             :unless => Proc.new { |count| count.nil? }
-    
+                                  
 protected
 
   def before_create	

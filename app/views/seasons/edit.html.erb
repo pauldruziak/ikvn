@@ -1,0 +1,23 @@
+<div class="block">
+  <div class="content">            
+    <h2 class="title"><%= t('season.new')%></h2>
+    <div class="inner">
+      <% form_for @season, :url => season_path(@season), :html => { :class => :form } do |f| -%>
+         <div class="flash">
+              <%= f.error_messages({:class => "message error"}) %>
+          </div>
+          <div class="group">
+            <%= f.label :name, Season.human_attribute_name('name'), :class => :label %>
+            <%= f.text_field :name, :class => 'text_field' %>
+            <span class="description"><%= t('season.attributes.name.description')%></span>
+          </div>
+        
+        <div class="group navform">
+          <input type="submit" class="button" value="<%= t('txt.save')%>" /> <%= t('txt.or')%> <%= link_to t('txt.cancel'), current_seasons_path %>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

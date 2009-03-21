@@ -1,7 +1,7 @@
 class SeasonsController < ApplicationController
   
-  before_filter :login_required, :only => [ :new, :create, :destroy]
-  require_role "admin", :only => [ :new, :create, :destroy]
+  before_filter :login_required, :except => [ :index, :show]
+  require_role "admin", :except => [ :index, :show]
     
   # GET /seasons/current
   # GET /seasons/current.xml
@@ -48,6 +48,14 @@ class SeasonsController < ApplicationController
     end
   end
   
+  def edit
+  	@season = Season.find(params[:id])
+  	if !@season.rounds.published.empty?
+  	  flash[:error] =  I18n.t('errors.messages.prohibited_edit_season_with_published_round')
+  	  redirect_to season_path(@season)
+	end
+  end
+  
   # POST /seasons
   # POST /seasons.xml
   def create
@@ -64,6 +72,21 @@ class SeasonsController < ApplicationController
       end
     end
   end
+  
+  def update
+  	@season = Season.find(params[:id])
+
+    respond_to do |format|
+      if @season.update_attributes(params[:season])
+        flash[:notice] = 'Season was successfully updated.'
+        format.html { redirect_to season_url(@season) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @season.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /seasons/1
   # DELETE /seasons/1.xml
@@ -76,17 +99,5 @@ class SeasonsController < ApplicationController
       format.xml  { head :ok }
     end
   end 
-
-protected
-    
-  def authorized?(action = nil, resource = nil)
-  	case action 
-  	  when :new && logged_in? && current_user.has_role?("admin")
-  	else 
-  	  logged_in?
-  	end
-  end
-  
-  
 
 end

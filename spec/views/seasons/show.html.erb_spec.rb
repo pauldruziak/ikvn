@@ -30,6 +30,7 @@ describe "/seasons/show.html.erb" do
   describe "login as admin" do
     it "should render link to new" do      
       login_as mock_admin
+      assigns[:season].rounds.should_receive(:published).at_least(:once).and_return([""])
       render "/seasons/show.html.erb"
       response.should have_tag("ul") do
     	with_tag("a", I18n.t('season.new'))

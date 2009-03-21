@@ -1,9 +1,9 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <% if_authorized? :new, User do %><li><%= link_to t('season.new'), new_season_path %></li><% end -%>
-      <li><%= link_to t('season.edit'), edit_season_path(@season) %></li>
-      <li><%= link_to t('season.delete'), @season, :confirm => 'Are you sure?', :method => :delete %></li>
+      <% if_authorized? :new, current_user do %><li><%= link_to t('season.new'), new_season_path %></li><% end -%>
+      <% if_authorized? :edit, current_user do %><li><%= link_to t('season.edit'), edit_season_path(@season) if @season.rounds.published.empty? %></li><% end -%>
+      <% if_authorized? :delete, current_user do %><li><%= link_to t('season.delete'), @season, :confirm => 'Are you sure?', :method => :delete if @season.rounds.published.empty? %></li><% end -%>
     </ul>
     <div class="clear"></div>
   </div>          
