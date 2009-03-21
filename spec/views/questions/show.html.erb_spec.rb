@@ -35,6 +35,7 @@ describe "/questions/show.html.erb" do
     it "should render link to edit" do      
       login_as mock_admin
       template.should_receive(:authorized?).and_return(true)
+      assigns[:question].round.should_receive(:published).at_least(:once).and_return(false)
       render "/questions/show.html.erb"
       response.should have_tag("ul") do
     	with_tag("a", I18n.t('question.edit'))
@@ -43,7 +44,8 @@ describe "/questions/show.html.erb" do
     
     it "should not render link to edit" do
       login_as mock_admin
-      template.should_receive(:authorized?).and_return(false)
+      template.should_receive(:authorized?).and_return(true)
+      assigns[:question].round.should_receive(:published).at_least(:once).and_return(true)
       render "/questions/show.html.erb"
       response.should have_tag("ul") do
     	without_tag("a", I18n.t('question.edit'))

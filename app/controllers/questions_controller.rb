@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1/edit
   def edit    
     if @round.published
-      flash[:error] = I18n.t('errors.messages.prohibited_edit_response_in_published_round')
+      flash[:error] = I18n.t('errors.messages.prohibited_edit_question_in_published_round')
       redirect_to season_round_path(@round.season, @round)
 	else
 	  @question = @round.questions.find(params[:id])
@@ -44,14 +44,5 @@ class QuestionsController < ApplicationController
 protected
   def find_round
   	@round = Season.find(params[:season_id]).rounds.find(params[:round_id])
-  end
-  
-  def authorized?(action = nil, resource = nil)
-  	case action
-  	  when :edit
-  	    !resource.round.published && logged_in? && current_user.has_role?("admin")  	
-  	else
-  	  logged_in?
-  	end
   end
 end
