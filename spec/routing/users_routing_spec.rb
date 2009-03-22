@@ -9,7 +9,7 @@ describe UsersController do
     end
     
     it "should route {:controller => 'users', :action => 'create'} correctly" do
-      route_for(:controller => 'users', :action => 'create').should == "/register"
+      route_for(:controller => 'users', :action => 'create').should == {:path => "/register", :method => :post}
     end
     
     it "should route users's 'show' action correctly" do
@@ -21,11 +21,11 @@ describe UsersController do
     end
     
     it "should route users's 'update' action correctly" do
-      route_for(:controller => 'users', :action => 'update', :id => '1').should == "/users/1"
+      route_for(:controller => 'users', :action => 'update', :id => '1').should == {:path => "/users/1", :method => :put}
     end
     
     it "should route users's 'destroy' action correctly" do
-      route_for(:controller => 'users', :action => 'destroy', :id => '1').should == "/users/1"
+      route_for(:controller => 'users', :action => 'destroy', :id => '1').should == {:path => "/users/1", :method => :delete}
     end
   end
   
@@ -72,10 +72,6 @@ describe UsersController do
   end
   
   describe "named routing" do
-    before(:each) do
-      get :new
-    end
-    
     it "should route users_path() to /users" do
       users_path().should == "/users"
       formatted_users_path(:format => 'xml').should == "/users.xml"

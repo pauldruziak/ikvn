@@ -45,4 +45,8 @@ protected
   def find_round
   	@round = Season.find(params[:season_id]).rounds.find(params[:round_id])
   end
+
+  def authorized?(action = nil, resource = nil)
+    logged_in? && current_user.has_role?("admin")
+  end  
 end

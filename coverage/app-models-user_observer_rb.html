@@ -156,7 +156,7 @@
       C0 code coverage information
     </h3>
     <p>
-      Generated on Thu Mar 19 05:46:26 +0200 2009 with 
+      Generated on Sun Mar 22 06:08:52 +0200 2009 with 
       <a href='http://eigenclass.org/hiki/rcov'>
         rcov 0.8.1.2
       </a>
@@ -185,17 +185,17 @@
     class='percent_graph' cellspacing='0' cellpadding='0' width='100'> <tr> <td
     class='covered' width='100' /> <td class='uncovered' width='0' /> </tr>
     </table> </td> </tr> </table> </td> </tr> </tbody> </table><pre><span
-    class="marked1"><a name="line1"></a> 1 class UserObserver &lt;
-    ActiveRecord::Observer </span><span class="marked0"><a name="line2"></a> 2
-    def after_create(user) </span><span class="marked1"><a name="line3"></a> 3
+    class="marked0"><a name="line1"></a> 1 class UserObserver &lt;
+    ActiveRecord::Observer </span><span class="marked1"><a name="line2"></a> 2
+    def after_create(user) </span><span class="marked0"><a name="line3"></a> 3
     UserMailer.deliver_signup_notification(user) </span><span
-    class="inferred0"><a name="line4"></a> 4 end </span><span
-    class="inferred1"><a name="line5"></a> 5 </span><span class="marked0"><a
-    name="line6"></a> 6 def after_save(user) </span><span class="inferred1"><a
-    name="line7"></a> 7 </span><span class="marked0"><a name="line8"></a> 8
+    class="inferred1"><a name="line4"></a> 4 end </span><span
+    class="inferred0"><a name="line5"></a> 5 </span><span class="marked1"><a
+    name="line6"></a> 6 def after_save(user) </span><span class="inferred0"><a
+    name="line7"></a> 7 </span><span class="marked1"><a name="line8"></a> 8
     UserMailer.deliver_activation(user) if user.recently_activated? </span><span
-    class="inferred1"><a name="line9"></a> 9 </span><span class="inferred0"><a
-    name="line10"></a>10 end </span><span class="inferred1"><a
+    class="inferred0"><a name="line9"></a> 9 </span><span class="inferred1"><a
+    name="line10"></a>10 end </span><span class="inferred0"><a
     name="line11"></a>11 end </span></pre>
     <hr />
     <p> Generated using the <a href='http://eigenclass.org/hiki.rb?rcov'> rcov

@@ -4,10 +4,10 @@ describe SessionsController do
       route_for(:controller => 'sessions', :action => 'new').should == "/login"
     end
     it "should route the create sessions correctly" do
-      route_for(:controller => 'sessions', :action => 'create').should == "/session"
+      route_for(:controller => 'sessions', :action => 'create').should == {:path => "/session", :method => :post }
     end
     it "should route the destroy sessions action correctly" do
-      route_for(:controller => 'sessions', :action => 'destroy').should == "/logout"
+      route_for(:controller => 'sessions', :action => 'destroy').should == {:path => "/logout", :method => :delete}
     end
   end
   
@@ -24,9 +24,6 @@ describe SessionsController do
   end
   
   describe "named routing" do
-    before(:each) do
-      get :new
-    end
     it "should route session_path() correctly" do
       session_path().should == "/session"
     end

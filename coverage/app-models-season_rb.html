@@ -156,7 +156,7 @@
       C0 code coverage information
     </h3>
     <p>
-      Generated on Thu Mar 19 05:46:26 +0200 2009 with 
+      Generated on Sun Mar 22 06:08:52 +0200 2009 with 
       <a href='http://eigenclass.org/hiki/rcov'>
         rcov 0.8.1.2
       </a>
@@ -184,45 +184,45 @@
     </tt> &nbsp; </td> <td> <table class='percent_graph' cellspacing='0'
     cellpadding='0' width='100'> <tr> <td class='covered' width='88' /> <td
     class='uncovered' width='12' /> </tr> </table> </td> </tr> </table> </td>
-    </tr> </tbody> </table><pre><span class="marked0"><a name="line1"></a> 1
-    class Season &lt; ActiveRecord::Base </span><span class="inferred1"><a
-    name="line2"></a> 2 </span><span class="marked0"><a name="line3"></a> 3
+    </tr> </tbody> </table><pre><span class="marked1"><a name="line1"></a> 1
+    class Season &lt; ActiveRecord::Base </span><span class="inferred0"><a
+    name="line2"></a> 2 </span><span class="marked1"><a name="line3"></a> 3
     has_many :rounds, :dependent =&gt; :destroy </span><span
-    class="inferred1"><a name="line4"></a> 4 </span><span class="marked0"><a
+    class="inferred0"><a name="line4"></a> 4 </span><span class="marked1"><a
     name="line5"></a> 5 validates_presence_of :name, :rounds_count,
-    :questions_count </span><span class="marked1"><a name="line6"></a> 6
+    :questions_count </span><span class="marked0"><a name="line6"></a> 6
     validates_length_of :name, :maximum =&gt; 100, :unless =&gt; Proc.new {
-    |name| name.nil? } </span><span class="marked0"><a name="line7"></a> 7
+    |name| name.nil? } </span><span class="marked1"><a name="line7"></a> 7
     validates_numericality_of :rounds_count, :questions_count, :only_integer
-    =&gt; true, </span><span class="inferred1"><a name="line8"></a> 8
+    =&gt; true, </span><span class="inferred0"><a name="line8"></a> 8
     :greater_than =&gt; 0, :less_than_or_equal_to =&gt; 30, </span><span
-    class="marked0"><a name="line9"></a> 9 :unless =&gt; Proc.new { |count|
-    count.nil? } </span><span class="inferred1"><a name="line10"></a>10
-    </span><span class="marked0"><a name="line11"></a>11 protected </span><span
-    class="inferred1"><a name="line12"></a>12 </span><span class="marked0"><a
-    name="line13"></a>13 def before_create </span><span class="marked1"><a
+    class="marked1"><a name="line9"></a> 9 :unless =&gt; Proc.new { |count|
+    count.nil? } </span><span class="inferred0"><a name="line10"></a>10
+    </span><span class="marked1"><a name="line11"></a>11 protected </span><span
+    class="inferred0"><a name="line12"></a>12 </span><span class="marked1"><a
+    name="line13"></a>13 def before_create </span><span class="marked0"><a
     name="line14"></a>14 rounds_count.times do |round_index| </span><span
-    class="marked0"><a name="line15"></a>15 @round = rounds.build({:name =&gt;
-    round_index + 1, </span><span class="inferred1"><a name="line16"></a>16
-    :published =&gt; false, </span><span class="marked0"><a name="line17"></a>17
+    class="marked1"><a name="line15"></a>15 @round = rounds.build({:name =&gt;
+    round_index + 1, </span><span class="inferred0"><a name="line16"></a>16
+    :published =&gt; false, </span><span class="marked1"><a name="line17"></a>17
     :start_responses_at =&gt; Time.now + (21 * round_index).day, </span><span
-    class="marked1"><a name="line18"></a>18 :end_responses_at =&gt; Time.now +
-    (14 + (round_index * 21)).day, </span><span class="marked0"><a
+    class="marked0"><a name="line18"></a>18 :end_responses_at =&gt; Time.now +
+    (14 + (round_index * 21)).day, </span><span class="marked1"><a
     name="line19"></a>19 :start_assess_at =&gt; Time.now + (14 + (round_index *
-    21)).day, </span><span class="marked1"><a name="line20"></a>20
+    21)).day, </span><span class="marked0"><a name="line20"></a>20
     :end_assess_at =&gt; Time.now + (21 + (round_index * 21)).day}) </span><span
-    class="marked0"><a name="line21"></a>21 questions_count.times do
-    |question_index| </span><span class="marked1"><a name="line22"></a>22
+    class="marked1"><a name="line21"></a>21 questions_count.times do
+    |question_index| </span><span class="marked0"><a name="line22"></a>22
     @round.questions.build({:name =&gt; question_index + 1}) </span><span
-    class="inferred0"><a name="line23"></a>23 end </span><span
-    class="inferred1"><a name="line24"></a>24 end </span><span
-    class="inferred0"><a name="line25"></a>25 end </span><span
-    class="inferred1"><a name="line26"></a>26 </span><span class="marked0"><a
-    name="line27"></a>27 def before_destroy </span><span class="uncovered1"><a
+    class="inferred1"><a name="line23"></a>23 end </span><span
+    class="inferred0"><a name="line24"></a>24 end </span><span
+    class="inferred1"><a name="line25"></a>25 end </span><span
+    class="inferred0"><a name="line26"></a>26 </span><span class="marked1"><a
+    name="line27"></a>27 def before_destroy </span><span class="uncovered0"><a
     name="line28"></a>28 rounds.published.count == 0 </span><span
-    class="uncovered0"><a name="line29"></a>29 end </span><span
-    class="uncovered1"><a name="line30"></a>30 </span><span
-    class="uncovered0"><a name="line31"></a>31 end </span></pre>
+    class="uncovered1"><a name="line29"></a>29 end </span><span
+    class="uncovered0"><a name="line30"></a>30 </span><span
+    class="uncovered1"><a name="line31"></a>31 end </span></pre>
     <hr />
     <p> Generated using the <a href='http://eigenclass.org/hiki.rb?rcov'> rcov
     code coverage analysis tool for Ruby </a> version 0.8.1.2. </p>

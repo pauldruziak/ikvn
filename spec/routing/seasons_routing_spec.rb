@@ -15,7 +15,7 @@ describe SeasonsController do
     end
   
     it "should map #destroy" do
-      route_for(:controller => "seasons", :action => "destroy", :id => "1").should == "/seasons/1"
+      route_for(:controller => "seasons", :action => "destroy", :id => "1").should == {:path => "/seasons/1", :method => :delete}
     end
   end
 

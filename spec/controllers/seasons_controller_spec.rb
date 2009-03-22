@@ -8,6 +8,8 @@ describe SeasonsController do
 						       :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
 						       :errors => [], 
 						       :roles  => [mock_model(Role, {:name => "admin", :save => true})])  
+    @admin.stub!(:has_role?).with("admin").and_return(true)    
+    @admin
   end
   
   def mock_round(stubs={})
@@ -15,9 +17,20 @@ describe SeasonsController do
   end
   
   def mock_season(options = {})
-    @mock_season ||= mock_model(Season, { :name => 'test', :rounds_count => 5, :questions_count => 3, :save => true }.merge(options))
+    @mock_season ||= mock_model(Season, { :name => 'test', 
+                                          :rounds_count => 5, 
+                                          :questions_count => 3, 
+                                          :save => true, 						       
+                                          :destroy => true, }.merge(options))
   end
  
+  before do
+  	login_as mock_admin
+  	controller.stub!(:check_roles).and_return(true)	
+	controller.stub!(:authorized?).and_return(true)
+    @params = { "name" => 'First', "rounds_count" => 5, "questions_count" => 5}	 
+  end
+  
   describe	"without login" do
     before do          
       @season = mock_model(Season, { :name => "First", :rounds_count => 5, :questions_count => 5})
@@ -46,15 +59,6 @@ describe SeasonsController do
       end
     end
   end
-  
-  
-  describe "with login" do
-  	before do        	  
-	  login_as mock_admin
-	  current_user.stub!(:has_role?).and_return(true)
-	  controller.stub!(:check_roles).and_return(true)	
-	  @params = { "name" => 'First', "rounds_count" => 5, "questions_count" => 5}	  
-    end 
     
     describe "responding to GET new" do
     
@@ -62,19 +66,9 @@ describe SeasonsController do
         get :new
       end
     
-      it "should login required" do
-        do_get
-        current_user.should_not be_nil
-      end
-    
-      it "should role 'admin' required" do
-        do_get
-        current_user.has_role?("admin").should be_true
-      end
-    
 	  it "should expose a new season as @season" do
 	    Season.should_receive(:new).and_return(mock_season(:save => false))
-	    get :new		
+	    do_get		
 	    assigns[:season].should equal(mock_season(:save => false))
 	  end
     end
@@ -87,24 +81,18 @@ describe SeasonsController do
 	  
       describe "with valid params" do
       
-      	it "should login required" do
-          do_post
-          current_user.should_not be_nil
-        end
-    
-        it "should role 'admin' required" do
-          do_post
-          current_user.has_role?("admin").should be_true
-        end
-  
   	    it "should expose a newly created season as @season" do      	
 	      Season.should_receive(:new).with(@params).and_return(mock_season)
+	      controller.should_receive(:check_roles).and_return(true)	
+	      controller.should_receive(:authorized?).and_return(true)
 	      do_post
 	      assigns(:season).should equal(mock_season)
 	    end
 	
 	    it "should redirect to the created season" do	      
 	      Season.stub!(:new).with(@params).and_return(mock_season)
+	      controller.should_receive(:check_roles).and_return(true)	
+	      controller.should_receive(:authorized?).and_return(true)
 	      do_post
 	      response.should redirect_to(season_url(mock_season))
 	    end 
@@ -115,12 +103,16 @@ describe SeasonsController do
     
         it "should expose a newly created but unsaved season as @season" do      	
           Season.stub!(:new).with(@params).and_return(mock_season(:save => false))
+          controller.should_receive(:check_roles).and_return(true)	
+	      controller.should_receive(:authorized?).and_return(true)
           do_post
           assigns(:season).should equal(mock_season(:save => false))
         end
 
         it "should re-render the 'new' template" do
           Season.stub!(:new).and_return(mock_season(:save => false))
+          controller.should_receive(:check_roles).and_return(true)	
+	      controller.should_receive(:authorized?).and_return(true)
           do_post
           response.should render_template('new')
         end     
@@ -128,23 +120,33 @@ describe SeasonsController do
       end      
       
 	end
-	
-	describe "responding to DELETE destroy" do
+	fixtures :users
+  describe "responding to DELETE destroy" do
+  	
+  	describe "an anonymus user is signed in" do
+  	end
+  	
+  	describe "when admin user is signed" do		
+	  it "should find the season requested" do
+	  	login_as mock_admin	
+	    Season.should_receive(:find).with("37").and_return(mock_season)
+	    delete :destroy, :id =>37
+	  end
 
       it "should destroy the requested season" do
-        Season.should_receive(:find).with("37").and_return(mock_season)
+      	login_as mock_admin	
+        Season.should_receive(:find).with("37").and_return(mock_season)        
         mock_season.should_receive(:destroy)
         delete :destroy, :id => "37"
       end
   
       it "should redirect to the seasons list" do
+        login_as mock_admin	  
         Season.stub!(:find).and_return(mock_season(:destroy => true))
         delete :destroy, :id => "1"
         response.should redirect_to(seasons_url)
       end
-
-    end
-	    
+    end    
   end
   	
 end

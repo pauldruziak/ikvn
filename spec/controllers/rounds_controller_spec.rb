@@ -11,6 +11,7 @@ describe RoundsController do
   					                    :end_responses_at => Time.now + 14.day,
 						                :start_assess_at => Time.now + 14.day, 
   						                :end_assess_at => Time.now + 21.day}.merge(options))
+    
   end
   
   def mock_season(options={})
@@ -33,8 +34,13 @@ describe RoundsController do
 						       :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
 						       :errors => [], 
 						       :roles  => [mock_model(Role, {:name => "admin", :save => true})])  
+    @admin.stub!(:has_role?).with("admin").and_return(true)
+    @admin						       
   end
   before do
+  	login_as mock_admin
+  	controller.stub!(:check_roles).and_return(true)	
+	controller.stub!(:authorized?).and_return(true)
     @params = { :season_id => "1", :id => "37" }
   end
   

@@ -40,8 +40,7 @@ class SeasonsController < ApplicationController
   # GET /seasons/new.xml
   def new
     @season = Season.new
-	#@season.round_count = 5
-	#@season.question_count = 5
+ 
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @season }
@@ -99,5 +98,9 @@ class SeasonsController < ApplicationController
       format.xml  { head :ok }
     end
   end 
-
+  
+protected
+  def authorized?(action = nil, resource = nil)
+    logged_in? && current_user.has_role?("admin")
+  end  
 end

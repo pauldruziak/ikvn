@@ -64,6 +64,8 @@ protected
   def find_season
   	@season = Season.find(params[:season_id])  	
   end
-  
- 
+
+  def authorized?(action = nil, resource = nil)
+    logged_in? && current_user.has_role?("admin")
+  end
 end

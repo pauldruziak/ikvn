@@ -11,7 +11,7 @@ describe QuestionsController do
     end
   
     it "should map #update" do
-      route_for(:controller => "questions", :action => "update", :season_id => "1", :round_id => "1", :id => "1").should == "/seasons/1/rounds/1/questions/1"
+      route_for(:controller => "questions", :action => "update", :season_id => "1", :round_id => "1", :id => "1").should == {:path => "/seasons/1/rounds/1/questions/1", :method => :put}
     end    
   end
 
