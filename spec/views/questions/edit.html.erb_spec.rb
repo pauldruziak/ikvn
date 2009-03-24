@@ -4,12 +4,13 @@ describe "/questions/edit.html.erb" do
   include QuestionsHelper
   
   before(:each) do
-    assigns[:question] = @question = stub_model(Question,
-      :new_record? => false,
+  	stubs = {
+  	  :new_record? => false,
       #:round => ,
       :name => "value for name",
       :body => "value for body"
-    )
+  	}
+    assigns[:question] = @question = stub("question", stubs)
   end
 
   it "should render edit form" do

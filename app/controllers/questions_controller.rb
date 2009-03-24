@@ -1,27 +1,17 @@
 class QuestionsController < ApplicationController
-  before_filter :find_round
-  before_filter :login_required, :only => [ :edit, :update ]
-  require_role "admin", :only => [ :edit, :update ]
+	
+  before_filter :find_round	
+  before_filter :check_round, :only => [:edit, :update]
 
   # GET /questions/1
   # GET /questions/1.xml
   def show
     @question = @round.questions.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @question }
-    end
   end
 
   # GET /questions/1/edit
   def edit    
-    if @round.published
-      flash[:error] = I18n.t('errors.messages.prohibited_edit_question_in_published_round')
-      redirect_to season_round_path(@round.season, @round)
-	else
-	  @question = @round.questions.find(params[:id])
-    end
+    @question = @round.questions.find(params[:id])
   end
 
   # PUT /questions/1
@@ -45,8 +35,13 @@ protected
   def find_round
   	@round = Season.find(params[:season_id]).rounds.find(params[:round_id])
   end
-
-  def authorized?(action = nil, resource = nil)
-    logged_in? && current_user.has_role?("admin")
-  end  
+  
+  def check_round
+  	@round = Season.find(params[:season_id]).rounds.find(params[:round_id])
+  	if @round.published
+  	  flash[:error] = "error"
+  	  redirect_to season_round_url(@round.season, @round)
+  	  false
+  	end
+  end
 end

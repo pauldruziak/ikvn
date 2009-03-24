@@ -1,12 +1,8 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <% if_authorized? :edit, @round do%>
       <li><%= link_to t('round.edit'), edit_season_round_path(@round.season, @round) if !@round.published  %></li>
-      <% end -%>
-      <% if_authorized? :publish, @round  do %>
         <li><%= link_to t('round.publish'), publish_season_round_path(@round.season, @round) if !@round.published %></li>
-      <% end -%>
       <li></li>
     </ul>
     <div class="clear"></div>

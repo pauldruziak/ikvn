@@ -156,7 +156,7 @@
       C0 code coverage information
     </h3>
     <p>
-      Generated on Sun Mar 22 06:08:50 +0200 2009 with 
+      Generated on Mon Mar 23 06:33:53 +0200 2009 with 
       <a href='http://eigenclass.org/hiki/rcov'>
         rcov 0.8.1.2
       </a>
@@ -174,8 +174,8 @@
     <td class='heading'> Total coverage </td> <td class='heading'> Code coverage
     </td> </tr> </thead> <tbody> <tr class='light'> <td> <a
     href='app-controllers-application_rb.html'> app/controllers/application.rb
-    </a> </td> <td class='lines_total'> <tt> 21 </tt> </td> <td
-    class='lines_code'> <tt> 6 </tt> </td> <td> <table cellspacing='0'
+    </a> </td> <td class='lines_total'> <tt> 16 </tt> </td> <td
+    class='lines_code'> <tt> 4 </tt> </td> <td> <table cellspacing='0'
     align='right' cellpadding='0'> <tr> <td> <tt class='coverage_total'> 100.0%
     </tt> &nbsp; </td> <td> <table class='percent_graph' cellspacing='0'
     cellpadding='0' width='100'> <tr> <td class='covered' width='100' /> <td
@@ -191,32 +191,23 @@
     will be available for all controllers. </span><span class="inferred1"><a
     name="line3"></a> 3 </span><span class="marked0"><a name="line4"></a> 4
     class ApplicationController &lt; ActionController::Base </span><span
-    class="inferred1"><a name="line5"></a> 5 # AuthenticatedSystem must be
-    included for RoleRequirement, and is provided by installing
-    acts_as_authenticates and running 'script/generate authenticated account
-    user'. </span><span class="marked0"><a name="line6"></a> 6 include
-    AuthenticatedSystem </span><span class="inferred1"><a name="line7"></a> 7 #
-    You can move this into a different controller, if you wish. This module
-    gives you the require_role helpers, and others. </span><span
-    class="marked0"><a name="line8"></a> 8 include RoleRequirementSystem
-    </span><span class="inferred1"><a name="line9"></a> 9 </span><span
-    class="inferred0"><a name="line10"></a>10 </span><span class="marked1"><a
-    name="line11"></a>11 helper :all # include all helpers, all the time
-    </span><span class="inferred0"><a name="line12"></a>12 </span><span
-    class="inferred1"><a name="line13"></a>13 # See
+    class="inferred1"><a name="line5"></a> 5 </span><span class="marked0"><a
+    name="line6"></a> 6 helper :all # include all helpers, all the time
+    </span><span class="inferred1"><a name="line7"></a> 7 </span><span
+    class="inferred0"><a name="line8"></a> 8 # See
     ActionController::RequestForgeryProtection for details </span><span
-    class="inferred0"><a name="line14"></a>14 # Uncomment the :secret if you're
-    not using the cookie session store </span><span class="marked1"><a
-    name="line15"></a>15 protect_from_forgery # :secret =&gt;
-    'ea01006e8ec5e015f81692ced6dcf0eb' </span><span class="inferred0"><a
-    name="line16"></a>16 </span><span class="inferred1"><a name="line17"></a>17
-    # See ActionController::Base for details </span><span class="inferred0"><a
-    name="line18"></a>18 # Uncomment this to filter the contents of submitted
-    sensitive data parameters </span><span class="inferred1"><a
-    name="line19"></a>19 # from your application log (in this case, all fields
-    with names like &quot;password&quot;). </span><span class="inferred0"><a
-    name="line20"></a>20 # filter_parameter_logging :password </span><span
-    class="inferred1"><a name="line21"></a>21 end </span></pre>
+    class="inferred1"><a name="line9"></a> 9 # Uncomment the :secret if you're
+    not using the cookie session store </span><span class="marked0"><a
+    name="line10"></a>10 protect_from_forgery # :secret =&gt;
+    'ea01006e8ec5e015f81692ced6dcf0eb' </span><span class="inferred1"><a
+    name="line11"></a>11 </span><span class="inferred0"><a name="line12"></a>12
+    # See ActionController::Base for details </span><span class="inferred1"><a
+    name="line13"></a>13 # Uncomment this to filter the contents of submitted
+    sensitive data parameters </span><span class="inferred0"><a
+    name="line14"></a>14 # from your application log (in this case, all fields
+    with names like &quot;password&quot;). </span><span class="inferred1"><a
+    name="line15"></a>15 # filter_parameter_logging :password </span><span
+    class="inferred0"><a name="line16"></a>16 end </span></pre>
     <hr />
     <p> Generated using the <a href='http://eigenclass.org/hiki.rb?rcov'> rcov
     code coverage analysis tool for Ruby </a> version 0.8.1.2. </p>

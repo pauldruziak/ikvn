@@ -1,152 +1,211 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-include AuthenticatedSystem
+
 describe SeasonsController do
   def mock_admin
-    @admin ||= mock_model(User, :id => 1,
-						       :login  => 'user_name',
-						       :name   => 'U. Surname',
-						       :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
-						       :errors => [], 
-						       :roles  => [mock_model(Role, {:name => "admin", :save => true})])  
-    @admin.stub!(:has_role?).with("admin").and_return(true)    
+  	stubs = {
+  	  :id => 1,
+      :login  => 'user_name',
+      :name   => 'U. Surname',
+      :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
+      :errors => [], 
+      :roles  => [stub("role", {:name => "admin", :save => true})]
+  	}
+    @admin ||= stub("user", stubs)  
+    @admin.stubs(:has_role?).with("admin").returns(true)    
     @admin
   end
   
   def mock_round(stubs={})
-    @mock_round = mock_model(Round, stubs)  	
+  	stubs = {
+  	}.merge(stusb)
+    @mock_round = stub("round", stubs)  	
   end
   
-  def mock_season(options = {})
-    @mock_season ||= mock_model(Season, { :name => 'test', 
-                                          :rounds_count => 5, 
-                                          :questions_count => 3, 
-                                          :save => true, 						       
-                                          :destroy => true, }.merge(options))
+  def mock_season(stubs = {})
+  	stubs = {
+  	  :name => 'test', 
+      :rounds_count => 5, 
+      :questions_count => 3, 
+      :rounds => [],
+      :save => true, 						       
+      :destroy => true
+  	}.merge(stubs)
+    @mock_season ||= stub("season", stubs)
+    @mock_season.rounds.stubs(:published).returns([])
+    @mock_season
   end
  
   before do
-  	login_as mock_admin
-  	controller.stub!(:check_roles).and_return(true)	
-	controller.stub!(:authorized?).and_return(true)
-    @params = { "name" => 'First', "rounds_count" => 5, "questions_count" => 5}	 
+    @params = { "name" => 'First', "rounds_count" => 5, "questions_count" => 5, :id => '1'}	 
   end
   
-  describe	"without login" do
-    before do          
-      @season = mock_model(Season, { :name => "First", :rounds_count => 5, :questions_count => 5})
+  describe "before filter" do
+  	
+    it "should have check_round" do
+      controller.before_filters.should include(:check_round)
     end 
-  
-    describe "responding to GET index" do
-	  def do_get
-	    get :index
-	  end
-	
-      it "should expose all seasons as @seasons" do
-        Season.should_receive(:find).with(:all).and_return([@season])
-        do_get
-        assigns[:seasons].should == [@season]
-      end
-    end
     
-    describe "responding to GET show" do
-	  def do_get
-	    get :show, :id => "37"
-	  end
-      it "should expose the requested season as @season" do
-        Season.should_receive(:find).with("37").and_return(@season)
-        do_get
-        assigns[:season].should == @season
-      end
-    end
-  end
-    
-    describe "responding to GET new" do
-    
-      def do_get
-        get :new
-      end
-    
-	  it "should expose a new season as @season" do
-	    Season.should_receive(:new).and_return(mock_season(:save => false))
-	    do_get		
-	    assigns[:season].should equal(mock_season(:save => false))
-	  end
-    end
-    
-    describe "responding to POST create" do  
+    describe "check_round" do
     	
-	  def do_post
-        post :create, :season => @params
-	  end
-	  
-      describe "with valid params" do
+      it "check_round should have options" do
+        controller.before_filter(:check_round).should have_options(:only => [:edit, :update, :destroy])
+      end
+    
+      it "check_round should check a round for publishing" do
+        Season.expects(:find).with(@params[:id]).returns(mock_season)
+        mock_season.rounds.expects(:published).at_least(1).returns([])
+        #mock_season.rounds.published.expects(:empty?).at_least(1).returns(true)
+        controller.run_filter(:check_round, @params)
+      end
       
-  	    it "should expose a newly created season as @season" do      	
-	      Season.should_receive(:new).with(@params).and_return(mock_season)
-	      controller.should_receive(:check_roles).and_return(true)	
-	      controller.should_receive(:authorized?).and_return(true)
-	      do_post
-	      assigns(:season).should equal(mock_season)
+      describe "when round published" do
+      	
+      	def do_get
+      	  get :edit, @params
+      	end
+      
+        before(:each) do
+	      Season.stubs(:find).returns(mock_season)          
+	      mock_season.rounds.stubs(:published).at_least(1).returns(Array.new(2, stub("round")))
+          #mock_season.rounds.published.expects(:empty?).returns(false)
 	    end
 	
-	    it "should redirect to the created season" do	      
-	      Season.stub!(:new).with(@params).and_return(mock_season)
-	      controller.should_receive(:check_roles).and_return(true)	
-	      controller.should_receive(:authorized?).and_return(true)
-	      do_post
-	      response.should redirect_to(season_url(mock_season))
-	    end 
-	     
-      end    
-          
-      describe "with invalid params" do
-    
-        it "should expose a newly created but unsaved season as @season" do      	
-          Season.stub!(:new).with(@params).and_return(mock_season(:save => false))
-          controller.should_receive(:check_roles).and_return(true)	
-	      controller.should_receive(:authorized?).and_return(true)
-          do_post
-          assigns(:season).should equal(mock_season(:save => false))
-        end
-
-        it "should re-render the 'new' template" do
-          Season.stub!(:new).and_return(mock_season(:save => false))
-          controller.should_receive(:check_roles).and_return(true)	
-	      controller.should_receive(:authorized?).and_return(true)
-          do_post
-          response.should render_template('new')
-        end     
-
-      end      
-      
-	end
-	fixtures :users
-  describe "responding to DELETE destroy" do
-  	
-  	describe "an anonymus user is signed in" do
-  	end
-  	
-  	describe "when admin user is signed" do		
-	  it "should find the season requested" do
-	  	login_as mock_admin	
-	    Season.should_receive(:find).with("37").and_return(mock_season)
-	    delete :destroy, :id =>37
+	  	it "should have flash" do	  	  
+	  	  do_get
+	  	  flash[:error].should_not be_nil
+	  	end
+	  	
+	  	it "should redirect to show round" do
+	  	  do_get
+	  	  response.should redirect_to(season_path(mock_season))
+	  	end
+	  	
+	  	it "should assign the found Round for the view" do	      
+	      do_get
+	      assigns[:season].should equal(mock_season)
+	    end
+	    
 	  end
-
-      it "should destroy the requested season" do
-      	login_as mock_admin	
-        Season.should_receive(:find).with("37").and_return(mock_season)        
-        mock_season.should_receive(:destroy)
-        delete :destroy, :id => "37"
-      end
-  
-      it "should redirect to the seasons list" do
-        login_as mock_admin	  
-        Season.stub!(:find).and_return(mock_season(:destroy => true))
-        delete :destroy, :id => "1"
-        response.should redirect_to(seasons_url)
-      end
-    end    
+      
+    end   
+    
   end
+  
+  describe "responding to GET show season" do
+	def do_get
+	  get :show, @params
+	end
+	
+	it "should succeed" do     
+	  Season.stubs(:find)
+      do_get
+      response.should be_success
+    end
+
+    it "should render the 'show' template" do      
+      Season.stubs(:find)
+      do_get 
+      response.should render_template('show')
+    end    
+    
+    it "should find the requested round" do         
+      Season.expects(:find).with(@params[:id])      
+      do_get 
+    end
+
+    it "should assign the found round for the view" do     
+      Season.expects(:find).returns(mock_season)
+      do_get
+      assigns[:season].should equal(mock_season)      
+    end
+    
+  end
+
+  describe "responding to GET edit season" do
   	
+  	def do_get
+  	  get :edit, @params
+  	end  	
+  	
+    it "should succeed" do
+      Season.stubs(:find).returns(mock_season)
+      do_get 
+      response.should be_success
+    end
+
+    it "should render the 'edit' template" do
+      Season.stubs(:find).returns(mock_season)
+      do_get
+      response.should render_template('edit')
+    end
+
+    it "should find the requested season" do
+      Season.expects(:find).at_least(1).with(@params[:id]).returns(mock_season)
+      do_get
+    end
+
+    it "should assign the found Round for the view" do
+      Season.expects(:find).at_least(1).returns(mock_season)
+      do_get
+      assigns[:season].should equal(mock_season)
+    end	  
+
+  end
+
+  describe "responding to PUT update season" do
+  	
+  	def do_put(params={})
+  	  put :update, @params.merge(params)
+  	end 	
+  	
+  	describe "with successful update" do
+
+      it "should find the requested season" do
+        Season.expects(:find).at_least(1).with(@params[:id]).returns(mock_season({:update_attributes => true}))
+        do_put
+      end
+
+      it "should update the found season" do
+        Season.stubs(:find).returns(mock_season)
+        mock_season.expects(:update_attributes).with({'these' => 'params'})
+        do_put :season => {:these => 'params'}
+      end
+
+      it "should assign the found season for the view" do
+        Season.stubs(:find).returns(mock_season({:update_attributes => true}))
+        do_put 
+        assigns(:season).should equal(mock_season)
+      end
+
+      it "should redirect to the season" do
+        Season.stubs(:find).returns(mock_season({:update_attributes => true}))
+        do_put
+        response.should redirect_to(season_url(mock_season))
+      end
+
+    end
+    
+    describe "with failed update" do
+
+      it "should find the requested season" do
+        Season.expects(:find).at_least(1).with(@params[:id]).returns(mock_season({:update_attributes => false}))
+        do_put
+      end
+
+      it "should assign the season season for the view" do
+        Season.stubs(:find).returns(mock_season({:update_attributes => false}))
+        do_put
+        assigns(:season).should equal(mock_season)
+      end
+
+      it "should re-render the 'edit' template" do
+        Season.stubs(:find).returns(mock_season({:update_attributes => false}))
+        do_put
+        response.should render_template('edit')
+      end
+
+    end
+
+  end
+
 end

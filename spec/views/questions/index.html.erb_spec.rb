@@ -5,12 +5,12 @@ describe "/questions/index.html.erb" do
   
   before(:each) do
     assigns[:questions] = [
-      stub_model(Question,
+      stub("question1",
         #:round => ,
         :name => "value for name",
         :body => "value for body"
       ),
-      stub_model(Question,
+      stub("question2",
         #:round => ,
         :name => "value for name",
         :body => "value for body"

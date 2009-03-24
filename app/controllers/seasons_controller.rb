@@ -1,8 +1,7 @@
 class SeasonsController < ApplicationController
+	
+  before_filter :check_round,  :only => [:edit, :update, :destroy]
   
-  before_filter :login_required, :except => [ :index, :show, :current]
-  require_role "admin", :except => [ :index, :show, :current]
-    
   # GET /seasons/current
   # GET /seasons/current.xml
   def current
@@ -49,10 +48,6 @@ class SeasonsController < ApplicationController
   
   def edit
   	@season = Season.find(params[:id])
-  	if !@season.rounds.published.empty?
-  	  flash[:error] =  I18n.t('errors.messages.prohibited_edit_season_with_published_round')
-  	  redirect_to season_path(@season)
-	end
   end
   
   # POST /seasons
@@ -98,9 +93,15 @@ class SeasonsController < ApplicationController
       format.xml  { head :ok }
     end
   end 
-  
+
 protected
-  def authorized?(action = nil, resource = nil)
-    logged_in? && current_user.has_role?("admin")
+
+  def check_round
+    @season = Season.find(params[:id])    	
+    if !@season.rounds.published.empty?
+	  flash[:error] = "error"
+  	  redirect_to season_url(@season)
+  	  false
+    end
   end  
 end

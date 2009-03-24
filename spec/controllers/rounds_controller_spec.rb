@@ -1,175 +1,215 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-include AuthenticatedSystem
+
 describe RoundsController do
-
-  def mock_round(options={})
-    @mock_round ||= mock_model(Round, { :name => "1",
-    									:season_id => 1, 
-    									:season => mock_season, 
-  	                                    :published => false, 
-  	                                    :start_responses_at => Time.now,
-  					                    :end_responses_at => Time.now + 14.day,
-						                :start_assess_at => Time.now + 14.day, 
-  						                :end_assess_at => Time.now + 21.day}.merge(options))
-    
+	
+  def mock_season(stubs={})
+  	stubs = {
+  	  :id => 1,
+  	  :rounds => []
+  	}.merge(stubs)
+  	@mock_season ||= stub("season", stubs)
   end
   
-  def mock_season(options={})
-  	@mock_season ||= mock_model(Season, { :id => 1,
-  										  :name => "first",
-  										  :rounds => []}.merge(options))
-  end
-  
-  def mock_question(options={})
-    @mock_question ||= mock_model(Question, { :name => 'first question',
-                                              :body => 'body question',
-                                              :update_attributes => true, 
-                                              :round => mock_round}.merge(options))
+  def mock_round(stubs={})
+  	stubs = {
+  	  :id => 37,
+  	  :published => false,
+  	  :valid? => true,
+  	  :questions => [],
+  	  :season => mock_season
+  	}.merge(stubs)
+  	@mock_round ||= stub("round", stubs)
+  	@mock_round.questions.stubs(:not_valid).returns({})
+  	@mock_round
   end
 
-  def mock_admin
-    @admin ||= mock_model(User, :id => 1,
-						       :login  => 'user_name',
-						       :name   => 'U. Surname',
-						       :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
-						       :errors => [], 
-						       :roles  => [mock_model(Role, {:name => "admin", :save => true})])  
-    @admin.stub!(:has_role?).with("admin").and_return(true)
-    @admin						       
-  end
-  before do
-  	login_as mock_admin
-  	controller.stub!(:check_roles).and_return(true)	
-	controller.stub!(:authorized?).and_return(true)
+  before(:all) do
     @params = { :season_id => "1", :id => "37" }
   end
   
-  describe "responding to GET index" do
-  	def do_get
-      get :index, @params
-  	end
-
-    it "should expose all rounds as @rounds" do      
-      Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-      mock_season.rounds.should_receive(:find).with(:all).and_return([mock_round])
-      do_get
-      assigns[:rounds].should == [mock_round]
+  describe "before filter" do
+  	
+    it "should have find_season" do
+      controller.before_filters.should include(:find_season)
+    end 
+    
+    it "should have check_round" do
+      controller.before_filters.should include(:check_round)
+    end 
+    
+    describe "find_season" do
+      it "find_season should find a round" do
+        Season.expects(:find).with(@params[:season_id]).returns(mock_season)
+        controller.run_filter(:find_season, @params)
+      end
     end
-
-    describe "with mime type of xml" do
+    
+    describe "check_round" do
+    	
+      it "check_round should have options" do
+        controller.before_filter(:check_round).should have_options(:only => [:edit, :update, :publish])
+      end
+    
+      it "check_round should check a round for publishing" do
+        Season.expects(:find).with(@params[:season_id]).returns(mock_season)
+        mock_season.rounds.expects(:find).with(@params[:id]).returns(mock_round)
+        mock_round.expects(:published)
+        controller.run_filter(:check_round, @params)
+      end
+      
+      describe "when round published" do
+      	
+      	def do_get
+      	  get :edit, @params
+      	end
+      
+        before(:each) do
+	      Season.stubs(:find).returns(mock_season)
+          mock_season.rounds.stubs(:find).with(@params[:id]).returns(mock_round({:published => true}))
+	    end
+	
+	  	it "should have flash" do	  	  
+	  	  do_get
+	  	  flash[:error].should_not be_nil
+	  	end
+	  	
+	  	it "should redirect to show round" do
+	  	  do_get
+	  	  response.should redirect_to(season_round_path(mock_round.season, mock_round))
+	  	end
+	  	
+	  	it "should assign the found Round for the view" do	      
+	      do_get
+	      assigns[:round].should equal(mock_round)
+	    end
+	    
+	  end
+      
+    end   
+    
+  end
   
-      it "should render all rounds as xml" do
-        request.env["HTTP_ACCEPT"] = "application/xml"
-        Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-        mock_season.rounds.should_receive(:find).with(:all).and_return(rounds = mock("Array of Rounds"))
-        rounds.should_receive(:to_xml).and_return("generated XML")
-        do_get
-        response.body.should == "generated XML"
-      end
-    
-    end
-
-  end
-
-  describe "responding to GET show" do
-  	def do_get
-  	  get :show, @params
-  	end
-
-    it "should expose the requested round as @round" do
-      Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)      
-      mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
+  describe "responding to GET show round" do
+	def do_get
+	  get :show, @params
+	end
+	
+	before(:each) do
+	  Season.stubs(:find).returns(mock_season)      
+	end
+	
+	it "should succeed" do      
+      mock_season.rounds.stubs(:find)	      
       do_get
-      assigns[:round].should equal(mock_round)
+      response.should be_success
     end
+
+    it "should render the 'show' template" do      
+      mock_season.rounds.stubs(:find)
+      do_get 
+      response.should render_template('show')
+    end    
     
-    describe "with mime type of xml" do
+    it "should find the requested round" do         
+      mock_season.rounds.expects(:find).with(@params[:id])      
+      do_get 
+    end
 
-      it "should render the requested round as xml" do
-        request.env["HTTP_ACCEPT"] = "application/xml"
-        Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-        mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
-        mock_round.should_receive(:to_xml).and_return("generated XML")
-        do_get
-        response.body.should == "generated XML"
-      end
-
+    it "should assign the found round for the view" do     
+      mock_season.rounds.expects(:find).returns(mock_round)
+      do_get
+      assigns[:round].should equal(mock_round)      
     end
     
   end
-  describe "with login as admin" do
-    
-  	before(:each) do
-      login_as mock_admin
-	  current_user.stub!(:has_role?).and_return(true)
-	  controller.stub!(:check_roles).and_return(true)
-    end
-  describe "responding to GET edit" do
+
+  describe "responding to GET edit round" do
+  	
   	def do_get
   	  get :edit, @params
-  	end
-  
-    it "should expose the requested round as @round" do
-      Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-      mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
+  	end  	
+  	
+  	before(:each) do
+      Season.stubs(:find).returns(mock_season)      
+    end
+  	
+    it "should succeed" do
+      mock_season.rounds.stubs(:find).returns(mock_round)
+      do_get 
+      response.should be_success
+    end
+
+    it "should render the 'edit' template" do
+      mock_season.rounds.stubs(:find).returns(mock_round)
+      do_get
+      response.should render_template('edit')
+    end
+
+    it "should find the requested round" do
+      mock_season.rounds.expects(:find).at_least(1).with(@params[:id]).returns(mock_round)
+      do_get
+    end
+
+    it "should assign the found Round for the view" do
+      mock_season.rounds.expects(:find).at_least(1).returns(mock_round)
       do_get
       assigns[:round].should equal(mock_round)
-    end
+    end	  
 
   end
 
-  describe "responding to PUT udpate" do
+  describe "responding to PUT update round" do
+  	
+  	def do_put(params={})
+  	  put :update, @params.merge(params)
+  	end 	
+      	
+  	before(:each) do
+      Season.stubs(:find).returns(mock_season)      
+    end
+  	
+  	describe "with successful update" do
 
-    describe "with valid params" do
-      def do_put(options={})
-      	put :update, @params.merge(options)
-      end
-
-      it "should update the requested round" do
-      	Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-        mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
-        mock_round.should_receive(:update_attributes).with({'these' => 'params'})
-        do_put(:round => {'these' => 'params'})
-      end
-
-      it "should expose the requested round as @round" do
-      	Season.stub!(:find).and_return(mock_season)
-        mock_season.rounds.stub!(:find).and_return(mock_round(:update_attributes => true))
+      it "should find the requested round" do
+        mock_season.rounds.expects(:find).at_least(1).with(@params[:id]).returns(mock_round({:update_attributes => true}))
         do_put
+      end
+
+      it "should update the found round" do
+        mock_season.rounds.stubs(:find).returns(mock_round)
+        mock_round.expects(:update_attributes).with({'these' => 'params'})
+        do_put :round => {:these => 'params'}
+      end
+
+      it "should assign the found round for the view" do
+        mock_season.rounds.stubs(:find).returns(mock_round({:update_attributes => true}))
+        do_put 
         assigns(:round).should equal(mock_round)
       end
 
       it "should redirect to the round" do
-      	Season.stub!(:find).and_return(mock_season)
-        mock_season.rounds.stub!(:find).and_return(mock_round(:update_attributes => true))
+        mock_season.rounds.stubs(:find).returns(mock_round({:update_attributes => true}))
         do_put
         response.should redirect_to(season_round_url(mock_season, mock_round))
       end
 
     end
     
-    describe "with invalid params" do
-      def do_put(options={})
-      	put :update, @params.merge(options)
+    describe "with failed update" do
+
+      it "should find the requested round" do
+        mock_season.rounds.expects(:find).at_least(1).with(@params[:id]).returns(mock_round({:update_attributes => false}))
+        do_put
       end
 
-      it "should update the requested round" do
-      	Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season)
-        mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)
-        mock_round.should_receive(:update_attributes).with({'these' => 'params'})
-        do_put :round => {:these => 'params'}
-      end
-
-      it "should expose the round as @round" do
-      	Season.stub!(:find).and_return(mock_season)
-        mock_season.rounds.stub!(:find).and_return(mock_round(:update_attributes => false))
+      it "should assign the found round for the view" do
+        mock_season.rounds.stubs(:find).returns(mock_round({:update_attributes => false}))
         do_put
         assigns(:round).should equal(mock_round)
       end
 
       it "should re-render the 'edit' template" do
-      	Season.stub!(:find).and_return(mock_season)
-        mock_season.rounds.stub!(:find).and_return(mock_round(:update_attributes => false))
+        mock_season.rounds.stubs(:find).returns(mock_round({:update_attributes => false}))
         do_put
         response.should render_template('edit')
       end
@@ -180,17 +220,36 @@ describe RoundsController do
   
   
   describe "responding to GET publish" do
+  	before(:each) do
+      Season.stubs(:find).returns(mock_season)      
+    end
+  	
   	def do_get
   	  get :publish, @params
   	end
     
-    it "should not publish the request round" do
-      Season.should_receive(:find).with(@params[:season_id]).and_return(mock_season(:start_respnses_at => 1.day.ago))
-      mock_season.rounds.should_receive(:find).with(@params[:id]).and_return(mock_round)      
-      mock_round.stub!(:valid?).and_return(false)      
-      do_get
-    end
-  end
+    it "should find the requested round" do
+        mock_season.rounds.expects(:find).with(@params[:id]).returns(mock_round({:update_attribute => true}))
+        do_get
+      end
+
+      it "should publish the found round" do
+        mock_season.rounds.stubs(:find).returns(mock_round)
+        mock_round.expects(:update_attribute).with(:published, true)
+        do_get
+      end
+
+      it "should assign the found round for the view" do
+        mock_season.rounds.stubs(:find).returns(mock_round({:update_attribute => true}))
+        do_get 
+        assigns(:round).should equal(mock_round)
+      end
+
+      it "should redirect to the round" do
+        mock_season.rounds.stubs(:find).returns(mock_round({:update_attribute => true}))
+        do_get
+        response.should redirect_to(season_round_url(mock_season, mock_round))
+      end
   end
 
 end

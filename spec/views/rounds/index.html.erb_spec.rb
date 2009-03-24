@@ -5,12 +5,12 @@ describe "/rounds/index.html.erb" do
   
   before(:each) do
     assigns[:rounds] = [
-      stub_model(Round,
+      stub("round1",
         #:season => ,
         :name => "value for name",
         :published => true
       ),
-      stub_model(Round,
+      stub("round2",
         #:season => ,
         :name => "value for name",
         :published => true

@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe QuestionsHelper do
-  #include AuthenticatedSystem
   def mock_admin
     @admin ||= mock_model(User, :id => 1,
 						       :login  => 'user_name',

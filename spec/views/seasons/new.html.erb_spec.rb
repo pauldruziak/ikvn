@@ -4,9 +4,12 @@ describe "/seasons/new.html.erb" do
   include SeasonsHelper
   
   before(:each) do
-    assigns[:season] = stub_model(Season,
+    assigns[:season] = stub("season",
       :new_record? => true,
-      :name => "value for name"
+      :name => "value for name",
+      :errors => [],
+      :rounds_count => 5,
+      :questions_count => 3
     )
   end
 

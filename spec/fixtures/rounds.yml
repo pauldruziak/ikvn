@@ -1,0 +1,20 @@
+published:
+  id: 1
+  name: "first"
+  season_id: 1
+  published: true
+  start_responses_at: { Time.now }
+  end_responses_at: { 7.day.ago }
+  start_assess_at: { 7.day.ago }
+  end_assess_at: { 14.day.ago }
+  
+planned:
+  id: 2
+  name: "second"
+  season_id: 1
+  published: false
+  start_responses_at: { Time.now }
+  end_responses_at: { 7.day.ago }
+  start_assess_at: { 7.day.ago }
+  end_assess_at: { 14.day.ago }
+    

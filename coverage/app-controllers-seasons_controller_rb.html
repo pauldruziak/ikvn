@@ -156,7 +156,7 @@
       C0 code coverage information
     </h3>
     <p>
-      Generated on Sun Mar 22 06:08:51 +0200 2009 with 
+      Generated on Mon Mar 23 06:33:53 +0200 2009 with 
       <a href='http://eigenclass.org/hiki/rcov'>
         rcov 0.8.1.2
       </a>
@@ -175,135 +175,127 @@
     </td> </tr> </thead> <tbody> <tr class='light'> <td> <a
     href='app-controllers-seasons_controller_rb.html'>
     app/controllers/seasons_controller.rb </a> </td> <td class='lines_total'>
-    <tt> 106 </tt> </td> <td class='lines_code'> <tt> 77 </tt> </td> <td> <table
+    <tt> 99 </tt> </td> <td class='lines_code'> <tt> 71 </tt> </td> <td> <table
     cellspacing='0' align='right' cellpadding='0'> <tr> <td> <tt
-    class='coverage_total'> 72.6% </tt> &nbsp; </td> <td> <table
+    class='coverage_total'> 29.3% </tt> &nbsp; </td> <td> <table
     class='percent_graph' cellspacing='0' cellpadding='0' width='100'> <tr> <td
-    class='covered' width='73' /> <td class='uncovered' width='27' /> </tr>
+    class='covered' width='29' /> <td class='uncovered' width='71' /> </tr>
     </table> </td> </tr> </table> </td> <td> <table cellspacing='0'
-    align='right' cellpadding='0'> <tr> <td> <tt class='coverage_code'> 64.9%
+    align='right' cellpadding='0'> <tr> <td> <tt class='coverage_code'> 12.7%
     </tt> &nbsp; </td> <td> <table class='percent_graph' cellspacing='0'
-    cellpadding='0' width='100'> <tr> <td class='covered' width='65' /> <td
-    class='uncovered' width='35' /> </tr> </table> </td> </tr> </table> </td>
-    </tr> </tbody> </table><pre><span class="marked1"><a name="line1"></a> 1
+    cellpadding='0' width='100'> <tr> <td class='covered' width='13' /> <td
+    class='uncovered' width='87' /> </tr> </table> </td> </tr> </table> </td>
+    </tr> </tbody> </table><pre><span class="marked0"><a name="line1"></a> 1
     class SeasonsController &lt; ApplicationController </span><span
-    class="inferred0"><a name="line2"></a> 2 </span><span class="marked1"><a
-    name="line3"></a> 3 before_filter :login_required, :except =&gt; [ :index,
-    :show, :current] </span><span class="marked0"><a name="line4"></a> 4
-    require_role &quot;admin&quot;, :except =&gt; [ :index, :show, :current]
-    </span><span class="inferred1"><a name="line5"></a> 5 </span><span
-    class="inferred0"><a name="line6"></a> 6 # GET /seasons/current </span><span
-    class="inferred1"><a name="line7"></a> 7 # GET /seasons/current.xml
-    </span><span class="marked0"><a name="line8"></a> 8 def current </span><span
-    class="uncovered1"><a name="line9"></a> 9 @season = Season.find(:last)
-    </span><span class="uncovered0"><a name="line10"></a> 10 </span><span
-    class="uncovered1"><a name="line11"></a> 11 respond_to do |format|
-    </span><span class="uncovered0"><a name="line12"></a> 12 format.html {
-    render :action =&gt; &quot;show&quot; } </span><span class="uncovered1"><a
-    name="line13"></a> 13 format.xml { render :action =&gt; &quot;show&quot;,
-    :xml =&gt; @season } </span><span class="uncovered0"><a name="line14"></a>
-    14 end </span><span class="uncovered1"><a name="line15"></a> 15 end
-    </span><span class="inferred0"><a name="line16"></a> 16 </span><span
-    class="inferred1"><a name="line17"></a> 17 # GET /seasons </span><span
-    class="inferred0"><a name="line18"></a> 18 # GET /seasons.xml </span><span
-    class="marked1"><a name="line19"></a> 19 def index </span><span
-    class="marked0"><a name="line20"></a> 20 @seasons = Season.find(:all)
-    </span><span class="inferred1"><a name="line21"></a> 21 </span><span
-    class="marked0"><a name="line22"></a> 22 respond_to do |format| </span><span
-    class="marked1"><a name="line23"></a> 23 format.html # index.html.erb
-    </span><span class="marked0"><a name="line24"></a> 24 format.xml { render
-    :xml =&gt; @seasons } </span><span class="inferred1"><a name="line25"></a>
-    25 end </span><span class="inferred0"><a name="line26"></a> 26 end
-    </span><span class="inferred1"><a name="line27"></a> 27 </span><span
-    class="inferred0"><a name="line28"></a> 28 # GET /seasons/1 </span><span
-    class="inferred1"><a name="line29"></a> 29 # GET /seasons/1.xml </span><span
-    class="marked0"><a name="line30"></a> 30 def show </span><span
-    class="marked1"><a name="line31"></a> 31 @season = Season.find(params[:id])
-    </span><span class="inferred0"><a name="line32"></a> 32 </span><span
-    class="marked1"><a name="line33"></a> 33 respond_to do |format| </span><span
-    class="marked0"><a name="line34"></a> 34 format.html # show.html.erb
-    </span><span class="marked1"><a name="line35"></a> 35 format.xml { render
-    :xml =&gt; @season } </span><span class="inferred0"><a name="line36"></a> 36
-    end </span><span class="inferred1"><a name="line37"></a> 37 end </span><span
-    class="inferred0"><a name="line38"></a> 38 </span><span class="inferred1"><a
-    name="line39"></a> 39 # GET /seasons/new </span><span class="inferred0"><a
-    name="line40"></a> 40 # GET /seasons/new.xml </span><span class="marked1"><a
-    name="line41"></a> 41 def new </span><span class="marked0"><a
-    name="line42"></a> 42 @season = Season.new </span><span class="inferred1"><a
-    name="line43"></a> 43 </span><span class="marked0"><a name="line44"></a> 44
-    respond_to do |format| </span><span class="marked1"><a name="line45"></a> 45
-    format.html # new.html.erb </span><span class="marked0"><a
-    name="line46"></a> 46 format.xml { render :xml =&gt; @season } </span><span
-    class="inferred1"><a name="line47"></a> 47 end </span><span
-    class="inferred0"><a name="line48"></a> 48 end </span><span
-    class="inferred1"><a name="line49"></a> 49 </span><span class="marked0"><a
-    name="line50"></a> 50 def edit </span><span class="uncovered1"><a
-    name="line51"></a> 51 @season = Season.find(params[:id]) </span><span
-    class="uncovered0"><a name="line52"></a> 52 if
+    class="inferred1"><a name="line2"></a> 2 </span><span class="inferred0"><a
+    name="line3"></a> 3 # GET /seasons/current </span><span class="inferred1"><a
+    name="line4"></a> 4 # GET /seasons/current.xml </span><span
+    class="marked0"><a name="line5"></a> 5 def current </span><span
+    class="uncovered1"><a name="line6"></a> 6 @season = Season.find(:last)
+    </span><span class="uncovered0"><a name="line7"></a> 7 </span><span
+    class="uncovered1"><a name="line8"></a> 8 respond_to do |format|
+    </span><span class="uncovered0"><a name="line9"></a> 9 format.html { render
+    :action =&gt; &quot;show&quot; } </span><span class="uncovered1"><a
+    name="line10"></a>10 format.xml { render :action =&gt; &quot;show&quot;,
+    :xml =&gt; @season } </span><span class="uncovered0"><a name="line11"></a>11
+    end </span><span class="uncovered1"><a name="line12"></a>12 end </span><span
+    class="inferred0"><a name="line13"></a>13 </span><span class="inferred1"><a
+    name="line14"></a>14 # GET /seasons </span><span class="inferred0"><a
+    name="line15"></a>15 # GET /seasons.xml </span><span class="marked1"><a
+    name="line16"></a>16 def index </span><span class="uncovered0"><a
+    name="line17"></a>17 @seasons = Season.find(:all) </span><span
+    class="uncovered1"><a name="line18"></a>18 </span><span
+    class="uncovered0"><a name="line19"></a>19 respond_to do |format|
+    </span><span class="uncovered1"><a name="line20"></a>20 format.html #
+    index.html.erb </span><span class="uncovered0"><a name="line21"></a>21
+    format.xml { render :xml =&gt; @seasons } </span><span class="uncovered1"><a
+    name="line22"></a>22 end </span><span class="uncovered0"><a
+    name="line23"></a>23 end </span><span class="inferred1"><a
+    name="line24"></a>24 </span><span class="inferred0"><a name="line25"></a>25
+    # GET /seasons/1 </span><span class="inferred1"><a name="line26"></a>26 #
+    GET /seasons/1.xml </span><span class="marked0"><a name="line27"></a>27 def
+    show </span><span class="uncovered1"><a name="line28"></a>28 @season =
+    Season.find(params[:id]) </span><span class="uncovered0"><a
+    name="line29"></a>29 </span><span class="uncovered1"><a name="line30"></a>30
+    respond_to do |format| </span><span class="uncovered0"><a
+    name="line31"></a>31 format.html # show.html.erb </span><span
+    class="uncovered1"><a name="line32"></a>32 format.xml { render :xml =&gt;
+    @season } </span><span class="uncovered0"><a name="line33"></a>33 end
+    </span><span class="uncovered1"><a name="line34"></a>34 end </span><span
+    class="inferred0"><a name="line35"></a>35 </span><span class="inferred1"><a
+    name="line36"></a>36 # GET /seasons/new </span><span class="inferred0"><a
+    name="line37"></a>37 # GET /seasons/new.xml </span><span class="marked1"><a
+    name="line38"></a>38 def new </span><span class="uncovered0"><a
+    name="line39"></a>39 @season = Season.new </span><span class="uncovered1"><a
+    name="line40"></a>40 </span><span class="uncovered0"><a name="line41"></a>41
+    respond_to do |format| </span><span class="uncovered1"><a
+    name="line42"></a>42 format.html # new.html.erb </span><span
+    class="uncovered0"><a name="line43"></a>43 format.xml { render :xml =&gt;
+    @season } </span><span class="uncovered1"><a name="line44"></a>44 end
+    </span><span class="uncovered0"><a name="line45"></a>45 end </span><span
+    class="inferred1"><a name="line46"></a>46 </span><span class="marked0"><a
+    name="line47"></a>47 def edit </span><span class="uncovered1"><a
+    name="line48"></a>48 @season = Season.find(params[:id]) </span><span
+    class="uncovered0"><a name="line49"></a>49 if
     !@season.rounds.published.empty? </span><span class="uncovered1"><a
-    name="line53"></a> 53 flash[:error] =
+    name="line50"></a>50 flash[:error] =
     I18n.t('errors.messages.prohibited_edit_season_with_published_round')
-    </span><span class="uncovered0"><a name="line54"></a> 54 redirect_to
-    season_path(@season) </span><span class="uncovered1"><a name="line55"></a>
-    55 end </span><span class="uncovered0"><a name="line56"></a> 56 end
-    </span><span class="inferred1"><a name="line57"></a> 57 </span><span
-    class="inferred0"><a name="line58"></a> 58 # POST /seasons </span><span
-    class="inferred1"><a name="line59"></a> 59 # POST /seasons.xml </span><span
-    class="marked0"><a name="line60"></a> 60 def create </span><span
-    class="marked1"><a name="line61"></a> 61 @season =
-    Season.new(params[:season]) </span><span class="inferred0"><a
-    name="line62"></a> 62 </span><span class="marked1"><a name="line63"></a> 63
-    respond_to do |format| </span><span class="marked0"><a name="line64"></a> 64
-    if @season.save </span><span class="marked1"><a name="line65"></a> 65
-    flash[:notice] = 'Season was successfully created.' </span><span
-    class="marked0"><a name="line66"></a> 66 format.html { redirect_to(@season)
-    } </span><span class="marked1"><a name="line67"></a> 67 format.xml { render
-    :xml =&gt; @season, :status =&gt; :created, :location =&gt; @season }
-    </span><span class="inferred0"><a name="line68"></a> 68 else </span><span
-    class="marked1"><a name="line69"></a> 69 format.html { render :action =&gt;
-    &quot;new&quot; } </span><span class="marked0"><a name="line70"></a> 70
-    format.xml { render :xml =&gt; @season.errors, :status =&gt;
-    :unprocessable_entity } </span><span class="inferred1"><a name="line71"></a>
-    71 end </span><span class="inferred0"><a name="line72"></a> 72 end
-    </span><span class="inferred1"><a name="line73"></a> 73 end </span><span
-    class="inferred0"><a name="line74"></a> 74 </span><span class="marked1"><a
-    name="line75"></a> 75 def update </span><span class="uncovered0"><a
-    name="line76"></a> 76 @season = Season.find(params[:id]) </span><span
-    class="uncovered1"><a name="line77"></a> 77 </span><span
-    class="uncovered0"><a name="line78"></a> 78 respond_to do |format|
-    </span><span class="uncovered1"><a name="line79"></a> 79 if
-    @season.update_attributes(params[:season]) </span><span
-    class="uncovered0"><a name="line80"></a> 80 flash[:notice] = 'Season was
-    successfully updated.' </span><span class="uncovered1"><a name="line81"></a>
-    81 format.html { redirect_to season_url(@season) } </span><span
-    class="uncovered0"><a name="line82"></a> 82 format.xml { head :ok }
-    </span><span class="uncovered1"><a name="line83"></a> 83 else </span><span
-    class="uncovered0"><a name="line84"></a> 84 format.html { render :action
-    =&gt; &quot;edit&quot; } </span><span class="uncovered1"><a
-    name="line85"></a> 85 format.xml { render :xml =&gt; @season.errors, :status
+    </span><span class="uncovered0"><a name="line51"></a>51 redirect_to
+    season_path(@season) </span><span class="uncovered1"><a name="line52"></a>52
+    end </span><span class="uncovered0"><a name="line53"></a>53 end </span><span
+    class="inferred1"><a name="line54"></a>54 </span><span class="inferred0"><a
+    name="line55"></a>55 # POST /seasons </span><span class="inferred1"><a
+    name="line56"></a>56 # POST /seasons.xml </span><span class="marked0"><a
+    name="line57"></a>57 def create </span><span class="uncovered1"><a
+    name="line58"></a>58 @season = Season.new(params[:season]) </span><span
+    class="uncovered0"><a name="line59"></a>59 </span><span
+    class="uncovered1"><a name="line60"></a>60 respond_to do |format|
+    </span><span class="uncovered0"><a name="line61"></a>61 if @season.save
+    </span><span class="uncovered1"><a name="line62"></a>62 flash[:notice] =
+    'Season was successfully created.' </span><span class="uncovered0"><a
+    name="line63"></a>63 format.html { redirect_to(@season) } </span><span
+    class="uncovered1"><a name="line64"></a>64 format.xml { render :xml =&gt;
+    @season, :status =&gt; :created, :location =&gt; @season } </span><span
+    class="uncovered0"><a name="line65"></a>65 else </span><span
+    class="uncovered1"><a name="line66"></a>66 format.html { render :action
+    =&gt; &quot;new&quot; } </span><span class="uncovered0"><a
+    name="line67"></a>67 format.xml { render :xml =&gt; @season.errors, :status
+    =&gt; :unprocessable_entity } </span><span class="uncovered1"><a
+    name="line68"></a>68 end </span><span class="uncovered0"><a
+    name="line69"></a>69 end </span><span class="uncovered1"><a
+    name="line70"></a>70 end </span><span class="inferred0"><a
+    name="line71"></a>71 </span><span class="marked1"><a name="line72"></a>72
+    def update </span><span class="uncovered0"><a name="line73"></a>73 @season =
+    Season.find(params[:id]) </span><span class="uncovered1"><a
+    name="line74"></a>74 </span><span class="uncovered0"><a name="line75"></a>75
+    respond_to do |format| </span><span class="uncovered1"><a
+    name="line76"></a>76 if @season.update_attributes(params[:season])
+    </span><span class="uncovered0"><a name="line77"></a>77 flash[:notice] =
+    'Season was successfully updated.' </span><span class="uncovered1"><a
+    name="line78"></a>78 format.html { redirect_to season_url(@season) }
+    </span><span class="uncovered0"><a name="line79"></a>79 format.xml { head
+    :ok } </span><span class="uncovered1"><a name="line80"></a>80 else
+    </span><span class="uncovered0"><a name="line81"></a>81 format.html { render
+    :action =&gt; &quot;edit&quot; } </span><span class="uncovered1"><a
+    name="line82"></a>82 format.xml { render :xml =&gt; @season.errors, :status
     =&gt; :unprocessable_entity } </span><span class="uncovered0"><a
-    name="line86"></a> 86 end </span><span class="uncovered1"><a
-    name="line87"></a> 87 end </span><span class="uncovered0"><a
-    name="line88"></a> 88 end </span><span class="inferred1"><a
-    name="line89"></a> 89 </span><span class="inferred0"><a name="line90"></a>
-    90 # DELETE /seasons/1 </span><span class="inferred1"><a name="line91"></a>
-    91 # DELETE /seasons/1.xml </span><span class="marked0"><a
-    name="line92"></a> 92 def destroy </span><span class="marked1"><a
-    name="line93"></a> 93 @season = Season.find(params[:id]) </span><span
-    class="marked0"><a name="line94"></a> 94 @season.destroy </span><span
-    class="inferred1"><a name="line95"></a> 95 </span><span class="marked0"><a
-    name="line96"></a> 96 respond_to do |format| </span><span class="marked1"><a
-    name="line97"></a> 97 format.html { redirect_to(seasons_url) } </span><span
-    class="marked0"><a name="line98"></a> 98 format.xml { head :ok }
-    </span><span class="inferred1"><a name="line99"></a> 99 end </span><span
-    class="inferred0"><a name="line100"></a>100 end </span><span
-    class="inferred1"><a name="line101"></a>101 </span><span class="marked0"><a
-    name="line102"></a>102 protected </span><span class="marked1"><a
-    name="line103"></a>103 def authorized?(action = nil, resource = nil)
-    </span><span class="uncovered0"><a name="line104"></a>104 logged_in?
-    &amp;&amp; current_user.has_role?(&quot;admin&quot;) </span><span
-    class="uncovered1"><a name="line105"></a>105 end </span><span
-    class="uncovered0"><a name="line106"></a>106 end </span></pre>
+    name="line83"></a>83 end </span><span class="uncovered1"><a
+    name="line84"></a>84 end </span><span class="uncovered0"><a
+    name="line85"></a>85 end </span><span class="inferred1"><a
+    name="line86"></a>86 </span><span class="inferred0"><a name="line87"></a>87
+    # DELETE /seasons/1 </span><span class="inferred1"><a name="line88"></a>88 #
+    DELETE /seasons/1.xml </span><span class="marked0"><a name="line89"></a>89
+    def destroy </span><span class="uncovered1"><a name="line90"></a>90 @season
+    = Season.find(params[:id]) </span><span class="uncovered0"><a
+    name="line91"></a>91 @season.destroy </span><span class="uncovered1"><a
+    name="line92"></a>92 </span><span class="uncovered0"><a name="line93"></a>93
+    respond_to do |format| </span><span class="uncovered1"><a
+    name="line94"></a>94 format.html { redirect_to(seasons_url) } </span><span
+    class="uncovered0"><a name="line95"></a>95 format.xml { head :ok }
+    </span><span class="uncovered1"><a name="line96"></a>96 end </span><span
+    class="uncovered0"><a name="line97"></a>97 end </span><span
+    class="uncovered1"><a name="line98"></a>98 </span><span
+    class="uncovered0"><a name="line99"></a>99 end </span></pre>
     <hr />
     <p> Generated using the <a href='http://eigenclass.org/hiki.rb?rcov'> rcov
     code coverage analysis tool for Ruby </a> version 0.8.1.2. </p>
