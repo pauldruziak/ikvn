@@ -229,7 +229,7 @@ describe RoundsController do
   	end
     
     it "should find the requested round" do
-        mock_season.rounds.expects(:find).with(@params[:id]).returns(mock_round({:update_attribute => true}))
+        mock_season.rounds.expects(:find).at_least(1).with(@params[:id]).returns(mock_round({:update_attribute => true}))
         do_get
       end
 

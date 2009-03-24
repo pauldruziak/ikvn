@@ -16,7 +16,7 @@
 	        <p><%=  message %></p>	        
 	      </div>
 	      <% end -%>
-	      <% if !@round.errors.empty? %>
+	      <% if !@round.valid? || !@round.questions.not_valid.empty? %>
 	      <div class="message error">
 	      	<h2><%= t('errors.messages.round_not_published', :count => @round.errors.count + @round.questions.not_valid.count) %></h2>
 	      	<p><%= t('activerecord.errors.template.body') %></p>

@@ -89,7 +89,7 @@ class SeasonsController < ApplicationController
     @season.destroy
 
     respond_to do |format|
-      format.html { redirect_to(seasons_url) }
+      format.html { redirect_to(current_seasons_url) }
       format.xml  { head :ok }
     end
   end 
@@ -99,7 +99,7 @@ protected
   def check_round
     @season = Season.find(params[:id])    	
     if !@season.rounds.published.empty?
-	  flash[:error] = "error"
+	  flash[:error] = I18n.t('errors.messages.season_prohibited_published_round')
   	  redirect_to season_url(@season)
   	  false
     end

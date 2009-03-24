@@ -51,13 +51,11 @@ protected
   end
   
   def check_round
-  	def check_round
   	@round = Season.find(params[:season_id]).rounds.find(params[:id])
   	if @round.published
-  	  flash[:error] = "error"
+  	  flash[:error] = I18n.t('errors.messages.round_prohibited_published_round')
   	  redirect_to season_round_url(@round.season, @round)
   	  false
   	end
-  end
   end
 end

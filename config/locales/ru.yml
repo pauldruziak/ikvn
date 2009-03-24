@@ -276,8 +276,9 @@
 
   errors:
     messages: 
-      prohibited_edit_question_in_published_round: "Запрещенно редактировать вопрос в опубликованном туре"
-      prohibited_edit_published_round: "Запрещенно редактировать опубликованный тур"
+      season_prohibited_published_round: "Запрещенно. Сезон содержит опубликованный тур."
+      round_prohibited_published_round: "Запрещенно. Тур опубликован."
+      question_prohibited_published_round: "Запрещенно. Тур опубликован."
       round_not_published: 
         one: "Тур: опубликовать не удалось из-за {{count}} ошибки"
         few: "Тур: опубликовать не удалось из-за {{count}} ошибок"
