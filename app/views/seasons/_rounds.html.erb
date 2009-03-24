@@ -2,7 +2,8 @@
   <% rounds.each do |round| %>
     <tr>              	              	  
       <td><%=link_to t('round.name', :name => h(round.name)), season_round_path(round.season, round) %></td>
-      <td class="last"><%= l round.start_responses_at, :format => :short %>&mdash;<%= l round.end_responses_at, :format => :short %></td>              	    
+      <td class="<%= round.status %>"><%= t round.status %></td>     
+      <td class="last"><%= l round.start_responses_at, :format => :short %>&ndash;<%= l round.end_responses_at, :format => :short %></td>              	    
     </tr>
   <% end -%>              	
 </table>

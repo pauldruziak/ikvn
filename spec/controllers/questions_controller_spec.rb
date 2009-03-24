@@ -43,7 +43,7 @@ describe QuestionsController do
     end 
     
     describe "find_round" do
-      it "find_round should find a round" do
+      it "should find a round" do
         Season.expects(:find).with(@params[:season_id]).returns(mock_season)
         mock_season.rounds.expects(:find).with(@params[:round_id])
         controller.run_filter(:find_round, @params)
@@ -52,11 +52,11 @@ describe QuestionsController do
     
     describe "check_round" do
     	
-      it "check_round should have options" do
+      it "should have options" do
         controller.before_filter(:check_round).should have_options(:only => [:edit, :update])
       end
     
-      it "check_round should check a round for publishing" do
+      it "should check a round for publishing" do
         Season.expects(:find).with(@params[:season_id]).returns(mock_season)
         mock_season.rounds.expects(:find).with(@params[:round_id]).returns(mock_round)
         mock_round.expects(:published)

@@ -215,6 +215,11 @@
       
   web_app: "Чемпионат по КВН"
   
+  planned: "запланированный"
+  current: "текущей"
+  next: "следующий" 
+  completed: "завершенный"
+  
   txt:
     or: "или"
     save: "Сохранить &rarr;"
@@ -263,7 +268,6 @@
     attributes:
       name: 
         description: "Например: Первый"
-
 
   question:
     name: "Вопрос {{name}}"

@@ -47,11 +47,11 @@ describe SeasonsController do
     
     describe "check_round" do
     	
-      it "check_round should have options" do
+      it "should have options" do
         controller.before_filter(:check_round).should have_options(:only => [:edit, :update, :destroy])
       end
     
-      it "check_round should check a round for publishing" do
+      it "should check a round for publishing" do
         Season.expects(:find).with(@params[:id]).returns(mock_season)
         mock_season.rounds.expects(:published).at_least(1).returns([])
         #mock_season.rounds.published.expects(:empty?).at_least(1).returns(true)

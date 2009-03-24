@@ -49,4 +49,26 @@ describe Round do
   	round.should have(1).error_on(:start_assess_at)
   end
   
+  describe "status" do
+  	
+    it "should be planned if not published" do
+      round = Factory.build(:round, :published => false)
+      round.status.should == :planned
+    end
+    
+    it "should be next if published and today less than start responses" do
+      round = Factory.build(:round, :published => true, :start_responses_at => 2.day.from_now)
+      round.status.should == :next
+    end
+    
+    it "should be current if published and today greater than start responses and less than end assess" do
+      round = Factory.build(:round, :published => true, :start_responses_at => 1.day.ago)
+    end
+    
+    it "should be completed if published and today greated than end responses" do
+      round = Factory.build(:round, :published => true, :end_assess_at => 1.day.ago)
+      round.status.should == :completed
+    end
+  end
+  
 end

@@ -11,6 +11,16 @@ class Round < ActiveRecord::Base
   
   validates_presence_of :name, :start_responses_at, :end_responses_at, :start_assess_at, :end_assess_at
   
+  def status
+  	status = :planned
+  	if published
+  	  status = :next if start_responses_at > DateTime.now
+  	  status = :current if start_responses_at < DateTime.now && DateTime.now < end_assess_at
+  	  status = :completed if Time.now > end_assess_at
+    end  		
+    status
+  end
+  
   
 protected
   def validate  	

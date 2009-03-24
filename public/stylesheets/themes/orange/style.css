@@ -45,6 +45,23 @@ hr {
   margin-left: 15px;
 }
 
+#main .block .planned{
+  color:#999;
+}
+
+#main .block .current{
+  font-weight: bold;
+}
+
+#main .block .next{
+  color:#666;
+}
+
+#main .block .completed{
+  text-decoration: line-through;
+}
+
+
 #sidebar .block {
   background: #FFF;
 }

@@ -43,7 +43,7 @@ function makeYellow(element_id) {
   </script>
   <style type="text/css">
 #rspec-header {
-  background: #65C400; color: #fff; height: 42px;
+  background: #65C400; color: #fff; height: 4em;
 }
 
 .rspec-report h1 {
@@ -51,7 +51,7 @@ function makeYellow(element_id) {
   padding: 10px;
   font-family: "Lucida Grande", Helvetica, sans-serif;
   font-size: 1.8em;
-  float: left;
+  position: absolute;
 }
 
 #summary {
@@ -181,940 +181,557 @@ a {
 <div class="results">
 <div class="example_group">
   <dl>
-  <dt id="example_group_1">AccessControlTestController requesting html; I am logged in and Login not required</dt>
-    <script type="text/javascript">moveProgressBar('0.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">succeeds</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_2">AccessControlTestController requesting html; I am logged in and Login is required</dt>
+  <dt id="example_group_1">QuestionsController before filter</dt>
     <script type="text/javascript">moveProgressBar('0.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">succeeds</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_3">AccessControlTestController requesting html; I am not logged in and Login not required</dt>
-    <script type="text/javascript">moveProgressBar('1.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">succeeds</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_4">AccessControlTestController requesting html; I am not logged in and Login is required</dt>
+    <dd class="spec passed"><span class="passed_spec_name">should have find_round</span></dd>
     <script type="text/javascript">moveProgressBar('1.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">redirects me to the log in page</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should have check_round</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_5">AccessControlTestController requesting xml; I am logged in and Login not required</dt>
-    <script type="text/javascript">moveProgressBar('1.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">succeeds</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_6">AccessControlTestController requesting xml; I am logged in and Login is required</dt>
+  <dt id="example_group_2">QuestionsController before filter find_round</dt>
     <script type="text/javascript">moveProgressBar('2.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">succeeds</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should find a round</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_7">AccessControlTestController requesting xml; I am not logged in and Login not required</dt>
-    <script type="text/javascript">moveProgressBar('2.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">succeeds</span></dd>
+  <dt id="example_group_3">QuestionsController before filter check_round</dt>
+    <script type="text/javascript">moveProgressBar('2.7');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should have options</span></dd>
+    <script type="text/javascript">moveProgressBar('3.4');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should check a round for publishing</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_8">AccessControlTestController requesting xml; I am not logged in and Login is required</dt>
-    <script type="text/javascript">moveProgressBar('2.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">returns 'Access denied' and a 406 (Access Denied) status code</span></dd>
+  <dt id="example_group_4">QuestionsController before filter check_round when round published</dt>
+    <script type="text/javascript">moveProgressBar('4.1');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should have flash</span></dd>
+    <script type="text/javascript">moveProgressBar('4.8');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should redirect to show round</span></dd>
+    <script type="text/javascript">moveProgressBar('5.5');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found Round for the view</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_9">AccessControlTestController requesting json; I am logged in and Login not required</dt>
-    <script type="text/javascript">moveProgressBar('3.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">succeeds</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_10">AccessControlTestController requesting json; I am logged in and Login is required</dt>
-    <script type="text/javascript">moveProgressBar('3.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">succeeds</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_11">AccessControlTestController requesting json; I am not logged in and Login not required</dt>
-    <script type="text/javascript">moveProgressBar('3.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">succeeds</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_12">AccessControlTestController requesting json; I am not logged in and Login is required</dt>
-    <script type="text/javascript">moveProgressBar('4.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">returns 'Access denied' and a 406 (Access Denied) status code</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_13">SessionsController logout_killing_session!</dt>
-    <script type="text/javascript">moveProgressBar('4.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">resets the session</span></dd>
-    <script type="text/javascript">moveProgressBar('4.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills my auth_token cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('5.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">nils the current user</span></dd>
-    <script type="text/javascript">moveProgressBar('5.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills :user_id session</span></dd>
-    <script type="text/javascript">moveProgressBar('5.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">forgets me</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_14">SessionsController logout_keeping_session!</dt>
-    <script type="text/javascript">moveProgressBar('6.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not reset the session</span></dd>
-    <script type="text/javascript">moveProgressBar('6.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills my auth_token cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('6.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">nils the current user</span></dd>
-    <script type="text/javascript">moveProgressBar('7.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills :user_id session</span></dd>
-    <script type="text/javascript">moveProgressBar('7.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">forgets me</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_15">SessionsController When logged out</dt>
-    <script type="text/javascript">moveProgressBar('7.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should not be authorized?</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_16">SessionsController Logging in by cookie</dt>
-    <script type="text/javascript">moveProgressBar('8.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">logs in with cookie</span></dd>
+  <dt id="example_group_5">QuestionsController responding to GET show question</dt>
+    <script type="text/javascript">moveProgressBar('6.2');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should succeed</span></dd>
+    <script type="text/javascript">moveProgressBar('6.9');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should render the 'show' template</span></dd>
+    <script type="text/javascript">moveProgressBar('7.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested question</span></dd>
     <script type="text/javascript">moveProgressBar('8.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">fails cookie login with bad cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('8.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">fails cookie login with no cookie</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found question for the view</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_6">QuestionsController responding to GET edit question</dt>
     <script type="text/javascript">moveProgressBar('9.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">fails expired cookie login</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_17">SeasonsController responding to GET index</dt>
-    <script type="text/javascript">moveProgressBar('9.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should expose all seasons as @seasons</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_18">SeasonsController responding to GET index with mime type of xml</dt>
+    <dd class="spec passed"><span class="passed_spec_name">should succeed</span></dd>
     <script type="text/javascript">moveProgressBar('9.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should render all seasons as xml</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_19">SeasonsController responding to GET show</dt>
-    <script type="text/javascript">moveProgressBar('10.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should expose the requested season as @season</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_20">SeasonsController responding to GET show with mime type of xml</dt>
+    <dd class="spec passed"><span class="passed_spec_name">should render the 'edit' template</span></dd>
     <script type="text/javascript">moveProgressBar('10.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should render the requested season as xml</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested question</span></dd>
+    <script type="text/javascript">moveProgressBar('11.1');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found Question for the view</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_21">SeasonsController responding to GET new</dt>
-    <script type="text/javascript">moveProgressBar('10.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should expose a new season as @season</span></dd>
+  <dt id="example_group_7">QuestionsController responding to PUT update question with successful update</dt>
+    <script type="text/javascript">moveProgressBar('11.8');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested question</span></dd>
+    <script type="text/javascript">moveProgressBar('12.5');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should update the found question</span></dd>
+    <script type="text/javascript">moveProgressBar('13.2');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found question for the view</span></dd>
+    <script type="text/javascript">moveProgressBar('13.9');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should redirect to the question</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_22">SeasonsController responding to GET edit</dt>
-    <script type="text/javascript">moveProgressBar('11.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should expose the requested season as @season</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_23">SeasonsController responding to POST create with valid params</dt>
-    <script type="text/javascript">moveProgressBar('11.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should expose a newly created season as @season</span></dd>
-    <script type="text/javascript">moveProgressBar('11.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should redirect to the created season</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_24">SeasonsController responding to POST create with invalid params</dt>
-    <script type="text/javascript">moveProgressBar('12.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should expose a newly created but unsaved season as @season</span></dd>
-    <script type="text/javascript">moveProgressBar('12.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should re-render the 'new' template</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_25">SeasonsController responding to PUT udpate with valid params</dt>
-    <script type="text/javascript">moveProgressBar('12.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should update the requested season</span></dd>
-    <script type="text/javascript">moveProgressBar('13.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should expose the requested season as @season</span></dd>
-    <script type="text/javascript">moveProgressBar('13.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should redirect to the season</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_26">SeasonsController responding to PUT udpate with invalid params</dt>
-    <script type="text/javascript">moveProgressBar('13.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should update the requested season</span></dd>
-    <script type="text/javascript">moveProgressBar('14.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should expose the season as @season</span></dd>
-    <script type="text/javascript">moveProgressBar('14.4');</script>
+  <dt id="example_group_8">QuestionsController responding to PUT update question with failed update</dt>
+    <script type="text/javascript">moveProgressBar('14.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested question</span></dd>
+    <script type="text/javascript">moveProgressBar('15.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found question for the view</span></dd>
+    <script type="text/javascript">moveProgressBar('16.0');</script>
     <dd class="spec passed"><span class="passed_spec_name">should re-render the 'edit' template</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_27">SeasonsController responding to DELETE destroy</dt>
-    <script type="text/javascript">moveProgressBar('14.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should destroy the requested season</span></dd>
-    <script type="text/javascript">moveProgressBar('15.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should redirect to the seasons list</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_28">SeasonsController route generation</dt>
-    <script type="text/javascript">moveProgressBar('15.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should map #index</span></dd>
-    <script type="text/javascript">moveProgressBar('15.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should map #new</span></dd>
-    <script type="text/javascript">moveProgressBar('16.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should map #show</span></dd>
-    <script type="text/javascript">moveProgressBar('16.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should map #edit</span></dd>
+  <dt id="example_group_9">RoundsController before filter</dt>
     <script type="text/javascript">moveProgressBar('16.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should map #update</span></dd>
-    <script type="text/javascript">moveProgressBar('17.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should map #destroy</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_29">SeasonsController route recognition</dt>
+    <dd class="spec passed"><span class="passed_spec_name">should have find_season</span></dd>
     <script type="text/javascript">moveProgressBar('17.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for #index</span></dd>
-    <script type="text/javascript">moveProgressBar('17.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for #new</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should have check_round</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_10">RoundsController before filter find_season</dt>
     <script type="text/javascript">moveProgressBar('18.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for #create</span></dd>
-    <script type="text/javascript">moveProgressBar('18.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for #show</span></dd>
-    <script type="text/javascript">moveProgressBar('18.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for #edit</span></dd>
-    <script type="text/javascript">moveProgressBar('19.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for #update</span></dd>
-    <script type="text/javascript">moveProgressBar('19.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for #destroy</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should find a round</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_30">SessionsController on successful login, my request cookie token is nil, and ask to be remembered</dt>
-    <script type="text/javascript">moveProgressBar('19.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills existing login</span></dd>
-    <script type="text/javascript">moveProgressBar('20.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">authorizes me</span></dd>
-    <script type="text/javascript">moveProgressBar('20.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">logs me in</span></dd>
-    <script type="text/javascript">moveProgressBar('20.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">greets me nicely</span></dd>
-    <script type="text/javascript">moveProgressBar('21.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets/resets/expires cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('21.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sends a cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('21.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">redirects to the home page</span></dd>
-    <script type="text/javascript">moveProgressBar('22.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not reset my session</span></dd>
-    <script type="text/javascript">moveProgressBar('22.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">makes a new token</span></dd>
-    <script type="text/javascript">moveProgressBar('22.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not refresh token</span></dd>
-    <script type="text/javascript">moveProgressBar('23.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets an auth cookie</span></dd>
+  <dt id="example_group_11">RoundsController before filter check_round</dt>
+    <script type="text/javascript">moveProgressBar('18.8');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should have options</span></dd>
+    <script type="text/javascript">moveProgressBar('19.5');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should check a round for publishing</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_31">SessionsController on successful login, my request cookie token is nil, and ask not to be remembered</dt>
-    <script type="text/javascript">moveProgressBar('23.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills existing login</span></dd>
-    <script type="text/javascript">moveProgressBar('23.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">authorizes me</span></dd>
-    <script type="text/javascript">moveProgressBar('24.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">logs me in</span></dd>
+  <dt id="example_group_12">RoundsController before filter check_round when round published</dt>
+    <script type="text/javascript">moveProgressBar('20.2');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should have flash</span></dd>
+    <script type="text/javascript">moveProgressBar('20.9');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should redirect to show round</span></dd>
+    <script type="text/javascript">moveProgressBar('21.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found Round for the view</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_13">RoundsController responding to GET show round</dt>
+    <script type="text/javascript">moveProgressBar('22.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should succeed</span></dd>
+    <script type="text/javascript">moveProgressBar('23.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should render the 'show' template</span></dd>
+    <script type="text/javascript">moveProgressBar('23.7');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested round</span></dd>
     <script type="text/javascript">moveProgressBar('24.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">greets me nicely</span></dd>
-    <script type="text/javascript">moveProgressBar('24.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets/resets/expires cookie</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found round for the view</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_14">RoundsController responding to GET edit round</dt>
     <script type="text/javascript">moveProgressBar('25.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sends a cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('25.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">redirects to the home page</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should succeed</span></dd>
     <script type="text/javascript">moveProgressBar('25.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not reset my session</span></dd>
-    <script type="text/javascript">moveProgressBar('26.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not make new token</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should render the 'edit' template</span></dd>
     <script type="text/javascript">moveProgressBar('26.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not refresh token</span></dd>
-    <script type="text/javascript">moveProgressBar('26.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills user token</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested round</span></dd>
+    <script type="text/javascript">moveProgressBar('27.2');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found Round for the view</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_32">SessionsController on successful login, my request cookie token is expired, and ask to be remembered</dt>
-    <script type="text/javascript">moveProgressBar('27.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills existing login</span></dd>
-    <script type="text/javascript">moveProgressBar('27.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">authorizes me</span></dd>
-    <script type="text/javascript">moveProgressBar('27.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">logs me in</span></dd>
-    <script type="text/javascript">moveProgressBar('28.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">greets me nicely</span></dd>
-    <script type="text/javascript">moveProgressBar('28.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets/resets/expires cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('28.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sends a cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('29.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">redirects to the home page</span></dd>
-    <script type="text/javascript">moveProgressBar('29.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not reset my session</span></dd>
-    <script type="text/javascript">moveProgressBar('29.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">makes a new token</span></dd>
-    <script type="text/javascript">moveProgressBar('30.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not refresh token</span></dd>
-    <script type="text/javascript">moveProgressBar('30.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets an auth cookie</span></dd>
+  <dt id="example_group_15">RoundsController responding to PUT update round with successful update</dt>
+    <script type="text/javascript">moveProgressBar('27.9');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested round</span></dd>
+    <script type="text/javascript">moveProgressBar('28.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should update the found round</span></dd>
+    <script type="text/javascript">moveProgressBar('29.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found round for the view</span></dd>
+    <script type="text/javascript">moveProgressBar('30.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should redirect to the round</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_33">SessionsController on successful login, my request cookie token is expired, and ask not to be remembered</dt>
-    <script type="text/javascript">moveProgressBar('30.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills existing login</span></dd>
-    <script type="text/javascript">moveProgressBar('31.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">authorizes me</span></dd>
-    <script type="text/javascript">moveProgressBar('31.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">logs me in</span></dd>
-    <script type="text/javascript">moveProgressBar('31.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">greets me nicely</span></dd>
-    <script type="text/javascript">moveProgressBar('32.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets/resets/expires cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('32.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sends a cookie</span></dd>
+  <dt id="example_group_16">RoundsController responding to PUT update round with failed update</dt>
+    <script type="text/javascript">moveProgressBar('30.7');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested round</span></dd>
+    <script type="text/javascript">moveProgressBar('31.4');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found round for the view</span></dd>
+    <script type="text/javascript">moveProgressBar('32.1');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should re-render the 'edit' template</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_17">RoundsController responding to GET publish</dt>
     <script type="text/javascript">moveProgressBar('32.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">redirects to the home page</span></dd>
-    <script type="text/javascript">moveProgressBar('33.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not reset my session</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested round</span></dd>
     <script type="text/javascript">moveProgressBar('33.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not make new token</span></dd>
-    <script type="text/javascript">moveProgressBar('33.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not refresh token</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should publish the found round</span></dd>
     <script type="text/javascript">moveProgressBar('34.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills user token</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found round for the view</span></dd>
+    <script type="text/javascript">moveProgressBar('34.9');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should redirect to the round</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_34">SessionsController on successful login, my request cookie token is different, and ask to be remembered</dt>
-    <script type="text/javascript">moveProgressBar('34.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills existing login</span></dd>
-    <script type="text/javascript">moveProgressBar('34.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">authorizes me</span></dd>
-    <script type="text/javascript">moveProgressBar('35.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">logs me in</span></dd>
-    <script type="text/javascript">moveProgressBar('35.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">greets me nicely</span></dd>
-    <script type="text/javascript">moveProgressBar('35.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets/resets/expires cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('36.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sends a cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('36.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">redirects to the home page</span></dd>
-    <script type="text/javascript">moveProgressBar('36.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not reset my session</span></dd>
-    <script type="text/javascript">moveProgressBar('37.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">makes a new token</span></dd>
-    <script type="text/javascript">moveProgressBar('37.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not refresh token</span></dd>
-    <script type="text/javascript">moveProgressBar('37.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets an auth cookie</span></dd>
+  <dt id="example_group_18">SeasonsController before filter</dt>
+    <script type="text/javascript">moveProgressBar('35.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should have check_round</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_35">SessionsController on successful login, my request cookie token is different, and ask not to be remembered</dt>
-    <script type="text/javascript">moveProgressBar('38.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills existing login</span></dd>
-    <script type="text/javascript">moveProgressBar('38.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">authorizes me</span></dd>
-    <script type="text/javascript">moveProgressBar('38.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">logs me in</span></dd>
-    <script type="text/javascript">moveProgressBar('39.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">greets me nicely</span></dd>
-    <script type="text/javascript">moveProgressBar('39.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets/resets/expires cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('39.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sends a cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('40.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">redirects to the home page</span></dd>
-    <script type="text/javascript">moveProgressBar('40.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not reset my session</span></dd>
-    <script type="text/javascript">moveProgressBar('40.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not make new token</span></dd>
+  <dt id="example_group_19">SeasonsController before filter check_round</dt>
+    <script type="text/javascript">moveProgressBar('36.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should have options</span></dd>
+    <script type="text/javascript">moveProgressBar('37.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should check a round for publishing</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_20">SeasonsController before filter check_round when round published</dt>
+    <script type="text/javascript">moveProgressBar('37.7');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should have flash</span></dd>
+    <script type="text/javascript">moveProgressBar('38.4');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should redirect to show round</span></dd>
+    <script type="text/javascript">moveProgressBar('39.1');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found Round for the view</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_21">SeasonsController responding to GET show season</dt>
+    <script type="text/javascript">moveProgressBar('39.8');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should succeed</span></dd>
+    <script type="text/javascript">moveProgressBar('40.5');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should render the 'show' template</span></dd>
     <script type="text/javascript">moveProgressBar('41.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not refresh token</span></dd>
-    <script type="text/javascript">moveProgressBar('41.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills user token</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_36">SessionsController on successful login, my request cookie token is valid, and ask to be remembered</dt>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested round</span></dd>
     <script type="text/javascript">moveProgressBar('41.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills existing login</span></dd>
-    <script type="text/javascript">moveProgressBar('42.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">authorizes me</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found round for the view</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_22">SeasonsController responding to GET edit season</dt>
     <script type="text/javascript">moveProgressBar('42.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">logs me in</span></dd>
-    <script type="text/javascript">moveProgressBar('42.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">greets me nicely</span></dd>
-    <script type="text/javascript">moveProgressBar('43.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets/resets/expires cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('43.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sends a cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('43.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">redirects to the home page</span></dd>
-    <script type="text/javascript">moveProgressBar('44.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not reset my session</span></dd>
-    <script type="text/javascript">moveProgressBar('44.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not make new token</span></dd>
-    <script type="text/javascript">moveProgressBar('44.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does refresh token</span></dd>
-    <script type="text/javascript">moveProgressBar('45.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets an auth cookie</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should succeed</span></dd>
+    <script type="text/javascript">moveProgressBar('43.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should render the 'edit' template</span></dd>
+    <script type="text/javascript">moveProgressBar('44.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested season</span></dd>
+    <script type="text/javascript">moveProgressBar('44.7');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found Round for the view</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_37">SessionsController on successful login, my request cookie token is valid, and ask not to be remembered</dt>
-    <script type="text/javascript">moveProgressBar('45.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">kills existing login</span></dd>
-    <script type="text/javascript">moveProgressBar('45.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">authorizes me</span></dd>
-    <script type="text/javascript">moveProgressBar('46.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">logs me in</span></dd>
-    <script type="text/javascript">moveProgressBar('46.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">greets me nicely</span></dd>
-    <script type="text/javascript">moveProgressBar('46.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets/resets/expires cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('47.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sends a cookie</span></dd>
-    <script type="text/javascript">moveProgressBar('47.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">redirects to the home page</span></dd>
-    <script type="text/javascript">moveProgressBar('47.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not reset my session</span></dd>
-    <script type="text/javascript">moveProgressBar('48.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not make new token</span></dd>
-    <script type="text/javascript">moveProgressBar('48.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does refresh token</span></dd>
+  <dt id="example_group_23">SeasonsController responding to PUT update season with successful update</dt>
+    <script type="text/javascript">moveProgressBar('45.4');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested season</span></dd>
+    <script type="text/javascript">moveProgressBar('46.1');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should update the found season</span></dd>
+    <script type="text/javascript">moveProgressBar('46.8');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the found season for the view</span></dd>
+    <script type="text/javascript">moveProgressBar('47.5');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should redirect to the season</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_24">SeasonsController responding to PUT update season with failed update</dt>
+    <script type="text/javascript">moveProgressBar('48.2');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should find the requested season</span></dd>
     <script type="text/javascript">moveProgressBar('48.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets an auth cookie</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_38">SessionsController on failed login</dt>
-    <script type="text/javascript">moveProgressBar('49.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">logs out keeping session</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should assign the season season for the view</span></dd>
     <script type="text/javascript">moveProgressBar('49.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">flashes an error</span></dd>
-    <script type="text/javascript">moveProgressBar('50.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">renders the log in page</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should re-render the 'edit' template</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_25">QuestionsHelper</dt>
     <script type="text/javascript">moveProgressBar('50.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">doesn't log me in</span></dd>
-    <script type="text/javascript">moveProgressBar('50.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">doesn't send password back</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_39">SessionsController on signout</dt>
-    <script type="text/javascript">moveProgressBar('51.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">logs me out</span></dd>
-    <script type="text/javascript">moveProgressBar('51.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">redirects me to the home page</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_40">SessionsController route generation</dt>
-    <script type="text/javascript">moveProgressBar('51.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route the new sessions action correctly</span></dd>
-    <script type="text/javascript">moveProgressBar('52.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route the create sessions correctly</span></dd>
-    <script type="text/javascript">moveProgressBar('52.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route the destroy sessions action correctly</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_41">SessionsController route recognition</dt>
-    <script type="text/javascript">moveProgressBar('52.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params from GET /login correctly</span></dd>
-    <script type="text/javascript">moveProgressBar('53.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params from POST /session correctly</span></dd>
-    <script type="text/javascript">moveProgressBar('53.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params from DELETE /session correctly</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_42">SessionsController named routing</dt>
-    <script type="text/javascript">moveProgressBar('53.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route session_path() correctly</span></dd>
-    <script type="text/javascript">moveProgressBar('54.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route new_session_path() correctly</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_43">UsersController</dt>
-    <script type="text/javascript">moveProgressBar('54.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">allows signup</span></dd>
-    <script type="text/javascript">moveProgressBar('54.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">signs up user with activation code</span></dd>
-    <script type="text/javascript">moveProgressBar('55.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">requires login on signup</span></dd>
-    <script type="text/javascript">moveProgressBar('55.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">requires password on signup</span></dd>
-    <script type="text/javascript">moveProgressBar('55.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">requires password confirmation on signup</span></dd>
-    <script type="text/javascript">moveProgressBar('56.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">requires email on signup</span></dd>
-    <script type="text/javascript">moveProgressBar('56.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">activates user</span></dd>
-    <script type="text/javascript">moveProgressBar('56.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not activate user without key</span></dd>
-    <script type="text/javascript">moveProgressBar('57.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not activate user with blank key</span></dd>
-    <script type="text/javascript">moveProgressBar('57.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not activate user with bogus key</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_44">UsersController route generation</dt>
-    <script type="text/javascript">moveProgressBar('57.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route users's 'index' action correctly</span></dd>
-    <script type="text/javascript">moveProgressBar('58.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route users's 'new' action correctly</span></dd>
-    <script type="text/javascript">moveProgressBar('58.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route {:controller =&gt; 'users', :action =&gt; 'create'} correctly</span></dd>
-    <script type="text/javascript">moveProgressBar('58.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route users's 'show' action correctly</span></dd>
-    <script type="text/javascript">moveProgressBar('59.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route users's 'edit' action correctly</span></dd>
-    <script type="text/javascript">moveProgressBar('59.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route users's 'update' action correctly</span></dd>
-    <script type="text/javascript">moveProgressBar('59.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route users's 'destroy' action correctly</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_45">UsersController route recognition</dt>
-    <script type="text/javascript">moveProgressBar('60.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for users's index action from GET /users</span></dd>
-    <script type="text/javascript">moveProgressBar('60.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for users's new action from GET /users</span></dd>
-    <script type="text/javascript">moveProgressBar('60.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for users's create action from POST /users</span></dd>
-    <script type="text/javascript">moveProgressBar('61.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for users's show action from GET /users/1</span></dd>
-    <script type="text/javascript">moveProgressBar('61.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for users's edit action from GET /users/1/edit</span></dd>
-    <script type="text/javascript">moveProgressBar('61.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params {:controller =&gt; 'users', :action =&gt; update', :id =&gt; '1'} from PUT /users/1</span></dd>
-    <script type="text/javascript">moveProgressBar('62.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should generate params for users's destroy action from DELETE /users/1</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_46">UsersController named routing</dt>
-    <script type="text/javascript">moveProgressBar('62.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route users_path() to /users</span></dd>
-    <script type="text/javascript">moveProgressBar('62.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route new_user_path() to /users/new</span></dd>
-    <script type="text/javascript">moveProgressBar('63.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route user_(:id =&gt; '1') to /users/1</span></dd>
-    <script type="text/javascript">moveProgressBar('63.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should route edit_user_path(:id =&gt; '1') to /users/1/edit</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_47">SeasonsHelper</dt>
-    <script type="text/javascript">moveProgressBar('63.7');</script>
     <dd class="spec passed"><span class="passed_spec_name">should be included in the object returned by #helper</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_48">UsersHelper if_authorized</dt>
-    <script type="text/javascript">moveProgressBar('64.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">yields if authorized</span></dd>
-    <script type="text/javascript">moveProgressBar('64.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does nothing if not authorized</span></dd>
+  <dt id="example_group_26">RoundsHelper</dt>
+    <script type="text/javascript">moveProgressBar('51.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should be included in the object returned by #helper</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_49">UsersHelper link_to_user</dt>
-    <script type="text/javascript">moveProgressBar('64.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should give an error on a nil user</span></dd>
-    <script type="text/javascript">moveProgressBar('65.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should link to the given user</span></dd>
-    <script type="text/javascript">moveProgressBar('65.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use given link text if :content_text is specified</span></dd>
+  <dt id="example_group_27">SeasonsHelper</dt>
+    <script type="text/javascript">moveProgressBar('51.7');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should be included in the object returned by #helper</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_28">Question</dt>
+    <script type="text/javascript">moveProgressBar('52.4');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should require name to be set</span></dd>
+    <script type="text/javascript">moveProgressBar('53.1');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should require body on update</span></dd>
+    <script type="text/javascript">moveProgressBar('53.8');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should create new question</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_29">Round</dt>
+    <script type="text/javascript">moveProgressBar('54.5');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should require name to be set</span></dd>
+    <script type="text/javascript">moveProgressBar('55.2');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should require start_responses_at to be set</span></dd>
+    <script type="text/javascript">moveProgressBar('55.9');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should require end_responses_at to be set</span></dd>
+    <script type="text/javascript">moveProgressBar('56.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should require start_assess_at to be set</span></dd>
+    <script type="text/javascript">moveProgressBar('57.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should require end_assess_at to be set</span></dd>
+    <script type="text/javascript">moveProgressBar('58.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should create round</span></dd>
+    <script type="text/javascript">moveProgressBar('58.7');</script>
+    <dd class="spec passed"><span class="passed_spec_name">start_responses_at should be greater than today</span></dd>
+    <script type="text/javascript">moveProgressBar('59.4');</script>
+    <dd class="spec passed"><span class="passed_spec_name">end_responses_at should be greater than today</span></dd>
+    <script type="text/javascript">moveProgressBar('60.1');</script>
+    <dd class="spec passed"><span class="passed_spec_name">start_assess_at should be greater than today</span></dd>
+    <script type="text/javascript">moveProgressBar('60.8');</script>
+    <dd class="spec passed"><span class="passed_spec_name">end_assess_at should be greater than today</span></dd>
+    <script type="text/javascript">moveProgressBar('61.5');</script>
+    <dd class="spec passed"><span class="passed_spec_name">end_responses_at should be greater than start_responses_at</span></dd>
+    <script type="text/javascript">moveProgressBar('62.2');</script>
+    <dd class="spec passed"><span class="passed_spec_name">end_assess_at should be greater than start_assess_at</span></dd>
+    <script type="text/javascript">moveProgressBar('62.9');</script>
+    <dd class="spec passed"><span class="passed_spec_name">start_assess_at should be greater or eql than end_responses_at</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_30">Round status</dt>
+    <script type="text/javascript">moveProgressBar('63.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should be planned if not published</span></dd>
+    <script type="text/javascript">moveProgressBar('64.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should be next if published and today less than start responses</span></dd>
+    <script type="text/javascript">moveProgressBar('65.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should be current if published and today greater than start responses and less than end assess</span></dd>
     <script type="text/javascript">moveProgressBar('65.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use the login as link text with no :content_method specified</span></dd>
-    <script type="text/javascript">moveProgressBar('66.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use the name as link text with :content_method =&gt; :name</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should be completed if published and today greated than end responses</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_31">Season</dt>
     <script type="text/javascript">moveProgressBar('66.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use the login as title with no :title_method specified</span></dd>
-    <script type="text/javascript">moveProgressBar('66.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use the name as link title with :content_method =&gt; :name</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should require name to be set</span></dd>
     <script type="text/javascript">moveProgressBar('67.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should have nickname as a class by default</span></dd>
-    <script type="text/javascript">moveProgressBar('67.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should take other classes and no longer have the nickname class</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should require rounds_count to be set</span></dd>
+    <script type="text/javascript">moveProgressBar('67.8');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should require questions_count to be set</span></dd>
+    <script type="text/javascript">moveProgressBar('68.5');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should only allow numeric values for rounds_count</span></dd>
+    <script type="text/javascript">moveProgressBar('69.2');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should only allow numeric values for questions_count</span></dd>
+    <script type="text/javascript">moveProgressBar('69.9');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should have many rounds</span></dd>
+    <script type="text/javascript">moveProgressBar('70.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should factory</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_50">UsersHelper link_to_login_with_IP</dt>
-    <script type="text/javascript">moveProgressBar('67.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should link to the login_path</span></dd>
-    <script type="text/javascript">moveProgressBar('68.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use given link text if :content_text is specified</span></dd>
-    <script type="text/javascript">moveProgressBar('68.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use the login as link text with no :content_method specified</span></dd>
-    <script type="text/javascript">moveProgressBar('68.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use the ip address as title</span></dd>
-    <script type="text/javascript">moveProgressBar('69.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should by default be like school in summer and have no class</span></dd>
-    <script type="text/javascript">moveProgressBar('69.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should have some class if you tell it to</span></dd>
-    <script type="text/javascript">moveProgressBar('69.7');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should have some class if you tell it to</span></dd>
+  <dt id="example_group_32">Season when created</dt>
+    <script type="text/javascript">moveProgressBar('71.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should create new season</span></dd>
+    <script type="text/javascript">moveProgressBar('72.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should create :rounds_count rounds</span></dd>
+    <script type="text/javascript">moveProgressBar('72.7');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should create :questions_count questions in each round</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_51">UsersHelper link_to_current_user, When logged in</dt>
-    <script type="text/javascript">moveProgressBar('70.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should link to the given user</span></dd>
-    <script type="text/javascript">moveProgressBar('70.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use given link text if :content_text is specified</span></dd>
-    <script type="text/javascript">moveProgressBar('70.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use the login as link text with no :content_method specified</span></dd>
-    <script type="text/javascript">moveProgressBar('71.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use the name as link text with :content_method =&gt; :name</span></dd>
-    <script type="text/javascript">moveProgressBar('71.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use the login as title with no :title_method specified</span></dd>
-    <script type="text/javascript">moveProgressBar('71.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use the name as link title with :content_method =&gt; :name</span></dd>
-    <script type="text/javascript">moveProgressBar('72.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should have nickname as a class</span></dd>
-    <script type="text/javascript">moveProgressBar('72.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should take other classes and no longer have the nickname class</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_52">UsersHelper link_to_current_user, When logged out</dt>
-    <script type="text/javascript">moveProgressBar('72.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should link to the login_path</span></dd>
-    <script type="text/javascript">moveProgressBar('73.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use given link text if :content_text is specified</span></dd>
+  <dt id="example_group_33">QuestionsController route generation</dt>
     <script type="text/javascript">moveProgressBar('73.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use 'not signed in' as link text with no :content_method specified</span></dd>
-    <script type="text/javascript">moveProgressBar('73.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should use the ip address as title</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should map #show</span></dd>
     <script type="text/javascript">moveProgressBar('74.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should by default be like school in summer and have no class</span></dd>
-    <script type="text/javascript">moveProgressBar('74.4');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should have some class if you tell it to</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_53">Role</dt>
+    <dd class="spec passed"><span class="passed_spec_name">should map #edit</span></dd>
     <script type="text/javascript">moveProgressBar('74.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">requires name</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should map #update</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_54">Season</dt>
-    <script type="text/javascript">moveProgressBar('75.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should create a new instance given valid attributes</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_55">User</dt>
+  <dt id="example_group_34">QuestionsController route recognition</dt>
     <script type="text/javascript">moveProgressBar('75.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">requires login</span></dd>
-    <script type="text/javascript">moveProgressBar('75.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">requires password</span></dd>
-    <script type="text/javascript">moveProgressBar('76.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">requires password confirmation</span></dd>
-    <script type="text/javascript">moveProgressBar('76.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">requires email</span></dd>
-    <script type="text/javascript">moveProgressBar('76.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">resets password</span></dd>
-    <script type="text/javascript">moveProgressBar('77.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">does not rehash password</span></dd>
-    <script type="text/javascript">moveProgressBar('77.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">authenticates user</span></dd>
-    <script type="text/javascript">moveProgressBar('77.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">doesn't authenticate user with bad password</span></dd>
-    <script type="text/javascript">moveProgressBar('78.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">doesn't authenticate a user against a hard-coded old-style password</span></dd>
-    <script type="text/javascript">moveProgressBar('78.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">takes longer than 0.1ms to encrypt a password</span></dd>
-    <script type="text/javascript">moveProgressBar('78.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">sets remember token</span></dd>
-    <script type="text/javascript">moveProgressBar('79.1');</script>
-    <dd class="spec passed"><span class="passed_spec_name">unsets remember token</span></dd>
-    <script type="text/javascript">moveProgressBar('79.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">remembers me for one week</span></dd>
-    <script type="text/javascript">moveProgressBar('79.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">remembers me until one week</span></dd>
-    <script type="text/javascript">moveProgressBar('80.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">remembers me default two weeks</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #show</span></dd>
+    <script type="text/javascript">moveProgressBar('76.2');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #edit</span></dd>
+    <script type="text/javascript">moveProgressBar('76.9');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #update</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_56">User being created</dt>
-    <script type="text/javascript">moveProgressBar('80.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">increments User#count</span></dd>
-    <script type="text/javascript">moveProgressBar('80.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">initializes #activation_code</span></dd>
+  <dt id="example_group_35">RoundsController route generation</dt>
+    <script type="text/javascript">moveProgressBar('77.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should map #index</span></dd>
+    <script type="text/javascript">moveProgressBar('78.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should map #show</span></dd>
+    <script type="text/javascript">moveProgressBar('79.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should map #edit</span></dd>
+    <script type="text/javascript">moveProgressBar('79.7');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should map #update</span></dd>
+    <script type="text/javascript">moveProgressBar('80.4');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should map #publish</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_57">User allows legitimate logins:</dt>
-    <script type="text/javascript">moveProgressBar('81.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'123'</span></dd>
-    <script type="text/javascript">moveProgressBar('81.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'1234567890_234567890_234567890_234567890'</span></dd>
+  <dt id="example_group_36">RoundsController route recognition</dt>
+    <script type="text/javascript">moveProgressBar('81.1');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #index</span></dd>
     <script type="text/javascript">moveProgressBar('81.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'hello.-_there@funnychar.com'</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_58">User disallows illegitimate logins:</dt>
-    <script type="text/javascript">moveProgressBar('82.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'12'</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #show</span></dd>
     <script type="text/javascript">moveProgressBar('82.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'1234567890_234567890_234567890_234567890_'</span></dd>
-    <script type="text/javascript">moveProgressBar('82.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'tab	'</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #edit</span></dd>
     <script type="text/javascript">moveProgressBar('83.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'newline
-'</span></dd>
-    <script type="text/javascript">moveProgressBar('83.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'Iñtërnâtiônàlizætiøn hasn't happened to ruby 1.8 yet'</span></dd>
-    <script type="text/javascript">moveProgressBar('83.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'semicolon;'</span></dd>
-    <script type="text/javascript">moveProgressBar('84.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'quote&quot;'</span></dd>
-    <script type="text/javascript">moveProgressBar('84.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'tick''</span></dd>
-    <script type="text/javascript">moveProgressBar('84.8');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'backtick`'</span></dd>
-    <script type="text/javascript">moveProgressBar('85.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'percent%'</span></dd>
-    <script type="text/javascript">moveProgressBar('85.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'plus+'</span></dd>
-    <script type="text/javascript">moveProgressBar('85.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'space '</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #update</span></dd>
+    <script type="text/javascript">moveProgressBar('83.9');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #publish</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_59">User allows legitimate emails:</dt>
-    <script type="text/javascript">moveProgressBar('86.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'foo@bar.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('86.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'foo@newskool-tld.museum'</span></dd>
-    <script type="text/javascript">moveProgressBar('86.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'foo@twoletter-tld.de'</span></dd>
-    <script type="text/javascript">moveProgressBar('87.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'foo@nonexistant-tld.qq'</span></dd>
-    <script type="text/javascript">moveProgressBar('87.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'r@a.wk'</span></dd>
-    <script type="text/javascript">moveProgressBar('87.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'1234567890-234567890-234567890-234567890-234567890-234567890-234567890-234567890-234567890@gmail.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('88.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'hello.-_there@funnychar.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('88.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'uucp%addr@gmail.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('88.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'hello+routing-str@gmail.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('89.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'domain@can.haz.many.sub.doma.in'</span></dd>
+  <dt id="example_group_37">SeasonsController route generation</dt>
+    <script type="text/javascript">moveProgressBar('84.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should map #index</span></dd>
+    <script type="text/javascript">moveProgressBar('85.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should map #new</span></dd>
+    <script type="text/javascript">moveProgressBar('86.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should map #show</span></dd>
+    <script type="text/javascript">moveProgressBar('86.7');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should map #destroy</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_38">SeasonsController route recognition</dt>
+    <script type="text/javascript">moveProgressBar('87.4');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #index</span></dd>
+    <script type="text/javascript">moveProgressBar('88.1');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #new</span></dd>
+    <script type="text/javascript">moveProgressBar('88.8');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #create</span></dd>
     <script type="text/javascript">moveProgressBar('89.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'student.name@university.edu'</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_60">User disallows illegitimate emails</dt>
-    <script type="text/javascript">moveProgressBar('89.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'!!@nobadchars.com'</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #show</span></dd>
     <script type="text/javascript">moveProgressBar('90.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'foo@no-rep-dots..com'</span></dd>
-    <script type="text/javascript">moveProgressBar('90.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'foo@badtld.xxx'</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should generate params for #destroy</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_39">/questions/edit.html.erb</dt>
     <script type="text/javascript">moveProgressBar('90.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'foo@toolongtld.abcdefg'</span></dd>
-    <script type="text/javascript">moveProgressBar('91.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'Iñtërnâtiônàlizætiøn@hasnt.happened.to.email'</span></dd>
-    <script type="text/javascript">moveProgressBar('91.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'need.domain.and.tld@de'</span></dd>
-    <script type="text/javascript">moveProgressBar('91.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'tab	'</span></dd>
-    <script type="text/javascript">moveProgressBar('92.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'newline
-'</span></dd>
-    <script type="text/javascript">moveProgressBar('92.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'r@.wk'</span></dd>
-    <script type="text/javascript">moveProgressBar('92.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'1234567890-234567890-234567890-234567890-234567890-234567890-234567890-234567890-234567890@gmail2.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('93.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'uucp!addr@gmail.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('93.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'semicolon;@gmail.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('93.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'quote&quot;@gmail.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('94.2');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'tick'@gmail.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('94.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'backtick`@gmail.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('94.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'space @gmail.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('95.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'bracket&lt;@gmail.com'</span></dd>
-    <script type="text/javascript">moveProgressBar('95.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'bracket&gt;@gmail.com'</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_61">User allows legitimate names:</dt>
-    <script type="text/javascript">moveProgressBar('95.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'Andre The Giant (7'4&quot;, 520 lb.) -- has a posse'</span></dd>
-    <script type="text/javascript">moveProgressBar('96.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">''</span></dd>
-    <script type="text/javascript">moveProgressBar('96.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890'</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_62">User disallows illegitimate names</dt>
-    <script type="text/javascript">moveProgressBar('96.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'tab	'</span></dd>
-    <script type="text/javascript">moveProgressBar('97.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'newline
-'</span></dd>
-    <script type="text/javascript">moveProgressBar('97.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">'1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_'</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_63">User have role?</dt>
-    <script type="text/javascript">moveProgressBar('97.9');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should have role member</span></dd>
-    <script type="text/javascript">moveProgressBar('98.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should have role judge</span></dd>
-    <script type="text/javascript">moveProgressBar('98.6');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should not have admin</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_64">/seasons/edit.html.erb</dt>
-    <script type="text/javascript">moveProgressBar('98.9');</script>
     <dd class="spec passed"><span class="passed_spec_name">should render edit form</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_65">/seasons/index.html.erb</dt>
-    <script type="text/javascript">moveProgressBar('99.3');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should render list of seasons</span></dd>
+  <dt id="example_group_40">/questions/index.html.erb</dt>
+    <script type="text/javascript">moveProgressBar('91.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should render list of questions</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_66">/seasons/new.html.erb</dt>
-    <script type="text/javascript">moveProgressBar('99.6');</script>
+  <dt id="example_group_41">/questions/show.html.erb</dt>
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('example_group_41');</script>
+    <script type="text/javascript">moveProgressBar('92.3');</script>
+    <dd class="spec not_implemented"><span class="not_implemented_spec_name">should not render link to edit (PENDING: Not Yet Implemented)</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_42">/questions/show.html.erb login as admin</dt>
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('example_group_42');</script>
+    <script type="text/javascript">moveProgressBar('93.0');</script>
+    <dd class="spec not_implemented"><span class="not_implemented_spec_name">should not render link to edit (PENDING: Not Yet Implemented)</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_43">/rounds/edit.html.erb</dt>
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('example_group_43');</script>
+    <script type="text/javascript">moveProgressBar('93.7');</script>
+    <dd class="spec not_implemented"><span class="not_implemented_spec_name">should render edit form (PENDING: Not Yet Implemented)</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_44">/rounds/index.html.erb</dt>
+    <script type="text/javascript">moveProgressBar('94.4');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should render list of rounds</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_45">/rounds/show.html.erb</dt>
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('example_group_45');</script>
+    <script type="text/javascript">moveProgressBar('95.1');</script>
+    <dd class="spec not_implemented"><span class="not_implemented_spec_name">should not render link to publish (PENDING: Not Yet Implemented)</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_46">/rounds/show.html.erb login as admin</dt>
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('example_group_46');</script>
+    <script type="text/javascript">moveProgressBar('95.8');</script>
+    <dd class="spec not_implemented"><span class="not_implemented_spec_name">should render link to publish (PENDING: Not Yet Implemented)</span></dd>
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('example_group_46');</script>
+    <script type="text/javascript">moveProgressBar('96.5');</script>
+    <dd class="spec not_implemented"><span class="not_implemented_spec_name">should not render link to publish (PENDING: Not Yet Implemented)</span></dd>
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('example_group_46');</script>
+    <script type="text/javascript">moveProgressBar('97.2');</script>
+    <dd class="spec not_implemented"><span class="not_implemented_spec_name">should render link to edit (PENDING: Not Yet Implemented)</span></dd>
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('example_group_46');</script>
+    <script type="text/javascript">moveProgressBar('97.9');</script>
+    <dd class="spec not_implemented"><span class="not_implemented_spec_name">should not render link to edit (PENDING: Not Yet Implemented)</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_47">/seasons/new.html.erb</dt>
+    <script type="text/javascript">moveProgressBar('98.6');</script>
     <dd class="spec passed"><span class="passed_spec_name">should render new form</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_67">/seasons/show.html.erb</dt>
-    <script type="text/javascript">moveProgressBar('100.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should render attributes in &lt;p&gt;</span></dd>
+  <dt id="example_group_48">/seasons/show.html.erb</dt>
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('example_group_48');</script>
+    <script type="text/javascript">moveProgressBar('99.3');</script>
+    <dd class="spec not_implemented"><span class="not_implemented_spec_name">should not render link to new (PENDING: Not Yet Implemented)</span></dd>
   </dl>
 </div>
-<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>8.197 seconds</strong>";</script>
-<script type="text/javascript">document.getElementById('totals').innerHTML = "298 examples, 0 failures";</script>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_49">/seasons/show.html.erb login as admin</dt>
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('example_group_49');</script>
+    <script type="text/javascript">moveProgressBar('100.0');</script>
+    <dd class="spec not_implemented"><span class="not_implemented_spec_name">should render link to new (PENDING: Not Yet Implemented)</span></dd>
+  </dl>
+</div>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>4.527 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "143 examples, 0 failures, 10 pending";</script>
 </div>
 </div>
 </body>
