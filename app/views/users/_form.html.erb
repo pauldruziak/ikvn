@@ -1,0 +1,16 @@
+<%= form.error_messages %>
+<div class="text_field group">
+  <div class="left"><%= form.label :email, User.human_attribute_name('email'), :class => 'label' %></div>
+  <div class="right"><%= form.text_field :email, :class => 'text_field' %></div>
+  <div class="clear"></div>
+</div>
+<div class="password_field group">
+  <div class="left"><%= form.label :password, User.human_attribute_name('password'),:class => 'label' %></div>
+  <div class="right"><%= form.password_field :password, :class => 'text_field' %></div>
+  <div class="clear"></div>
+</div>
+<div class="password_field group">
+  <div class="left"><%= form.label :password_confirmation, User.human_attribute_name('password'), :class => 'label' %></div>
+  <div class="right"><%= form.password_field :password_confirmation, :class => 'text_field' %></div>
+  <div class="clear"></div>
+</div>

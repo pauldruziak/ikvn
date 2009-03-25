@@ -6,7 +6,7 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
-
+DO_NOT_REPLY = "project@eneida.biz.ua"
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -19,6 +19,8 @@ Rails::Initializer.run do |config|
   # Skip frameworks you're not going to use. To use Rails without a database
   # you must remove the Active Record framework.
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
 
   # Specify gems that this application depends on. 
   # They can then be installed with "rake gems:install" on new installations.
@@ -30,7 +32,7 @@ Rails::Initializer.run do |config|
   # config.gem 'yaroslav-russian', :lib => 'russian', :source => 'http://gems.github.com'
   # config.gem "rspec", :lib => false, :version => ">= 1.2.0" 
   # config.gem "rspec-rails", :lib => false, :version => ">= 1.2.0"
-   config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+  # config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
   # config.gem "thoughtbot-shoulda", :lib => false, :source => "http://gems.github.com"
   config.gem "thoughtbot-clearance", :lib => 'clearance', :source => 'http://gems.github.com', :version => '>= 0.5.0'
   
@@ -49,7 +51,7 @@ Rails::Initializer.run do |config|
   # Make Time.zone default to the specified zone, and make Active Record store time values
   # in the database in UTC, and return them converted to the specified local zone.
   # Run "rake -D time" for a list of tasks for finding time zone names. Comment line to use default local time.
-  config.time_zone = 'UTC'
+  config.time_zone = 'Kyev'
 
   # The internationalization framework can be changed to have another default locale (standard is :en) or more load paths.
   # All files from config/locales/*.rb,yml are added automatically.
@@ -65,6 +67,8 @@ Rails::Initializer.run do |config|
     :session_key => '_kvnc_session',
     :secret      => 'dacf0926ab1a6d87cc81fd2c9b789313431dcd3770278c79089ec1a69b7fa93181a13162cebe6181626067fc324e567aea9f2034bec76fc24dbe99bd1df96efb'
   }
+
+
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information

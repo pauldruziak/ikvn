@@ -1,0 +1,13 @@
+<h1><%= t 'web_app' %></h1>
+<div class="block" id="block-signup">
+  <h2><%= t 'txt.titles.signup' %></h2>        
+  <div class="content">
+    <%= render :partial => 'layouts/flashes' -%>
+    <% form_for @user, :url => users_path, :html => { :class => 'form' } do |form| -%>      
+      <%= render :partial => '/users/form', :object => form %>
+      <div class="group navform">
+        <%= form.submit t('userbar.signup'), :disable_with => 'Please wait...', :class => "button" %>
+      </div>
+    <% end -%>
+  </div>
+</div>

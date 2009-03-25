@@ -1,6 +1,7 @@
 class SeasonsController < ApplicationController
 	
-  before_filter :check_round,  :only => [:edit, :update, :destroy]
+  before_filter :check_round,  :only => [:edit, :update, :destroy]  
+  before_filter :admin_only, :only => [:new, :create, :edit, :update, :destroy]
   
   # GET /seasons/current
   # GET /seasons/current.xml

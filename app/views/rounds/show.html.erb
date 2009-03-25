@@ -1,9 +1,10 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <li><%= link_to t('round.edit'), edit_season_round_path(@round.season, @round) if !@round.published  %></li>
+      <% if show_admin_content? %>
+        <li><%= link_to t('round.edit'), edit_season_round_path(@round.season, @round) if !@round.published  %></li>
         <li><%= link_to t('round.publish'), publish_season_round_path(@round.season, @round) if !@round.published %></li>
-      <li></li>
+      <% end -%>
     </ul>
     <div class="clear"></div>
   </div>          

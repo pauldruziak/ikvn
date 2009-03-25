@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :users, :has_one => [:password, :confirmation]
+  map.resources :passwords
   map.root :controller => 'seasons', :action => 'current'
   map.resources :seasons, :collection => { :current => :get } do |season|
   	season.resources :rounds, :only => [:index, :show, :edit, :update], :member => { :publish => :get }  do |round| 

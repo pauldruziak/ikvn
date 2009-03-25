@@ -2,6 +2,7 @@ class RoundsController < ApplicationController
 	
   before_filter :find_season	
   before_filter :check_round, :only => [:edit, :update, :publish]
+  before_filter :admin_only, :only => [:edit, :update, :publish]
   
   # GET /seasons/1/rounds/1
   # GET /seasons/1/rounds/1.xml

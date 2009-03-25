@@ -1,0 +1,33 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <% if show_admin_content? %>
+        <li><%= link_to t('user.edit'), edit_user_path(@user)  %></li>
+      <% end %>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">
+  	<%= render :partial => 'layouts/flashes' -%>
+    <div class="inner">
+        <p>
+          <b><%= User.human_attribute_name('email') %>:</b>
+          <%= @user.email %>
+        </p>
+        <p>
+          <b><%= User.human_attribute_name('name') %>:</b>
+          <%= @user.name %>
+        </p>
+        <p>
+          <b><%= User.human_attribute_name('role') %>:</b>
+          <%= t @user.role %>
+        </p>
+        <p>
+          <b><%= User.human_attribute_name('created_at') %>:</b>
+          <%= l @user.created_at, :format => :long %>
+        </p>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

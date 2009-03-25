@@ -1,0 +1,41 @@
+<div class="block">
+  <div class="content">
+  <h2><%= t 'txt.titles.profile' %></h2>        
+  <div class="inner">
+    <%= render :partial => 'layouts/flashes' -%>
+    <% form_for @user, :url => user_path(@user), :html => { :class => 'form' } do |form| -%>      
+      <%= form.error_messages %>
+		<div class="text_field group">
+		  <div class="left"><%= form.label :email, User.human_attribute_name('email'), :class => 'label' %></div>
+		  <div class="right"><%= form.text_field :email, :class => 'text_field' %></div>
+		  <div class="clear"></div>
+		</div>
+		<div class="password_field group">
+		  <div class="left"><%= form.label :password, User.human_attribute_name('password'),:class => 'label' %></div>
+		  <div class="right"><%= form.password_field :password, :class => 'text_field' %></div>
+		  <div class="clear"></div>
+		</div>
+		<div class="password_field group">
+		  <div class="left"><%= form.label :password_confirmation, User.human_attribute_name('password'), :class => 'label' %></div>
+		  <div class="right"><%= form.password_field :password_confirmation, :class => 'text_field' %></div>
+		  <div class="clear"></div>
+		</div>
+		<% if show_admin_content? %>
+		<div class="group">
+		  <div class="left"><%= form.label :admin, t('admin'), :class => 'label' %></div>
+		  <div class="right"><%= form.check_box :admin, :class => 'text_field' %></div>
+		  <div class="clear"></div>
+		</div>
+		<div class="group">
+		  <div class="left"><%= form.label :judge, t('judge'), :class => 'label' %></div>
+		  <div class="right"><%= form.check_box :judge, :class => 'text_field' %></div>
+		  <div class="clear"></div>
+		</div>
+		<% end -%>
+      <div class="group navform">
+        <%= form.submit t('txt.save'), :disable_with => 'Please wait...', :class => "button" %>
+      </div>
+    <% end -%>
+  </div>
+  </div>  
+</div>

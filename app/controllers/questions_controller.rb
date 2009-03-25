@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
 	
   before_filter :find_round	
   before_filter :check_round, :only => [:edit, :update]
+  before_filter :admin_only, :only => [:edit, :update]
 
   # GET /questions/1
   # GET /questions/1.xml

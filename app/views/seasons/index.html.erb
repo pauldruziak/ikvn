@@ -1,18 +1,14 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul>
-      <li><%= link_to t('season.new'), new_season_path %></li>
+      <% if show_admin_content? %>
+        <li><%= link_to t('season.new'), new_season_path %></li>
+      <% end -%>
     </ul>
     <div class="clear"></div>
   </div>          
   <div class="content"> 
-  	<div class="flash">
-      <% flash.each do |type, message| -%>
-      <div class="message <%= type %>">
-        <p><%=  message %></p>
-      </div>
-      <% end -%>
-    </div>         
+  	<%= render :partial => 'layouts/flashes' -%>
     <div class="inner">
   	  <div class="flash">
         <% flash.each do |type, message| -%>

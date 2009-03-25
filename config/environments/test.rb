@@ -24,3 +24,5 @@ config.gem "rspec", :lib => false, :version => ">= 1.2.0"
 config.gem "rspec-rails", :lib => false, :version => ">= 1.2.0"
 config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
 config.gem "thoughtbot-shoulda", :lib => false, :source => "http://gems.github.com"
+
+HOST = "localhost"

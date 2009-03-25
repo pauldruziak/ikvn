@@ -10,14 +10,21 @@
     <div id="header">
       <h1><a href="/"><%= t 'web_app' %></a></h1>
       <div id="user-navigation">
-        <ul>         
-          <li></li>
+        <ul>              
+          <% if signed_in? -%>
+            <li id="user-bar-greeting"><%= t('userbar.greeting', :username => current_user.name.empty? ? current_user.email : current_user.name) %></li>
+            <li id="user-bar-action"  ><%= link_to t('userbar.logout'), logout_path, { :title => "Log out" }    %></li>
+          <% else -%>
+            <li id="user-bar-action"  ><%= link_to t('userbar.login'),  login_path,  { :title => "Log in" } %></li>
+            <li id="user-bar-action"  ><%= link_to t('userbar.signup'), signup_path, { :title => "Create an account" } %></li>
+          <% end -%>                  
         </ul>
         <div class="clear"></div>
       </div>      
       <div id="main-navigation">
         <ul>
-        	<li><%= link_to t('menu.home'), current_seasons_path %></li>         
+        	<li><%= link_to t('menu.home'), current_seasons_path %></li>    
+        	<% if show_admin_content? %><li><%= link_to t('menu.users'), users_path %></li><% end %>        
         </ul>
         <div class="clear"></div>
       </div>

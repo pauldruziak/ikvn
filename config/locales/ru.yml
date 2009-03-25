@@ -201,6 +201,10 @@
         email: "Электропочта"
         login: "Логин"
         password: "Пароль"
+        remember_me: "Запомнить меня"
+        name: "Имя"
+        role: "Роль"
+        created_at: "Зарегестрирован"
         
   support:
     array:
@@ -220,14 +224,21 @@
   next: "следующий" 
   completed: "завершенный"
   
+  admin: "Администратор"
+  judge: "Судья"
+  member: "Пользователь"
+  
   txt:
     or: "или"
     save: "Сохранить &rarr;"
     signin: "Войти"
     cancel: "Отмена"
+    signup: "Зарегистрироваться"
     titles:
       login: "Вход"
       signup: "Регистрация"
+      users: "Люди"
+      profile: "Профиль"
     
 
   userbar:
@@ -235,9 +246,11 @@
     logout: "Выйти"
     login: "Войти"
     signup: "Зарегистрироваться"
+    
   
   menu:
     home: "Чемпионат"
+    users: "Люди"
     
   season:
     all: "Все сезоны"
@@ -277,6 +290,9 @@
     attributes:
       name: 
         description: "Например: Про золушку"
+  
+  user:
+    edit: "Редактировать"
 
   errors:
     messages: 

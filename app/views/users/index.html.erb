@@ -1,0 +1,44 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content"> 
+  	<%= render :partial => 'layouts/flashes' -%>         
+    <h2 class="title"><%= t('txt.titles.users') -%></h2>
+    <div class="inner">
+        <table class="table">
+          <tr>             
+            <th class="first">ID</th>
+            <th>Email</th>
+            <th>Confirmed Email?</th>
+            <th>Created at</th>
+            <th class="last">&nbsp;</th>
+          </tr>
+          <% @users.each do |user| -%>
+          <tr>
+            <td>
+              <%= user.id %>
+            </td>
+            <td>
+              <%= link_to user.email, user_path(user) %>
+            </td>
+            <td><%= user.email_confirmed %></td>
+            <td>
+              <%= user.created_at %>
+            </td>
+          </tr>          
+          <% end -%>
+        </table>
+        <div class="actions-bar">
+          <div class="actions">
+          </div>
+
+          <div class="clear"></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>    
