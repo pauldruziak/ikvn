@@ -40,9 +40,12 @@ class RoundsController < ApplicationController
   def publish
   	@round = @season.rounds.find(params[:id])
   	if @round.valid? && @round.questions.not_valid.empty? && @round.update_attribute(:published, true)
-  	  flash[:notice] = 'Round was successfully published.'  	  	  
+  	  flash[:notice] = 'Round was successfully published.'  
+    else
+      #TODO refactoring
+      @not_published = true
 	end
-  	redirect_to season_round_path(@round.season, @round)	
+  	render :action => "show"	
   end
   
 protected
