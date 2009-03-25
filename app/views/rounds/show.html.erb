@@ -9,33 +9,33 @@
     <div class="clear"></div>
   </div>          
   <div class="content">
-  	<h2 class="title"><%=link_to t('season.name', :name => h(@round.season.name)), season_path(@round.season) %> → <%= t('round.name', :name => h(@round.name)) %></h2>
+    <h2 class="title"><%=link_to t('season.name', :name => h(@round.season.name)), season_path(@round.season) %> → <%= t('round.name', :name => h(@round.name)) %></h2>
     <div class="inner"> 
-    	<div class="flash">
-	      <% flash.each do |type, message| -%>
-	      <div class="message <%= type %>">
-	        <p><%=  message %></p>	        
-	      </div>
-	      <% end -%>
-	      <% if !@round.valid? || @not_published   %>
-	      <div class="message error">
-	      	<h2><%= t('errors.messages.round_not_published', :count => @round.errors.count + @round.questions.not_valid.count) %></h2>
-	      	<p><%= t('activerecord.errors.template.body') %></p>
-	      	<ul>	
-	        <% @round.errors.each do |attribute, message| -%>	        
-	          <li><%=  Round.human_attribute_name(attribute) %> <%= message %></li>  	
-	        <% end-%>
-    	    <% @round.questions.not_valid.each do |question| %>
-		      <% question.errors.each do |attribute, message| -%>	        
-	            <li><%=  "#{t('question.name', :name => question.name)}: #{Question.human_attribute_name(attribute)} #{message}".downcase %> </li>  	
-	          <% end-%>
-		    <% end %>
-	        </ul>
-	      </div>
-	      <% end -%>
-	    </div>    
+      <div class="flash">
+        <% flash.each do |type, message| -%>
+        <div class="message <%= type %>">
+          <p><%=  message %></p>          
+        </div>
+        <% end -%>
+        <% if @not_published   %>
+        <div class="message error">
+          <h2><%= t('errors.messages.round_not_published', :count => @round.errors.count + @round.questions.not_valid.size) %></h2>
+          <p><%= t('activerecord.errors.template.body') %></p>
+          <ul>  
+          <% @round.errors.each do |attribute, message| -%>          
+            <li><%=  Round.human_attribute_name(attribute) %> <%= message %></li>    
+          <% end-%>
+          <% @round.questions.not_valid.each do |question| %>
+          <% question.errors.each do |attribute, message| -%>          
+              <li><%=  "#{t('question.name', :name => question.name)}: #{Question.human_attribute_name(attribute)} #{message}".downcase %> </li>    
+            <% end-%>
+        <% end %>
+          </ul>
+        </div>
+        <% end -%>
+      </div>    
 
-    	<hr />
+      <hr />
         <p>
           <span class="gray"><%= t('round.responses') %></span>
           <span class="small"><%= l @round.start_responses_at, :format => :long %>&mdash;<%= l @round.end_responses_at, :format => :long %></span>
@@ -52,9 +52,9 @@
         <ul class="list">
         <% @round.questions.each do |question| %>
           <li>
-          	<h3><%=link_to t('question.name', :name => h(question.name)), season_round_question_path(@round.season, @round, question) %></h3>
-      		<div><%=h question.body %></div>
-          </li>       	
+            <h3><%=link_to t('question.name', :name => h(question.name)), season_round_question_path(@round.season, @round, question) %></h3>
+          <div><%=h question.body %></div>
+          </li>         
         <% end -%>
         </ul>
     </div>
