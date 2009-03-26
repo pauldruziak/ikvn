@@ -1,0 +1,28 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">    
+  	<h2 class="title"><%=link_to t('season.name', :name => h(@answer.question.round.season.name)), season_path(@answer.question.round.season) %> → <%=link_to t('round.name', :name => h(@answer.question.round.name)), season_round_path(@answer.question.round.season, @answer.question.round) %> → <%=link_to t('question.name', :name => h(@answer.question.name)), season_round_question_path(@answer.question.round.season, @answer.question.round, @answer.question) %> → <%= t('answer.new')%></h2>
+    <div class="inner">
+      <p>
+        <%= @answer.question.body %>
+      </p>
+    </div>        
+    <div class="inner">
+      <% form_for :answer, :url => season_round_question_answers_path, :html => { :class => :form } do |f| -%>        
+          <div class="group">
+            <%= f.text_area :body, :class => 'text_area' %>
+          </div>
+        
+        <div class="group navform">
+          <input type="submit" class="button" value="<%= t('txt.save')%>" /> <%= t('txt.or')%> <%= link_to t('txt.cancel'), season_round_question_path(@answer.question.round.season, @answer.question.round, @answer.question) %>
+        </div>
+      <% end -%>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

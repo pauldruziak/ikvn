@@ -10,9 +10,7 @@
   <div class="content">
   	<h2 class="title"><%=link_to t('season.name', :name => h(@question.round.season.name)), season_path(@question.round.season) %> → <%=link_to t('round.name', :name => h(@question.round.name)), season_round_path(@question.round.season, @question.round) %> → <%= t('question.name', :name => h(@question.name)) %></h2>
     <div class="inner">
-        <p>
-          <%= @question.body %>
-        </p>
+        <%= render :partial => 'question', :object => @question %>
     </div>
   </div>
 </div>

@@ -243,9 +243,10 @@ ul.navigation li.active a{
 /* lists */
 
 ul.list li {
-  border-bottom-color: #F0F0EE;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
+  border-top-color: #F0F0EE;
+  border-top-width: 1px;
+  border-top-style: solid;
+  padding-top: 5px;
 }
 
 ul.list li .item .avatar {

@@ -1,0 +1,11 @@
+<p>
+  <%=h question.body %>
+</p>
+<ul class="list">
+  <% question.answers.my(current_user).each do |answer| %>
+    <li>
+      <%= render :partial => 'answers/answer', :object => answer %>
+    </li>
+  <% end %>
+</ul>
+<%=link_to t('answer.new'), new_season_round_question_answer_path(question.round.season, question.round, question) if can_add_answer? question %>

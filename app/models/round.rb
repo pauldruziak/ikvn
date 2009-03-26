@@ -21,6 +21,12 @@ class Round < ActiveRecord::Base
     status
   end
   
+  def current?
+  	status == :current
+  end
+  
+  alias :open? :current? 
+  
   
 protected
   def validate  	

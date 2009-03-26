@@ -4,7 +4,9 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'seasons', :action => 'current'
   map.resources :seasons, :collection => { :current => :get } do |season|
   	season.resources :rounds, :only => [:index, :show, :edit, :update], :member => { :publish => :get }  do |round| 
-  	  round.resources :questions, :only => [:show, :edit, :update]
+  	  round.resources :questions, :only => [:show, :edit, :update] do |question|
+  	  	question.resources :answers, :except => [:index]
+  	  end
   	end
   end
 

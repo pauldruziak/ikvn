@@ -290,6 +290,13 @@
     attributes:
       name: 
         description: "Например: Про золушку"
+
+  answer:
+    new: "Добавить ответ"
+    edit: "Редактировать"
+  titles:
+    new: "Добавить ответ"
+    edit: "Редактирование"
   
   user:
     edit: "Редактировать"
