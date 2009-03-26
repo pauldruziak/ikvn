@@ -6,3 +6,4 @@ doc/api
 doc/app
 Thumbs.db
 coverage/*
+*.lnk
