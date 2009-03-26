@@ -12,14 +12,8 @@
   <div class="content">  	
   	<h2 class="title"><%=t('season.name', :name => @season.name) %></h2>
     <div class="inner">
-    	<div class="flash">
-      <% flash.each do |type, message| -%>
-      <div class="message <%= type %>">
-        <p><%=  message %></p>
-      </div>
-      <% end -%>
-    </div>      
-       <%= render :partial => 'rounds', :object => @season.rounds %>	          	          
+       <%= render :partial => 'layouts/flashes' -%>
+       <%= render :partial => 'rounds', :object => show_admin_content? ? @season.rounds : @season.rounds.published %>   
     </div>
   </div>
 </div>

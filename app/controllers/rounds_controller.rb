@@ -8,10 +8,14 @@ class RoundsController < ApplicationController
   # GET /seasons/1/rounds/1.xml
   def show
     @round = @season.rounds.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @round }
+    
+    if @round.published || signed_in_as_admin?
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @round }
+      end
+    else
+      redirect_to season_path(@round.season)
     end
   end
 

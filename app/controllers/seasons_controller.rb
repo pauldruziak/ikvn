@@ -1,12 +1,12 @@
 class SeasonsController < ApplicationController
 	
   before_filter :check_round,  :only => [:edit, :update, :destroy]  
-  before_filter :admin_only, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :admin_only, :only => [:new, :create, :edit, :update, :destroy]  
   
   # GET /seasons/current
   # GET /seasons/current.xml
   def current
-  	@season = Season.find(:last)
+  	@season = Season.current
 
     respond_to do |format|
       format.html { render :action => "show" }
@@ -29,10 +29,14 @@ class SeasonsController < ApplicationController
   # GET /seasons/1.xml
   def show
     @season = Season.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @season }
+    
+    if @season.published? || signed_in_as_admin?
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @season }
+      end
+    else
+      redirect_to current_seasons_url
     end
   end
 
@@ -105,4 +109,5 @@ protected
   	  false
     end
   end  
+
 end
