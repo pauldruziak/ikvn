@@ -15,12 +15,13 @@
       <% form_for @answer, :url => season_round_question_answer_path(@answer.question.round.season, @answer.question.round, @answer.question, @answer), :html => { :class => :form } do |f| -%>
         
           <div class="group">
-            <%= f.text_area :body, :class => 'text_area' %>
+            <%= textile_editor 'answer', 'body' -%>
           </div>
         
         <div class="group navform">
           <input type="submit" class="button" value="<%= t('txt.save')%>" /> <%= t('txt.or')%> <%= link_to t('txt.cancel'), season_round_question_path(@answer.question.round.season, @answer.question.round, @answer.question) %>
         </div>
+        <%= textile_editor_initialize -%>
       <% end -%>
     </div>
   </div>

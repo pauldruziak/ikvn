@@ -35,7 +35,8 @@ Rails::Initializer.run do |config|
   # config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
   # config.gem "thoughtbot-shoulda", :lib => false, :source => "http://gems.github.com"
   config.gem "thoughtbot-clearance", :lib => 'clearance', :source => 'http://gems.github.com', :version => '>= 0.5.0'
-  
+  # config.gem "calendar_date_select"
+  config.gem "RedCloth"
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named

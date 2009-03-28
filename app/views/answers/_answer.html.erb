@@ -3,5 +3,5 @@
 </div>
 <div class="item">
   <p><%= render :partial => 'layouts/timestamp', :object => answer -%> | <%= link_to t('answer.edit'), edit_season_round_question_answer_path(answer.question.round.season, answer.question.round, answer.question, answer) if can_edit_answer? answer.question %></p>
-  <p><%= h answer.body %></p>
+  <p><%=RedCloth.new(h (answer.body)).to_html %></p>
 </div>

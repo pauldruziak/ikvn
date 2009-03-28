@@ -1,5 +1,5 @@
 <p>
-  <%=h question.body %>
+  <%=RedCloth.new( h(question.body)).to_html %>
 </p>
 <ul class="list">
   <% question.answers.my(current_user).each do |answer| %>

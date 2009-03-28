@@ -14,12 +14,13 @@
 
           <div class="group">
             <%= f.label :body, Question.human_attribute_name('body'), :class => :label %>
-            <%= f.text_area :body, :class => 'text_area' %>
+            <%= textile_editor 'question', 'body' -%>
           </div>
         
         <div class="group navform">
           <input type="submit" class="button" value="<%= t 'txt.save' %>" /> <%= t 'txt.or' %> <%= link_to t('txt.cancel'), season_round_path(@question.round.season, @question.round) %>
         </div>
+        <%= textile_editor_initialize -%>
       <% end -%>
     </div>
   </div>

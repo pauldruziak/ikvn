@@ -20,7 +20,7 @@
             <%= f.label :questions_count, Season.human_attribute_name('questions_count'), :class => :label %>
             <%= f.text_field :questions_count, :class => 'text_field' %>
             <span class="description"><%= t('season.attributes.rounds_count.description')%></span>
-          </div>
+          </div>      
         
         <div class="group navform">
           <input type="submit" class="button" value="<%= t('txt.save')%>" /> <%= t('txt.or')%> <%= link_to t('txt.cancel'), current_seasons_path %>
