@@ -1,10 +1,10 @@
 <% if show_admin_content? %>
 <div class="block notice">
-	  <% !if round.previous.nil? %>
+	  <% if !@round.previous.nil? %>
           <h4>Предыдущей тур</h4>
           <p><%= "#{t 'season.name', :name => h(@round.previous.season.name)} #{t('round.name', :name => h(@round.previous.name))}: #{l @round.previous.start_responses_at, :format => :date}&ndash;#{l @round.previous.end_assess_at, :format => :date}" %></p>
        <% end -%>
-       <% !if round.next.nil? %>
+       <% if !@round.next.nil? %>
            <h4>Следующий тур</h4>
            <p><%= "#{t 'season.name', :name => h(@round.next.season.name)} #{t('round.name', :name => h(@round.next.name))}: #{l @round.next.start_responses_at, :format => :date}&ndash;#{l @round.next.end_assess_at, :format => :date}" %></p>
        <% end -%>
