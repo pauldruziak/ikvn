@@ -22,7 +22,7 @@
       default: "%a, %d %b %Y, %H:%M:%S %z"
       short: "%d %B, %H:%M"
       long: "%d %B %Y, %H:%M"
-      date:  "%d %B, %H:%M"
+      date:  "%d %B"
  
     am: "утра"
     pm: "вечера"

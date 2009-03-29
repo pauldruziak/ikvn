@@ -1,8 +1,16 @@
+<% if show_admin_content? %>
+<div class="block notice">
+          <h4>Предыдущей тур</h4>
+          <p><%= "#{t 'season.name', :name => h(@round.previous.season.name)} #{t('round.name', :name => h(@round.previous.name))}: #{l @round.previous.start_responses_at, :format => :date}&ndash;#{l @round.previous.end_assess_at, :format => :date}" %></p>
+           <h4>Следующий тур</h4>
+           <p><%= "#{t 'season.name', :name => h(@round.next.season.name)} #{t('round.name', :name => h(@round.next.name))}: #{l @round.next.start_responses_at, :format => :date}&ndash;#{l @round.next.end_assess_at, :format => :date}" %></p>
+</div>
+<% end -%>
 <div class="block">
   <h3><%= t 'season.name', :name => h(@round.season.name) %></h3>
   <ul class="navigation">
   	<% @round.season.rounds.each do |round|%>
-    <li class="<%= 'active' if round == @round%>"><%= link_to t('round.name', :name => h(round.name)), season_round_path(round.season, round)%> </li>
+    <li class="<%= 'active' if round == @round%>"><%= link_to t('round.name', :name => h(round.name)), season_round_path(round.season, round)%></li>
     <% end -%>
   </ul>
 </div>

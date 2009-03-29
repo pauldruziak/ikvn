@@ -27,6 +27,14 @@ class Round < ActiveRecord::Base
   
   alias :open? :current? 
   
+  def previous	
+  	Round.find :last, :limit => 1, :conditions => ["id < ?", self.id], :order => "id ASC"
+  end
+  
+  def next	
+  	Round.find :first, :limit => 1, :conditions => ["id > ?", self.id], :order => "id ASC"
+  end
+  
   
 protected
   def validate  	
