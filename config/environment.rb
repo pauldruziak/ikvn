@@ -58,7 +58,7 @@ Rails::Initializer.run do |config|
   # All files from config/locales/*.rb,yml are added automatically.
   #config.i18n.load_path = Dir[File.join(RAILS_ROOT, 'my', 'locales', '*.{rb,yml}')]
   config.i18n.load_path = Dir[File.join(RAILS_ROOT, 'config', 'locales', '*.{rb,yml}')]
-  config.i18n.default_locale = :en
+  config.i18n.default_locale = :ru
 
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!

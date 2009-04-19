@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-	
-  before_filter :find_round	
+
+  before_filter :find_round
   before_filter :check_round, :only => [:edit, :update]
   before_filter :admin_only, :only => [:edit, :update]
 
@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1.xml
   def show
     @question = @round.questions.find(params[:id])
-    
+
     if @question.round.published || signed_in_as_admin?
       respond_to do |format|
         format.html # show.html.erb
@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
   end
 
   # GET /questions/1/edit
-  def edit    
+  def edit
     @question = @round.questions.find(params[:id])
   end
 
@@ -41,17 +41,18 @@ class QuestionsController < ApplicationController
     end
   end
 
-protected
+  protected
   def find_round
-  	@round = Season.find(params[:season_id]).rounds.find(params[:round_id])
+    @round = Season.find(params[:season_id]).rounds.find(params[:round_id])
   end
-  
+
   def check_round
-  	@round = Season.find(params[:season_id]).rounds.find(params[:round_id])
-  	if @round.published
-  	  flash[:error] = I18n.t('errors.messages.question_prohibited_published_round')
-  	  redirect_to season_round_url(@round.season, @round)
-  	  false
-  	end
+    @round = Season.find(params[:season_id]).rounds.find(params[:round_id])
+    if @round.published
+      flash[:error] = I18n.t('errors.messages.question_prohibited_published_round')
+      redirect_to season_round_url(@round.season, @round)
+      false
+    end
   end
 end
+

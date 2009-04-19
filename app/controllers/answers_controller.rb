@@ -1,20 +1,20 @@
 class AnswersController < ApplicationController
 
-  before_filter :find_question	
+  before_filter :find_question
   before_filter :check_round
   before_filter :users_only
   before_filter :check_user, :only => [:edit, :update]
-	
+
   def new
-  	@answer = @question.answers.build
+    @answer = @question.answers.build
   end
 
   def create
-  	@answer = @question.answers.build(params[:answer])
-  	@answer.user = current_user
+    @answer = @question.answers.build(params[:answer])
+    @answer.user = current_user
 
     respond_to do |format|
-      if @answer.save      	
+      if @answer.save
         flash[:notice] = 'Answer was successfully created.'
         format.html { redirect_to season_round_question_url(@answer.question.round.season, @answer.question.round, @answer.question) }
       else
@@ -24,11 +24,11 @@ class AnswersController < ApplicationController
   end
 
   def edit
-  	@answer = @question.answers.find(params[:id])
+    @answer = @question.answers.find(params[:id])
   end
 
   def update
-  	@answer = @question.answers.find(params[:id])
+    @answer = @question.answers.find(params[:id])
 
     respond_to do |format|
       if @answer.update_attributes(params[:answer])
@@ -40,25 +40,26 @@ class AnswersController < ApplicationController
     end
   end
 
-protected 
-  
+  protected
+
   def find_question
-  	@question = Season.find(params[:season_id]).rounds.find(params[:round_id]).questions.find(params[:question_id])
+    @question = Season.find(params[:season_id]).rounds.find(params[:round_id]).questions.find(params[:question_id])
   end
-  
+
   def check_round
-  	@round = Season.find(params[:season_id]).rounds.find(params[:round_id])
-  	if !@round.open?
-	  flash[:error] = I18n.t('errors.messages.answer_prohibited_published_round')
-  	  redirect_to season_url(@round.season)
+    @round = Season.find(params[:season_id]).rounds.find(params[:round_id])
+    if !@round.open?
+      flash[:error] = I18n.t('errors.messages.answer_prohibited_published_round')
+      redirect_to season_url(@round.season)
     end
   end
-  
+
   def check_user
-  	@answer = Season.find(params[:season_id]).rounds.find(params[:round_id]).questions.find(params[:question_id]).answers.find(params[:id])
-  	if @answer.user != current_user
-  	  redirect_to season_round_question_url(@answer.question.round.season, @answer.question.round, @answer.question)
-  	end
+    @answer = Season.find(params[:season_id]).rounds.find(params[:round_id]).questions.find(params[:question_id]).answers.find(params[:id])
+    if @answer.user != current_user
+      redirect_to season_round_question_url(@answer.question.round.season, @answer.question.round, @answer.question)
+    end
   end
 
 end
+

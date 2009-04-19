@@ -32,8 +32,4 @@ protected
   	end
   end
   
-  def before_destroy
-  	rounds.published.count == 0  	
-  end
-  
 end

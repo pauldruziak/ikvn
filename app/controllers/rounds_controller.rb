@@ -1,14 +1,14 @@
 class RoundsController < ApplicationController
-	
-  before_filter :find_season	
+
+  before_filter :find_season
   before_filter :check_round, :only => [:edit, :update, :publish]
   before_filter :admin_only, :only => [:edit, :update, :publish]
-  
+
   # GET /seasons/1/rounds/1
   # GET /seasons/1/rounds/1.xml
   def show
     @round = @season.rounds.find(params[:id])
-    
+
     if @round.published || signed_in_as_admin?
       respond_to do |format|
         format.html # show.html.erb
@@ -40,30 +40,31 @@ class RoundsController < ApplicationController
       end
     end
   end
-  
+
   # get /seasons/1/rounds/1/publish
   def publish
-  	@round = @season.rounds.find(params[:id])
-  	if @round.valid? && @round.questions.not_valid.empty? && @round.update_attribute(:published, true)
-  	  flash[:notice] = 'Round was successfully published.'  
+    @round = @season.rounds.find(params[:id])
+    if @round.valid? && @round.questions.not_valid.empty? && @round.update_attribute(:published, true)
+      flash[:notice] = 'Round was successfully published.'
     else
       #TODO refactoring
       @not_published = true
-	end
-  	render :action => "show"	
+    end
+    render :action => "show"
   end
-  
-protected
+
+  protected
   def find_season
-  	@season = Season.find(params[:season_id])  	
+    @season = Season.find(params[:season_id])
   end
-  
+
   def check_round
-  	@round = Season.find(params[:season_id]).rounds.find(params[:id])
-  	if @round.published
-  	  flash[:error] = I18n.t('errors.messages.round_prohibited_published_round')
-  	  redirect_to season_round_url(@round.season, @round)
-  	  false
-  	end
+    @round = Season.find(params[:season_id]).rounds.find(params[:id])
+    if @round.published
+      flash[:error] = I18n.t('errors.messages.round_prohibited_published_round')
+      redirect_to season_round_url(@round.season, @round)
+      false
+    end
   end
 end
+

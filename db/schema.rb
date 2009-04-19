@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090325023621) do
+ActiveRecord::Schema.define(:version => 20090326063208) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "questions", :force => true do |t|
     t.integer  "round_id"
@@ -18,18 +26,6 @@ ActiveRecord::Schema.define(:version => 20090325023621) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "roles", :force => true do |t|
-    t.string "name"
-  end
-
-  create_table "roles_users", :id => false, :force => true do |t|
-    t.integer "role_id"
-    t.integer "user_id"
-  end
-
-  add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
-  add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
 
   create_table "rounds", :force => true do |t|
     t.integer  "season_id"
@@ -75,7 +71,6 @@ ActiveRecord::Schema.define(:version => 20090325023621) do
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["id", "token"], :name => "index_users_on_id_and_token"
   add_index "users", ["judge"], :name => "index_users_on_judge"
-  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["token"], :name => "index_users_on_token"
 
 end
