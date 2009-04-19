@@ -1,0 +1,10 @@
+== 0.0.3 / 2007-06-24
+
+* Updated Manifest.txt so files are actually packaged in the gem. D'oh!
+* See also release notes for version 0.0.2
+
+== 0.0.2
+
+* Renamed gem to test_benchmark
+* Upgraded to Hoe.
+* Will always show report. If you don't want to see the report, it is recommended that you install the gem and list or comment out "require 'test_benchmark'" to enable the gem.

@@ -1,0 +1,57 @@
+h1. Test Benchmark
+
+A ruby gem and rails plugin to show you how slow your Test::Unit tests run. Useful for troubleshooting/isolating slow tests. Available from http://github.com/timocratic/test_benchmark/
+
+Sample output:
+<pre><code>
+  7.124 test_destroy(FeedTest)
+  7.219 test_create(FeedTest)
+  7.646 test_subscribe_to_auto_discovery(FeedTest)
+  9.339 test_auto_discover_updates_url(FeedTest)
+  9.543 test_find_or_create_by_auto_discover_url(FeedTest)
+  15.780 test_import_from_opml(FeedTest)
+</code></pre>
+
+h2. Install and enable
+
+h3. As a Rails Plugin
+
+<pre><code>./script/plugin install git://github.com/timocratic/test_benchmark.git</pre></code>
+
+h3. As a Ruby gem
+
+h4. Install
+
+* *Update to RubyGems 1.2.0+ before proceeding!!*
+* gem sources -a http://gems.github.com (you only have to do this once)
+* sudo gem install timocratic-test_benchmark
+
+h4. Enable
+
+* require 'rubygems'
+* require 'test_benchmark
+
+h3. As a (frozen) gem in rails
+
+I recommend this method.  It makes updating simple, and if I had more config in the future, that will be easily done only in your test environment
+
+h4. in config/environments/test.rb
+
+<pre><code>
+config.gem "timocratic-test_benchmark", :lib => 'test_benchmark', :source => 'http://gems.github.com', :version => '0.4.2' #update to whatever version number is current</code></pre>
+
+h4. from the console
+
+<pre><code>
+RAILS_ENV=test GEM=timocratic-test_benchmark rake gems:install
+RAILS_ENV=test GEM=timocratic-test_benchmark rake gems:unpack #optional, but suggested step - 'freezing' the gem
+</code></pre>
+
+
+h2. Options and disabling temporarily
+
+By default the top 10 slowest tests are output to the console (and in Rails the whole list is dumped to test.log).  To see the full dump in your console (as well as get a per-file/suite breakdown) set the env variable BENCHMARK to 'full':
+
+<pre><code>BENCHMARK=full rake test</code></pre>
+
+To disable completely, run with it set to 'false' instead.
