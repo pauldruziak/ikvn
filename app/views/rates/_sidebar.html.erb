@@ -2,7 +2,7 @@
   <h3><%= t('round.name', :name => h(@question.round.name)) %></h3>
   <ul class="navigation">
     <% @question.round.questions.each do |question| %>
-      <li class="<%= 'active' if question == @question%>"><%=link_to t('question.name', :name => h(question.name)), question_path(question) %></li>
+      <li class="<%= 'active' if question == @question%>"><%=link_to t('question.name', :name => h(question.name)), new_question_rate_path(question) %></li>
     <% end -%>
   </ul>
 </div>

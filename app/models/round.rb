@@ -10,6 +10,7 @@ class Round < ActiveRecord::Base
   named_scope :published, :conditions => { :published => true }
 
   validates_presence_of :name, :start_responses_at, :end_responses_at, :start_assess_at, :end_assess_at
+  #validates_presence_of :season
 
   def publish
     update_attribute("published", true)

@@ -3,11 +3,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :passwords
   map.root :controller => 'seasons', :action => 'current'
   map.resources :seasons, :collection => { :current => :get } do |season|
-  	season.resources :rounds, :only => [:index, :show, :edit, :update], :member => { :publish => :get }  do |round| 
-  	  round.resources :questions, :only => [:show, :edit, :update] do |question|
-  	  	question.resources :answers, :except => [:index]
-  	  end
-  	end
+    season.resources :rounds, :only => [:index, :show, :edit, :update], :member => { :publish => :get }  do |round| 
+    end
+  end
+  map.resources :questions, :only => [:show, :edit, :update], :member => { :rate => :get } do |question|
+    question.resources :answers, :except => [:index]
+    question.resources :rates, :only => [:new, :create]
   end
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'

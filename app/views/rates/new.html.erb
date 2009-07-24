@@ -1,0 +1,48 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <div class="clear"></div>
+  </div>          
+  <div class="content">
+    <h2 class="title"><%=link_to t('season.name', :name => h(@question.round.season.name)), season_path(@question.round.season) %> → <%=link_to t('round.name', :name => h(@question.round.name)), season_round_path(@question.round.season, @question.round) %> → <%= t('question.name', :name => h(@question.name)) %></h2>
+    <div class="inner">
+        <p>
+          <%=RedCloth.new( h(@question.body)).to_html %>
+        </p>
+        <% form_for :question, @question, :url => question_rates_path(@question) do |question_form| %>
+          <div class="flash">
+              <%= question_form.error_messages({:class => "message error"}) %>
+          </div>
+        <ul class="list">
+          <% question_form.fields_for :answers do |answer_form| %>
+            <li>
+              <div class="item">
+                <p>
+                  <%= answer_form.object.body %>
+                  <% answer_form.fields_for :rates do |rate_form| %>
+                    <% if rate_form.object.new_record? %>
+                      <%= rate_form.error_messages %>
+                      <%= rate_form.hidden_field :user_id %>
+                      <%= rate_form.label :score, 1 %>
+                      <%= rate_form.radio_button :score, 1 %>
+                      <%= rate_form.label :score, 2 %>
+                      <%= rate_form.radio_button :score, 2 %>
+                      <%= rate_form.label :score, 3 %>
+                      <%= rate_form.radio_button :score, 3 %>
+                      <%= rate_form.label :score, 4 %>
+                      <%= rate_form.radio_button :score, 4 %>
+                      <%= rate_form.label :score, 5 %>
+                      <%= rate_form.radio_button :score, 5 %>
+                    <% end %>
+                  <% end %>
+                </p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+        <%= submit_tag %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

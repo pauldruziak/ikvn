@@ -1,8 +1,8 @@
 <div class="block">
   <h3><%= t('season.all') %></h3>
   <ul class="navigation">
-  	<% seasons.each do |season| %>
-    <li class="<%= 'active' if season == @season%>"> <%=link_to t('season.name', :name => h(season.name)), season_path(season)%> </li>
+    <% seasons.each do |season| %>
+      <li class="<%= 'active' if season == @season%>"> <%=link_to t('season.name', :name => h(season.name)), season_path(season)%> </li>
     <% end -%>
   </ul>
 </div>

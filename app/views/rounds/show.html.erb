@@ -52,7 +52,7 @@
         <ul class="list">
         <% @round.questions.each do |question| %>
           <li>
-            <h3><%=link_to t('question.name', :name => h(question.name)), season_round_question_path(@round.season, @round, question) %></h3>
+            <h3><%=link_to t('question.name', :name => h(question.name)), question_path(question) %></h3>
             <%= render :partial => 'questions/question', :object => question %>
           </li>         
         <% end -%>

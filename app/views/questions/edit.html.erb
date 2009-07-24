@@ -1,8 +1,8 @@
 <div class="block">
   <div class="content">            
-    <h2 class="title"><%=link_to t('season.name', :name => h(@question.round.season.name)), season_path(@question.round.season) %> → <%=link_to t('round.name', :name => h(@question.round.name)), season_round_path(@question.round.season, @question.round) %> → <%= link_to t('question.name', :name => h(@question.name)), season_round_question_path(@question.round.season, @question.round, @question) %> → <%= t('question.titles.edit')%></h2>
+    <h2 class="title"><%=link_to t('season.name', :name => h(@question.round.season.name)), season_path(@question.round.season) %> → <%=link_to t('round.name', :name => h(@question.round.name)), season_round_path(@question.round.season, @question.round) %> → <%= link_to t('question.name', :name => h(@question.name)), question_path(@question) %> → <%= t('question.titles.edit')%></h2>
     <div class="inner">
-      <% form_for @question, :url => season_round_question_path(@question.round.season, @question.round, @question), :html => { :class => :form } do |f| -%>
+      <% form_for @question, :url => question_path(@question), :html => { :class => :form } do |f| -%>
           <div class="flash">
               <%= f.error_messages({:class => "message error"}) %>
           </div>

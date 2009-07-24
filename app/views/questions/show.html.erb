@@ -2,13 +2,14 @@
   <div class="secondary-navigation">
     <ul>
       <% if show_admin_content? %>
-        <li><%= link_to t('question.edit'), edit_season_round_question_path(@question.round.season, @question.round, @question) if !@question.round.published %></li>
+        <li><%= link_to t('question.edit'), edit_question_path(@question) if !@question.round.published? %></li>
+        <li><%= link_to 'rate', new_question_rate_path(@question) %></li>
       <% end %>
     </ul>
     <div class="clear"></div>
   </div>          
   <div class="content">
-  	<h2 class="title"><%=link_to t('season.name', :name => h(@question.round.season.name)), season_path(@question.round.season) %> → <%=link_to t('round.name', :name => h(@question.round.name)), season_round_path(@question.round.season, @question.round) %> → <%= t('question.name', :name => h(@question.name)) %></h2>
+    <h2 class="title"><%=link_to t('season.name', :name => h(@question.round.season.name)), season_path(@question.round.season) %> → <%=link_to t('round.name', :name => h(@question.round.name)), season_round_path(@question.round.season, @question.round) %> → <%= t('question.name', :name => h(@question.name)) %></h2>
     <div class="inner">
         <%= render :partial => 'question', :object => @question %>
     </div>

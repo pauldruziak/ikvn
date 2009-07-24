@@ -16,7 +16,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         flash[:notice] = 'Answer was successfully created.'
-        format.html { redirect_to season_round_question_url(@answer.question.round.season, @answer.question.round, @answer.question) }
+        format.html { redirect_to question_url(@answer.question) }
       else
         format.html { render :action => "new" }
       end
@@ -33,7 +33,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.update_attributes(params[:answer])
         flash[:notice] = 'Answer was successfully updated.'
-        format.html { redirect_to season_round_question_url(@answer.question.round.season, @answer.question.round, @answer.question) }
+        format.html { redirect_to question_url(@answer.question) }
       else
         format.html { render :action => "edit" }
       end
@@ -43,20 +43,20 @@ class AnswersController < ApplicationController
   protected
 
   def find_question
-    @question = Season.find(params[:season_id]).rounds.find(params[:round_id]).questions.find(params[:question_id])
+    @question = Question.find(params[:question_id])
   end
 
   def check_round
-    @round = Season.find(params[:season_id]).rounds.find(params[:round_id])
-    if !@round.open?
+    question = Question.find(params[:question_id])
+    if !question.round.open?
       flash[:error] = I18n.t('errors.messages.answer_prohibited_published_round')
-      redirect_to season_url(@round.season)
+      redirect_to season_url(question.round.season)
     end
   end
 
   def check_user
-    @answer = Season.find(params[:season_id]).rounds.find(params[:round_id]).questions.find(params[:question_id]).answers.find(params[:id])
-    if @answer.user != current_user
+    answer = Question.find(params[:question_id]).answers.find(params[:id])
+    if answer.user != current_user
       redirect_to season_round_question_url(@answer.question.round.season, @answer.question.round, @answer.question)
     end
   end

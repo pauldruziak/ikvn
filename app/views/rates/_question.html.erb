@@ -8,4 +8,4 @@
     </li>
   <% end %>
 </ul>
-<%=link_to t('answer.new'), new_question_answer_path(question) if can_add_answer? question %>
+<%=link_to t('answer.new'), new_question_answer_path(question.round.season, question.round, question) if can_add_answer? question %>

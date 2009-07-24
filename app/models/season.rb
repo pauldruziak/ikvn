@@ -18,18 +18,18 @@ class Season < ActiveRecord::Base
                                   
 protected
 
-  def before_create	
-  	rounds_count.times do |round_index|
-  		@round = rounds.build({:name => round_index + 1,
-  		                       :published => false,
-  		                       :start_responses_at => Time.now + (21 * round_index).day,
-  							   :end_responses_at => Time.now + (14 + (round_index * 21)).day,
-							   :start_assess_at => Time.now + (14 + (round_index * 21)).day, 
-  							   :end_assess_at => Time.now + (21 + (round_index * 21)).day})
-  		questions_count.times do |question_index|
-  			@round.questions.build({:name => question_index + 1})
-  		end
-  	end
+def before_create
+  self.rounds_count.times do |round_index|
+    @round = rounds.build({:name => round_index + 1,
+                          :published => false,
+                          :start_responses_at => Time.now + (21 * round_index).day,
+                          :end_responses_at => Time.now + (14 + (round_index * 21)).day,
+                          :start_assess_at => Time.now + (14 + (round_index * 21)).day, 
+                          :end_assess_at => Time.now + (21 + (round_index * 21)).day})
+    self.questions_count.times do |question_index|
+      @round.questions.build({:name => question_index + 1})
+    end
+  end
   end
   
 end

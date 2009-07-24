@@ -11,16 +11,16 @@ class SeasonTest < ActiveSupport::TestCase
   should_validate_numericality_of(:questions_count)
 
   context "When created season" do
-    setup { @season = Factory(:season)}
+    setup { @season = Season.generate!}
     should_change 'Season.count', :by => 1
 
     should "create :rounds_count rounds" do
-      assert_equal Factory.attributes_for(:season)[:rounds_count], @season.rounds.count
+      assert_equal @season.rounds_count, @season.rounds.count
     end
 
     should "create :questions_count questions in each round" do
       @season.rounds.each do |round|
-        assert_equal Factory.attributes_for(:season)[:questions_count], round.questions.count
+        assert_equal @season.questions_count, round.questions.count
       end
     end
 
